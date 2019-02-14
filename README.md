@@ -1,0 +1,2 @@
+# Reseau-Social-Libre
+Nouveau projet en préparation un resaux social libre sans censure open source sous licences GPLv3 où tout le monde peut participer à sa modification en améliorant RSL qui aurait pour but de poster partager publier se que l'on veut et il serait affilié à aucune partie ni pays, tout le code sera disponible sur github Si le projet vous intéresse et vous voulez aider a le construire contactez moi sur la page si dessus Tourak adnan RSL Notre Facebook : https://www.facebook.com/Resauxsociallibre  Notre discord : https://discord.gg/jyqvmER et l'equipe D3
