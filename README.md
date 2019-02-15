@@ -34,4 +34,5 @@
     2. Modifiez la ligne suivante avec les informations de connection à votre serveur MySql:
         ``DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name``
     3. ``> php bin/console doctrine:database:create``
-    4. ``> php bin/console doctrine:fixture:load``
+    4. ``> php bin/console doctrine:migration:migrate``
+    5. ``> php bin/console doctrine:fixture:load``
