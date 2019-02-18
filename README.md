@@ -18,7 +18,7 @@
 2. Discord: [https://discord.gg/jyqvmER](https://discord.gg/jyqvmER ) 
 
 ## Installation
-> RSL est projet basé qui s'appuie sur le Framework PHP Symfony4.
+> RSL est un projet basé sur le Framework PHP Symfony4.
 
 1. Cloner le projet github.
     > HTTPS:  ``> git clone https://github.com/reseau-social-libre/First-Model.git``
@@ -36,3 +36,8 @@
     3. ``> php bin/console doctrine:database:create``
     4. ``> php bin/console doctrine:migration:migrate``
     5. ``> php bin/console doctrine:fixture:load``
+    
+4. Installer les assets
+    1. Run ``> yarn install``
+    2. Then run ``> yarn encore dev``
+
