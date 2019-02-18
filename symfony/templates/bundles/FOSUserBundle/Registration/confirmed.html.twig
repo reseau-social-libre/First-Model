@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body_class %}<body class="sign-in">{% endblock %}
+{% block body %}
+    <div class="wrapper">
+        <div class="sign-in-page">
+            <div class="signin-popup">
+                <div class="signin-pop">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="cmp-info">
+                                {{ include('intro.html.twig') }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="login-sec">
+                                <div class="sign_in_sec current" id="tab-1">
+                                    <h3>Registration success!</h3>
+                                    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+                                    {% if targetUrl %}
+                                        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ include('footer.html.twig') }}
+        </div>
+    </div>
+{% endblock body %}
