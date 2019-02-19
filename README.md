@@ -9,7 +9,7 @@
 
 ## Goal of this project.
 
-> This project is open source and is not affiliated with any organization or country.
+> This project is open source and is not affiliated over any organization or country.
 >
 > RSL aims to provide a free space where members can express themselves and share freely without censorship (Pornography, pedophilia and incitement to hate are prohibited).
 
