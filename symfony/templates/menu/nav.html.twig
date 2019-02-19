@@ -1,0 +1,44 @@
+<nav>
+    <ul>
+        <li>
+            <a href="{{ path('home') }}" title="">
+                <span><img src="{{ asset('build/images/icon1.png') }}" alt=""></span>
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="#" title="">
+                <span><img src="{{ asset('build/images/icon2.png') }}" alt=""></span>
+                Actualité
+            </a>
+            <ul>
+                <li><a href="#" title="">Actualité</a></li>
+                <li><a href="#" title="">Actualité</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" title="">
+                <span><img src="{{ asset('build/images/icon3.png') }}" alt=""></span>
+                Projects
+            </a>
+        </li>
+        <li>
+            <a href="#" title="">
+                <span><img src="{{ asset('build/images/icon4.png') }}" alt=""></span>
+                Profiles
+            </a>
+            <ul>
+                <li><a href="#" title="">Profile</a></li>
+                <li><a href="#" title="">my-profile-feed</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" title="">
+                <span><img src="{{ asset('build/images/icon5.png') }}" alt=""></span>
+                Jobs
+            </a>
+        </li>
+        {% include 'menu/message.html.twig' %}
+        {% include 'menu/notification.html.twig' %}
+    </ul>
+</nav>
