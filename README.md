@@ -1,43 +1,43 @@
-# Reseau-Social-Libre
+# RSL
 
-> Réseaux social libre est un projet de réseau social non censuré et open source sous licence GPLv3.
+> RSL is a non censured social network open source project under GPLv3 licence.
 > 
-> Tous le monde peut y participer pour:
-> 1. Le modifier.
-> 2. L'améliorer.
-> 3. Apporter ses idées.
+> Everyone can participate to:
+> 1. Modify it.
+> 2. Improve it.
+> 3. Bring his ideas.
 
-## But de ce projet.
+## Goal of this project.
 
-> Ce projet est open source et n'est affilié à aucune organisation ni aucun pays.
+> This project is open source and is not affiliated with any organization or country.
 >
-> RSL a pour but de fournir un espace libre ou les membres peuvent s'exprimer et partager librement sans censure (La pornographie, pédophilie et incitation à la haine y sont prohibé).
+> RSL aims to provide a free space where members can express themselves and share freely without censorship (Pornography, pedophilia and incitement to hate are prohibited).
 
-## Resources participatives.
-1. Page Facebook: [https://www.facebook.com/Resauxsociallibre](https://www.facebook.com/Resauxsociallibre)
+## Infos resources.
+1. Facebook page: [https://www.facebook.com/Resauxsociallibre](https://www.facebook.com/Resauxsociallibre)
 2. Discord: [https://discord.gg/jyqvmER](https://discord.gg/jyqvmER ) 
 
-## Installation
-> RSL est un projet basé sur le Framework PHP Symfony4.
+## How to install
+> RSL is a project based on the Symfony4 PHP Framework.
 
-1. Cloner le projet github.
+1. Clone the projet from github repository.
     > HTTPS:  ``> git clone https://github.com/reseau-social-libre/First-Model.git``
     >
     > SSL: ``> git clone https://github.com/reseau-social-libre/First-Model.git``
 
-2. Installer le projet.
+2. Install vendor.
     > ``> cd First-Model/symfony``
     > ``> composer install``
     
-3. Installer la base de donnée.
-    1. Copiez le fichier .env > .env.local
-    2. Modifiez la ligne suivante avec les informations de connection à votre serveur MySql:
+3. Install database.
+    1. Copy .env to a new file named .env.local
+    2. Update this line with your MySql server credentials:
         ``DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name``
     3. ``> php bin/console doctrine:database:create``
     4. ``> php bin/console doctrine:migration:migrate``
     5. ``> php bin/console doctrine:fixture:load``
     
-4. Installer les assets
+4. Install all assets
     1. Run ``> yarn install``
     2. Then run ``> yarn encore dev``
 
