@@ -1,4 +1,4 @@
-# RSL
+# RSL (http://rsllibre.com)
 
 > RSL is a non censured social network open source project under GPLv3 licence.
 > 
