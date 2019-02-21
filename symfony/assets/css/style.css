@@ -2461,8 +2461,8 @@ select {
 	margin-top: 70px;
 }
 .footy-sec ul {
-	float: left;
 	margin-top: 5px;
+	text-align: center;
 }
 .footy-sec ul li {
 	display: inline-block;
