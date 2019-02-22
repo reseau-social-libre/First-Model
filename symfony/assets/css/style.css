@@ -2461,7 +2461,6 @@ select {
 	margin-top: 70px;
 }
 .footy-sec ul {
-	margin-top: 5px;
 	text-align: center;
 }
 .footy-sec ul li {
@@ -5354,7 +5353,6 @@ a:hover {
 
 /* =============== ANIMATION LOADER =============== */
 
-
 .spinner {
     margin: 0 auto 0;
     width: 80px;
@@ -5401,4 +5399,10 @@ a:hover {
     -webkit-transform: scale(1.0);
     transform: scale(1.0);
   }
+}
+
+/* =============== POST =============== */
+.post-image img {
+	width: 100%;
+	margin-bottom: 15px;
 }
