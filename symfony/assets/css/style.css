@@ -5406,3 +5406,58 @@ a:hover {
 	width: 100%;
 	margin-bottom: 15px;
 }
+
+/* ============== MAIN PAGE =============== */
+.main-page {
+	float: left;
+	width: 100%;
+	background-color: #fff;
+	padding: 25px 25px 25px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.main-page .title {
+	margin-bottom: 20px;
+}
+
+.main-page h1, .main-page h2, .main-page h3 {
+	color: #000000;
+	font-size: 26px;
+	font-weight: 600;
+	background-color: #fff;
+	position: relative;
+	padding-bottom: 10px;
+	margin-bottom: 30px;
+	width: 100%;
+}
+
+.main-page h1:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 30px;
+	height: 2px;
+	background-color: #e44d3a;
+}
+
+.main-page h2 {
+	font-size: 20px;
+	margin-bottom: 8px;
+}
+
+.main-page strong {
+	font-weight: bolder;
+}
+
+.main-page ul {
+	padding-left: 15px;
+	margin-left: 15px;
+	list-style-type: square;
+	font-size: 13px;
+	color: #666666;
+}
+
+.main-page ul li {
+	line-height: 18px;
+}
