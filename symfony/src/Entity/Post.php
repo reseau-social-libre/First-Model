@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Traits\SluggableTrait;
@@ -9,9 +11,20 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
+ * Class Post.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="post_type", type="string", length=20)
+ * @ORM\DiscriminatorMap({
+ *     "Text"="PostText",
+ *     "Image"="PostImage",
+ *     "Video"="PostVideo",
+ *     "Link"="PostLink",
+ *     "Live"="PostLive",
+ * })
  */
-class Post
+abstract class Post
 {
 
     use TimestampableEntity, SluggableTrait;
@@ -22,12 +35,6 @@ class Post
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\PostType", inversedBy="posts")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $postType;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\PostComment", mappedBy="post")
@@ -68,30 +75,6 @@ class Post
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * Get the PostType.
-     *
-     * @return PostType|null
-     */
-    public function getPostType(): ?PostType
-    {
-        return $this->postType;
-    }
-
-    /**
-     * Set the PostType.
-     *
-     * @param PostType|null $postType
-     *
-     * @return Post
-     */
-    public function setPostType(?PostType $postType): self
-    {
-        $this->postType = $postType;
-
-        return $this;
     }
 
     /**
