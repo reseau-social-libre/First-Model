@@ -53,7 +53,7 @@ abstract class Post
     private $likes;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\PostTag", mappedBy="posts")
+     * @ORM\ManyToMany(targetEntity="App\Entity\PostTag", mappedBy="posts", cascade={"persist"})
      */
     private $postTags;
 
