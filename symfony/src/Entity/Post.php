@@ -2,26 +2,26 @@
 
 namespace App\Entity;
 
+use App\Traits\SluggableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  */
 class Post
 {
+
+    use TimestampableEntity, SluggableTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $title;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\PostType", inversedBy="posts")
@@ -50,6 +50,9 @@ class Post
      */
     private $postTags;
 
+    /**
+     * Post constructor.
+     */
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -57,28 +60,33 @@ class Post
         $this->postTags = new ArrayCollection();
     }
 
+    /**
+     * Get the post id.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
+    /**
+     * Get the PostType.
+     *
+     * @return PostType|null
+     */
     public function getPostType(): ?PostType
     {
         return $this->postType;
     }
 
+    /**
+     * Set the PostType.
+     *
+     * @param PostType|null $postType
+     *
+     * @return Post
+     */
     public function setPostType(?PostType $postType): self
     {
         $this->postType = $postType;
@@ -87,6 +95,8 @@ class Post
     }
 
     /**
+     * Get the post Comments collection.
+     *
      * @return Collection|PostComment[]
      */
     public function getComments(): Collection
@@ -94,6 +104,13 @@ class Post
         return $this->comments;
     }
 
+    /**
+     * Add a Comment to the post.
+     *
+     * @param PostComment $comment
+     *
+     * @return Post
+     */
     public function addComment(PostComment $comment): self
     {
         if (!$this->comments->contains($comment)) {
@@ -104,6 +121,13 @@ class Post
         return $this;
     }
 
+    /**
+     * Remove a comment from the post.
+     *
+     * @param PostComment $comment
+     *
+     * @return Post
+     */
     public function removeComment(PostComment $comment): self
     {
         if ($this->comments->contains($comment)) {
@@ -117,11 +141,23 @@ class Post
         return $this;
     }
 
+    /**
+     * Get the post User.
+     *
+     * @return User|null
+     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
+    /**
+     * Set the post User.
+     *
+     * @param User|null $user
+     *
+     * @return Post
+     */
     public function setUser(?User $user): self
     {
         $this->user = $user;
@@ -130,6 +166,8 @@ class Post
     }
 
     /**
+     * Get the post Like collection.
+     *
      * @return Collection|PostLike[]
      */
     public function getLikes(): Collection
@@ -137,6 +175,13 @@ class Post
         return $this->likes;
     }
 
+    /**
+     * Add a Like to the post.
+     *
+     * @param PostLike $like
+     *
+     * @return Post
+     */
     public function addLike(PostLike $like): self
     {
         if (!$this->likes->contains($like)) {
@@ -147,6 +192,13 @@ class Post
         return $this;
     }
 
+    /**
+     * Remove a like from the post Like collection.
+     *
+     * @param PostLike $like
+     *
+     * @return Post
+     */
     public function removeLike(PostLike $like): self
     {
         if ($this->likes->contains($like)) {
@@ -161,6 +213,8 @@ class Post
     }
 
     /**
+     * Get the post Like collection.
+     *
      * @return Collection|PostTag[]
      */
     public function getPostTags(): Collection
@@ -168,6 +222,13 @@ class Post
         return $this->postTags;
     }
 
+    /**
+     * Add a postTag to the post.
+     *
+     * @param PostTag $postTag
+     *
+     * @return Post
+     */
     public function addPostTag(PostTag $postTag): self
     {
         if (!$this->postTags->contains($postTag)) {
@@ -178,6 +239,13 @@ class Post
         return $this;
     }
 
+    /**
+     * Remove a PostTag from the post.
+     *
+     * @param PostTag $postTag
+     *
+     * @return Post
+     */
     public function removePostTag(PostTag $postTag): self
     {
         if ($this->postTags->contains($postTag)) {
