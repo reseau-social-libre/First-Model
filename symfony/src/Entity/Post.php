@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * Class Post.
+ * Class Post
  *
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
@@ -238,4 +238,5 @@ abstract class Post
 
         return $this;
     }
+
 }

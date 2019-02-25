@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -8,7 +10,9 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * Class User
+ *
+ * @ORM\Entity()
  * @ORM\Table(name="fos_user")
  */
 class User extends BaseUser
@@ -25,6 +29,9 @@ class User extends BaseUser
      */
     private $posts;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -32,6 +39,8 @@ class User extends BaseUser
     }
 
     /**
+     * Get the posts collection.
+     *
      * @return Collection|Post[]
      */
     public function getPosts(): Collection
@@ -39,6 +48,13 @@ class User extends BaseUser
         return $this->posts;
     }
 
+    /**
+     * Add a post to the collection.
+     *
+     * @param Post $post
+     *
+     * @return User
+     */
     public function addPost(Post $post): self
     {
         if (!$this->posts->contains($post)) {
@@ -49,6 +65,13 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * Remove post from the collection.
+     *
+     * @param Post $post
+     *
+     * @return User
+     */
     public function removePost(Post $post): self
     {
         if ($this->posts->contains($post)) {
@@ -61,4 +84,5 @@ class User extends BaseUser
 
         return $this;
     }
+
 }

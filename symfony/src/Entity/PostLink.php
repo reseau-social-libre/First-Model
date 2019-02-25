@@ -7,7 +7,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class PostLink.
+ * Class PostLink
  *
  * @ORM\Entity()
  */
@@ -22,6 +22,8 @@ class PostLink extends Post
     protected $link;
 
     /**
+     * Get the link.
+     *
      * @return string
      */
     public function getLink(): ?string
@@ -30,6 +32,8 @@ class PostLink extends Post
     }
 
     /**
+     * Set the link.
+     *
      * @param string $link
      */
     public function setLink(string $link)
