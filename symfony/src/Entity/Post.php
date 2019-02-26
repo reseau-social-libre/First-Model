@@ -60,6 +60,11 @@ abstract class Post
     private $postTags;
 
     /**
+     * @ORM\Column(name="locale", type="string", length=4)
+     */
+    private $locale;
+
+    /**
      * Post constructor.
      */
     public function __construct()
@@ -243,12 +248,37 @@ abstract class Post
 
     /**
      * Get the post type.
+     *
      * @return mixed
      */
     public static function getpost_type() {
         $c = get_called_class();
 
         return $c::POST_TYPE;
+    }
+
+    /**
+     * Get the post locale.
+     *
+     * @return mixed
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * Set the post locale.
+     *
+     * @param mixed $locale
+     *
+     * @return Post
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
     }
 
 }

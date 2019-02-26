@@ -27,8 +27,12 @@ class PostController extends AbstractController
      */
     public function textAdd(Request $request): Response
     {
+        // Get the current locale.
+        $locale = $request->getLocale();
+
         $postText = new PostText();
         $postText->setUser($this->getUser());
+        $postText->setLocale($locale);
 
         $form = $this->createForm(PostTextType::class, $postText);
 

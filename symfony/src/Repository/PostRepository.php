@@ -29,19 +29,19 @@ class PostRepository extends ServiceEntityRepository
     /**
      * Find the latest posts.
      *
-     * @param int $page
+     * @param string $locale
+     * @param int    $page
      *
-     * @return Pagerfanta
+     * @return \Pagerfanta\Pagerfanta
      */
-    public function findLatest(int $page = 1): Pagerfanta
+    public function findLatest(string $locale, int $page = 1): Pagerfanta
     {
         $qb = $this->createQueryBuilder('p')
-//                   ->addSelect('u', 't')
-//                   ->innerJoin('p.author', 'a')
-//                   ->leftJoin('p.tags', 't')
                    ->where('p.createdAt <= :now')
+                   ->andWhere('p.locale = :locale' )
                    ->orderBy('p.createdAt', 'DESC')
-                   ->setParameter('now', new \DateTime());
+                   ->setParameter('now', new \DateTime())
+                   ->setParameter('locale', $locale);
 
         return $this->createPaginator($qb->getQuery(), $page);
     }

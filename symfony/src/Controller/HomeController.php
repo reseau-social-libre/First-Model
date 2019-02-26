@@ -26,7 +26,9 @@ class HomeController extends AbstractController
      */
     public function index(Request $request, int $page, PostRepository $postRepository): Response
     {
-        $post = $postRepository->findLatest($page);
+        $locale = $request->getLocale();
+
+        $post = $postRepository->findLatest($locale, $page);
 
         return $this->render('home/index.html.twig', [
             'posts' => $post,
