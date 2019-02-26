@@ -92,6 +92,9 @@
     "egulias/email-validator": {
         "version": "2.1.7"
     },
+    "erusev/parsedown": {
+        "version": "1.7.1"
+    },
     "facebook/webdriver": {
         "version": "1.6.0"
     },
@@ -116,6 +119,9 @@
     "knplabs/knp-time-bundle": {
         "version": "1.9.0"
     },
+    "league/uri-parser": {
+        "version": "1.4.1"
+    },
     "liip/imagine-bundle": {
         "version": "1.8",
         "recipe": {
@@ -124,6 +130,9 @@
             "version": "1.8",
             "ref": "523b4b0cfb88dc8637cb56e427e6be7718bdce32"
         }
+    },
+    "masterminds/html5": {
+        "version": "2.5.0"
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -466,6 +475,27 @@
     },
     "symfony/yaml": {
         "version": "v4.2.3"
+    },
+    "tgalopin/html-sanitizer": {
+        "version": "1.1.1"
+    },
+    "tgalopin/html-sanitizer-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "26a72f38eede2c53b5d3ccbed5c150e10a93268d"
+        }
+    },
+    "twig/extensions": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "ddb2e0a77773b7fd75d8d649545f174e664500ab"
+        }
     },
     "twig/twig": {
         "version": "v2.6.2"
