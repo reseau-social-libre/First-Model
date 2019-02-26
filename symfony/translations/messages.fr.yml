@@ -1,0 +1,83 @@
+auth:
+    logout: 'Se déconnecté'
+    sign_in: 'Se connecter'
+    register: "S'enregistrer"
+    username: "Nom d'utilisateur"
+    password: 'Mot de passe'
+    forgot_password: 'Mot de passe oublié ?'
+    login: 'Connexion'
+    remember_me: 'Se souvenir de moi'
+    email: 'Email'
+    repeat_password: 'Répéter le mot de passe'
+    register_submit: 'Créer mon compte'
+    request_password: 'Demander un nouveau mot de passe'
+    request_password_submit: 'Réinitialiser le mot de passe'
+global:
+    settings: 'Paramètres'
+    clear_all: 'Tout effacer'
+menu:
+    search: 'Rechercher'
+    home: 'Accueil'
+    about: 'A propos'
+    news:
+        main: 'Actualités'
+        recent: 'Dernières actualités'
+        most_viewed: 'Les plus vues'
+    profiles:
+        main: 'Membres'
+        my: 'Mon profile'
+        top: 'Top membres'
+    choose_language: 'Choix de langue'
+    dispo_language: 'Langues disponible'
+    messages:
+        main: 'Messages'
+        view_all: 'Voir tous les messages'
+    notifications:
+        main: 'Notifications'
+        view_all: 'Voir toutes les notifications'
+post:
+    text:
+        btn: 'Texte'
+    image:
+        btn: 'Image'
+    link:
+        btn: 'Lien'
+    video:
+        btn: 'Vidéo'
+profile:
+    view_profile: 'Voir le profile'
+    following: 'Suivi'
+    followers: 'Suit'
+block:
+    about:
+        non_censured: 'Réseau social non censuré'
+        help_grow: 'Le projet sur Discord'
+        like_us_fb: 'Notre page facebook'
+    donate:
+        title: 'Donation'
+        support: 'Aidez ce projet'
+        btn: 'Faire un don'
+    tags_menu:
+        about: 'A propos'
+        privacy_policy: 'Vie privé'
+        guidline: 'Communité Guideline'
+        cookie_policy: 'Politique de cookie'
+        license: 'Projet sous license GPLv3.'
+    post:
+        edit: 'Editer'
+        delete: 'Supprimer'
+        view_more: 'Voir plus'
+        comment: 'Commentaire'
+        add_comment: 'Ajouter un commentaire'
+        views: 'Vues'
+        like: "J'aime"
+form:
+    cancel: 'Annuler'
+    post:
+        text:
+          add_new: 'Ajouter un nouveau post texte'
+          add: 'Ajouter un post texte'
+          btn_submit: 'Ajouter le post'
+    field:
+        title: 'Titre'
+        content: 'Contenu de votre post ici'

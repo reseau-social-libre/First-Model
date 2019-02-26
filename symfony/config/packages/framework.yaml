@@ -18,3 +18,5 @@ framework:
 
     templating:
         engines: ['twig', 'php']
+
+    translator:      { fallback: '%locale%' }
