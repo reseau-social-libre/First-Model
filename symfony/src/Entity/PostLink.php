@@ -14,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 class PostLink extends Post
 {
 
+    const POST_TYPE = 'Link';
+
     /**
      * @var string
      *

@@ -29,6 +29,8 @@ abstract class Post
 
     use TimestampableEntity, SluggableTrait;
 
+    const NUM_POST_PER_PAGE = 10;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -237,6 +239,16 @@ abstract class Post
         }
 
         return $this;
+    }
+
+    /**
+     * Get the post type.
+     * @return mixed
+     */
+    public static function getpost_type() {
+        $c = get_called_class();
+
+        return $c::POST_TYPE;
     }
 
 }

@@ -14,4 +14,5 @@ use Doctrine\ORM\Mapping as ORM;
 class PostLive extends PostText
 {
 
+    const POST_TYPE = 'Live';
 }

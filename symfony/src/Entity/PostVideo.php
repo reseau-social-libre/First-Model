@@ -14,4 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
 class PostVideo extends PostText
 {
 
+    const POST_TYPE = 'Video';
+
 }

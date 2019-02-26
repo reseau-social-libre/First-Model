@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -10,13 +13,23 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class HomeController extends AbstractController
 {
+
     /**
-     * @Route("/", name="home")
+     * @Route("/", defaults={"page": "1", "_format"="html"}, methods={"GET"}, name="home")
+     * @Route("/page/{page<[1-9]\d*>}", defaults={"_format"="html"}, methods={"GET"}, name="home_paginated")
+     *
+     * @param Request        $request
+     * @param int            $page
+     * @param PostRepository $postRepository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index()
+    public function index(Request $request, int $page, PostRepository $postRepository): Response
     {
+        $post = $postRepository->findLatest($page);
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'posts' => $post,
         ]);
     }
 }

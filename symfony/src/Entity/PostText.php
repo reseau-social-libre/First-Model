@@ -14,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 class PostText extends Post
 {
 
+    const POST_TYPE = 'Status';
+
     /**
      * @var string
      *

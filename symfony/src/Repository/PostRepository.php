@@ -4,6 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -14,37 +17,51 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class PostRepository extends ServiceEntityRepository
 {
+
+    /**
+     * @inheritdoc
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Post::class);
     }
 
-    // /**
-    //  * @return Post[] Returns an array of Post objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Find the latest posts.
+     *
+     * @param int $page
+     *
+     * @return Pagerfanta
+     */
+    public function findLatest(int $page = 1): Pagerfanta
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('p')
+//                   ->addSelect('u', 't')
+//                   ->innerJoin('p.author', 'a')
+//                   ->leftJoin('p.tags', 't')
+                   ->where('p.createdAt <= :now')
+                   ->orderBy('p.createdAt', 'DESC')
+                   ->setParameter('now', new \DateTime());
 
-    /*
-    public function findOneBySomeField($value): ?Post
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $this->createPaginator($qb->getQuery(), $page);
     }
-    */
+
+    /**
+     * Create the paginator.
+     *
+     * @param Query $query
+     * @param int   $page
+     *
+     * @return \Pagerfanta\Pagerfanta
+     */
+    private function createPaginator(Query $query, int $page): Pagerfanta
+    {
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
+
+        $paginator->setMaxPerPage(Post::NUM_POST_PER_PAGE);
+        $paginator->setCurrentPage($page);
+
+        return $paginator;
+    }
+
 }

@@ -113,6 +113,9 @@
     "jms/metadata": {
         "version": "1.7.0"
     },
+    "knplabs/knp-time-bundle": {
+        "version": "1.9.0"
+    },
     "liip/imagine-bundle": {
         "version": "1.8",
         "recipe": {
@@ -133,6 +136,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "pagerfanta/pagerfanta": {
+        "version": "v2.0.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -475,6 +481,9 @@
     },
     "webmozart/assert": {
         "version": "1.4.0"
+    },
+    "white-october/pagerfanta-bundle": {
+        "version": "v1.2.3"
     },
     "zendframework/zend-code": {
         "version": "3.3.1"
