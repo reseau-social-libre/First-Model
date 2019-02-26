@@ -71,4 +71,13 @@ block:
         add_comment: 'Add a comment'
         views: 'Views'
         like: 'Like'
-
+form:
+    cancel: 'Cancel'
+    post:
+        text:
+          add_new: 'Add a new text post'
+          add: 'Add text post'
+          btn_submit: 'Add post'
+    field:
+        title: 'Title'
+        content: 'Write your content here'

@@ -25,13 +25,13 @@ class PostTextType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'Title',
+                    'placeholder' => 'form.field.title',
                 ],
                 'label' => false,
             ])
             ->add('content', TextareaType::class, [
                 'attr' => [
-                    'placeholder' => 'Text',
+                    'placeholder' => 'form.field.content',
                 ],
                 'label' => false,
             ])

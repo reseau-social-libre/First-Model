@@ -71,3 +71,13 @@ block:
         add_comment: 'Ajouter un commentaire'
         views: 'Vues'
         like: "J'aime"
+form:
+    cancel: 'Annuler'
+    post:
+        text:
+          add_new: 'Ajouter un nouveau post texte'
+          add: 'Ajouter un post texte'
+          btn_submit: 'Ajouter le post'
+    field:
+        title: 'Titre'
+        content: 'Contenu de votre post ici'
