@@ -78,8 +78,8 @@
                 <div class="ed-opts">
                     <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
                     <ul class="ed-options">
-                        <li><a href="#" title="">Edit Post</a></li>
-                        <li><a href="#" title="">Delete Post</a></li>
+                        <li><a href="#" title="">{{ 'block.post.edit'|trans }}</a></li>
+                        <li><a href="#" title="">{{ 'block.post.delete'|trans }}</a></li>
                     </ul>
                 </div>
             {% endif %}
@@ -96,12 +96,12 @@
         <div class="job_descp">
             <h3>{{ post.title }}</h3>
             <p>{{ post.content }}</p>
-            <a href="#" title="">View more -></a></p>
+            <a href="#" title="">{{ 'block.post.view_more'|trans }}</a></p>
         </div>
         <div class="job-status-bar">
             <ul class="like-com">
                 <li>
-                    <a href="#"><i class="la la-heart"></i> Like</a>
+                    <a href="#"><i class="la la-heart"></i> {{ 'block.post.like'|trans }}</a>
                     {% if post.likes|length > 0 %}
                         <img src="{{ asset('build/images/liked-img.png') }}" alt="">
                         <span>{{ post.likes|length }}</span>
@@ -109,14 +109,17 @@
                 </li>
                 {% if post.comments|length > 0 %}
                     <li><a href="#" title="" class="com"><img src="{{ asset('build/images/com.png') }}" alt="">
-                            Comment {{ post.comments|length }}</a></li>
+                            {{ 'block.post.comment'|trans }} {{ post.comments|length }}</a></li>
                 {% else %}
-                    <li><a href="#" title="" class="com"><img src="{{ asset('build/images/com.png') }}" alt=""> Add a
-                            comment</a></li>
+                    <li>
+                        <a href="#" title="" class="com"><img src="{{ asset('build/images/com.png') }}" alt="">
+                            {{ 'block.post.add_comment'|trans }}
+                        </a>
+                    </li>
                 {% endif %}
 
             </ul>
-            <a><i class="la la-eye"></i>Views 50</a>
+            <a><i class="la la-eye"></i>{{ 'block.post.views'|trans }} 50</a>
         </div>
     {% endfor %}
 </div>

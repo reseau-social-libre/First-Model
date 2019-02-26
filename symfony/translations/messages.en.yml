@@ -1,0 +1,74 @@
+auth:
+    logout: 'Logout'
+    sign_in: 'Sign in'
+    register: 'Register'
+    username: 'Username'
+    password: 'Password'
+    forgot_password: 'Forgot password ?'
+    login: 'Login'
+    remember_me: 'Remember me'
+    email: 'Email'
+    repeat_pawword: 'Repeat password'
+    register_submit: 'Create my account'
+    request_password: 'Request password'
+    request_password_submit: 'Reset password'
+global:
+    settings: 'Settings'
+    clear_all: 'Clear all'
+menu:
+    search: 'Search'
+    home: 'Home'
+    about: 'About'
+    news:
+        main: 'News'
+        recent: 'Latest news'
+        most_viewed: 'Most views'
+    profiles:
+        main: 'Profiles'
+        my: 'My profile'
+        top: 'Top profiles'
+    choose_language: 'Language'
+    dispo_language: 'Available languages'
+    messages:
+        main: 'Messages'
+        view_all: 'View all messages'
+    notifications:
+        main: 'Notifications'
+        view_all: 'View all notifications'
+post:
+    text:
+        btn: 'Text'
+    image:
+        btn: 'Image'
+    link:
+        btn: 'Link'
+    video:
+        btn: 'Video'
+profile:
+    view_profile: 'View profile'
+    following: 'Following'
+    followers: 'Followers'
+block:
+    about:
+        non_censured: 'A non censured social network'
+        help_grow: 'Project on Discord'
+        like_us_fb: 'Our facebook page'
+    donate:
+        title: 'Donate'
+        support: 'Support this project'
+        btn: 'Make a donation'
+    tags_menu:
+        about: 'About'
+        privacy_policy: 'Privacy Policy'
+        guidline: 'Community Guideline'
+        cookie_policy: 'Cookie Policy'
+        license: 'Project under GPLv3 licence'
+    post:
+        edit: 'Edit Post'
+        delete: 'Delete Post'
+        view_more: 'View more'
+        comment: 'Comment'
+        add_comment: 'Add a comment'
+        views: 'Views'
+        like: 'Like'
+

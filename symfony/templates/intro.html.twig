@@ -1,20 +1,21 @@
+{% trans_default_domain 'RSLintro' %}
+
 <div class="cm-logo">
     {#<img src="{{ asset('build/images/cm-logo.png')}}" alt="">#}
     <h1>RSL (Réseau Social Libre)</h1>
     <div class="mt-2">
-        <p>A <b>non censured social network</b> open source project under GPLv3 licence.</p>
+        <p>{{ 'intro.non_censured'|trans|raw }}</p>
     </div>
 
     <div class="mt-2">
-        <p>Everyone can participate to modify it, improve it, bring his ideas</p>
+        <p>{{ 'intro.everyone'|trans|raw }}</p>
     </div>
 
     <div class="mt-2">
-        <p>This project is open source and is not affiliated over any organization or country.</p>
+        <p>{{ 'intro.open_source_project'|trans|raw }}</p>
     </div>
 
-    <p class="mt-2">RSL aims to provide a free space where members can express themselves and share freely without censorship
-        (Pornography, pedophilia and incitement to hate are prohibited).</p>
+    <p class="mt-2">{{ 'intro.provide_free_space'|trans|raw }}</p>
 
 
 </div>

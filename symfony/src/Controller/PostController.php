@@ -21,14 +21,18 @@ class PostController extends AbstractController
 
     /**
      * @Route("/text/add", name="post-text-add")
+     *
      * @param Request $request
+     * @param string  $defaultLocale
      *
      * @return Response
      */
-    public function textAdd(Request $request): Response
+    public function textAdd(Request $request, string $defaultLocale): Response
     {
-        // Get the current locale.
-        $locale = $request->getLocale();
+        // Get the current locale or default.
+        if (null == $locale = $request->getLocale()) {
+            $locale = $defaultLocale;
+        }
 
         $postText = new PostText();
         $postText->setUser($this->getUser());

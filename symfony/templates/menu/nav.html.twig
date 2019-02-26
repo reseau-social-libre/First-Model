@@ -3,33 +3,33 @@
         <li>
             <a href="{{ path('home') }}" title="">
                 <span><img src="{{ asset('build/images/icon1.png') }}" alt="Homepage"></span>
-                Home
+                {{ 'menu.home'|trans }}
             </a>
         </li>
         <li>
             <a href="{{ path('about') }}" title="">
                 <span><img src="{{ asset('build/images/icon3.png') }}" alt="About this project"></span>
-                About
+                {{ 'menu.about'|trans }}
             </a>
         </li>
         <li>
             <a href="#" title="">
                 <span><img src="{{ asset('build/images/icon2.png') }}" alt=""></span>
-                News
+                {{ 'menu.news.main'|trans }}
             </a>
             <ul>
-                <li><a href="#" title="">Recent</a></li>
-                <li><a href="#" title="">Most viewed</a></li>
+                <li><a href="#" title="">{{ 'menu.news.recent'|trans }}</a></li>
+                <li><a href="#" title="">{{ 'menu.news.most_viewed'|trans }}</a></li>
             </ul>
         </li>
         <li>
             <a href="#" title="">
                 <span><img src="{{ asset('build/images/icon4.png') }}" alt=""></span>
-                Profiles
+                {{ 'menu.profiles.main'|trans }}
             </a>
             <ul>
-                <li><a href="#" title="">My Profile</a></li>
-                <li><a href="#" title="">Top profiles</a></li>
+                <li><a href="#" title="">{{ 'menu.profiles.my'|trans }}</a></li>
+                <li><a href="#" title="">{{ 'menu.profiles.top'|trans }}</a></li>
             </ul>
         </li>
         {% include 'menu/message.html.twig' %}
