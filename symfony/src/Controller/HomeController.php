@@ -24,13 +24,9 @@ class HomeController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(Request $request, int $page = 1, PostRepository $postRepository): Response
+    public function index(Request $request, int $page, PostRepository $postRepository): Response
     {
         $locale = $request->getLocale();
-
-        if ($request->getPathInfo() == '/') {
-             return $this->redirectToRoute('home', ['_locale' => $locale]);
-        }
 
         $post = $postRepository->findLatest($locale, $page);
 
