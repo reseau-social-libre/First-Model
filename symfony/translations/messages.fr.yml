@@ -1,5 +1,5 @@
 auth:
-    logout: 'Se déconnecté'
+    logout: 'Se déconnecter'
     sign_in: 'Se connecter'
     register: "S'enregistrer"
     username: "Nom d'utilisateur"
