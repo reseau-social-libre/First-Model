@@ -64,17 +64,17 @@
         <a><i class="la la-eye"></i>Views 50</a>
     </div>
 </div>
-<div class="post-bar">
-    {% for post in posts %}
+{% for post in posts %}
+    <div class="post-bar">
         <div class="post_topbar">
             <div class="usy-dt">
                 <img src="http://via.placeholder.com/50x50" alt="">
                 <div class="usy-name">
-                    <h3>{{ app.user.username }}</h3>
+                    <h3>{{ post.user.username }}</h3>
                     <span><img src="{{ asset('build/images/clock.png') }}" alt=""/>{{ post.createdAt|ago }}</span>
                 </div>
             </div>
-            {% if post.user.username == app.user.username %}
+            {% if app.user.id == post.user.id %}
                 <div class="ed-opts">
                     <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
                     <ul class="ed-options">
@@ -121,8 +121,8 @@
             </ul>
             <a><i class="la la-eye"></i>{{ 'block.post.views'|trans }} 50</a>
         </div>
-    {% endfor %}
-</div>
+    </div>
+{% endfor %}
 
 {#<div class="comment-section">#}
         {#<div class="plus-ic">#}
