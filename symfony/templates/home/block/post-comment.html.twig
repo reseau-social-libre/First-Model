@@ -3,8 +3,8 @@
         <img src="http://via.placeholder.com/40x40" alt="">
     </div>
     <div class="comment_box">
-        <form>
-            <input type="text" placeholder="Post a comment">
+        <form data-user="{{ post.user.id }}" data-post={{ post.id }} class="comment-form">
+            <textarea class="comment-text" placeholder="Post a comment"></textarea>
             <button type="submit">Send</button>
         </form>
     </div>

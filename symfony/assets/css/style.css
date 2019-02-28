@@ -1636,7 +1636,7 @@ main {
 .comment_box {
 	float: left;
 }
-.comment_box input {
+.comment_box input, .comment_box textarea {
 	width: 387px;
 	height: 40px;
 	border: 1px solid #e5e5e5;

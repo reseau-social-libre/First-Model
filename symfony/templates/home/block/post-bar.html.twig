@@ -64,6 +64,7 @@
         <a><i class="la la-eye"></i>Views 50</a>
     </div>
 </div>
+
 {% for post in posts %}
     <div class="post-bar">
         <div class="post_topbar">
@@ -95,16 +96,17 @@
         </div>
         <div class="job_descp">
             <h3>{{ post.title }}</h3>
-            <p>{{ post.content }}</p>
-            <a href="#" title="">{{ 'block.post.view_more'|trans }}</a></p>
+            <p>{{ post.content|md2html }}</p>
         </div>
         <div class="job-status-bar">
             <ul class="like-com">
                 <li>
                     <a href="#"><i class="la la-heart"></i> {{ 'block.post.like'|trans }}</a>
+                    <img src="{{ asset('build/images/liked-img.png') }}" alt="">
                     {% if post.likes|length > 0 %}
-                        <img src="{{ asset('build/images/liked-img.png') }}" alt="">
                         <span>{{ post.likes|length }}</span>
+                    {% else %}
+                        <span>0</span>
                     {% endif %}
                 </li>
                 {% if post.comments|length > 0 %}
@@ -117,34 +119,21 @@
                         </a>
                     </li>
                 {% endif %}
-
             </ul>
             <a><i class="la la-eye"></i>{{ 'block.post.views'|trans }} 50</a>
         </div>
+        <div class="comment-section">
+            <div class="comment-sec">
+                <ul id="comment-list-{{ post.id }}">
+                    {% for comment in post.comments %}
+                        {{ include('home/block/comment-item.html.twig') }}
+                    {% endfor %}
+                </ul>
+            </div>
+            {{ include('home/block/post-comment.html.twig') }}
+        </div>
     </div>
 {% endfor %}
-
-{#<div class="comment-section">#}
-        {#<div class="plus-ic">#}
-            {#<i class="la la-plus"></i>#}
-        {#</div>#}
-        {#<div class="comment-sec">#}
-            {#<ul>#}
-                {#<li>#}
-                    {#{{ include('home/block/comment-item.html.twig') }}#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#{{ include('home/block/comment-item.html.twig') }}#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</li>#}
-                {#<li>#}
-                    {#{{ include('home/block/comment-item.html.twig') }}#}
-                {#</li>#}
-            {#</ul>#}
-        {#</div>#}
-        {#{{ include('home/block/post-comment.html.twig') }}#}
-    {#</div>#}
 
 <div class="process-comm">
     <div class="spinner">

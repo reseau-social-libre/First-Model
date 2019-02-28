@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Entity\PostText;
 use App\Form\Type\PostTextType;

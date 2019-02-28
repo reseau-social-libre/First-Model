@@ -20,6 +20,45 @@ import '../css/responsive.css';
 
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
+const $ = require('jquery');
 
-//console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+$(document).ready(function(){
+  var RSL = {};
+
+  RSL.init = function() {
+
+    $('form.comment-form').on('submit', function(e){
+      e.preventDefault();
+      var $this;
+
+      $this = $(this);
+      var comment = $this.find('textarea.comment-text').val();
+      var user = $this.data('user');
+      var post = $this.data('post');
+
+      RSL.postComment(user, comment, post);
+
+    });
+  };
+
+  RSL.postComment = function(user, comment, post) {
+
+    $.ajax({
+      url: '/api/comments',
+      type: "POST",
+      data: {'user': user, 'comment': comment, 'post': post},
+      success: function(response){
+        RSL.appendComment(post, response);
+      }
+    });
+
+  };
+
+  RSL.appendComment = function(post, response) {
+    $('ul#comment-list-'+post).append(response);
+    $('textarea.comment-text').val('');
+  };
+
+  RSL.init();
+
+});
