@@ -25,6 +25,9 @@ const $ = require('jquery');
 $(document).ready(function(){
   var RSL = {};
 
+  RSL.likeProcess = false;
+  RSL.commentProcess = false;
+
   RSL.init = function() {
     RSL.bindCommentEvent();
     RSL.bindLikeEvent();
@@ -43,30 +46,40 @@ $(document).ready(function(){
   RSL.bindLikeEvent = function() {
     $(document).on('click', 'a.liker-btn', function(e){
       e.preventDefault();
-      var $this;
 
-      $this = $(this);
-      var user = $this.data('user');
-      var post = $this.data('post');
-      var liked = $this.data('liked');
-      var locale = $this.data('locale');
+      if (RSL.likeProcess === false) {
+        RSL.likeProcess = true;
+        var $this;
 
-      RSL.postLike(user, post, liked, locale);
+        $this = $(this);
+        var user = $this.data('user');
+        var post = $this.data('post');
+        var liked = $this.data('liked');
+        var locale = $this.data('locale');
+
+        RSL.postLike(user, post, liked, locale);
+      }
+
     });
   };
 
   RSL.bindCommentEvent = function() {
     $('form.comment-form').on('submit', function(e){
       e.preventDefault();
-      var $this;
 
-      $this = $(this);
-      var comment = $this.find('textarea.comment-text').val();
-      var user = $this.data('user');
-      var post = $this.data('post');
-      var locale = $this.data('locale');
+      if (RSL.commentProcess === false) {
+        RSL.commentProcess = true;
+        var $this;
 
-      RSL.postComment(user, comment, post, locale);
+        $this = $(this);
+        var comment = $this.find('textarea.comment-text').val();
+        var user = $this.data('user');
+        var post = $this.data('post');
+        var locale = $this.data('locale');
+
+        RSL.postComment(user, comment, post, locale);
+      }
+
     });
   };
 
@@ -77,6 +90,10 @@ $(document).ready(function(){
       data: {'user': user, 'comment': comment, 'post': post},
       success: function(response){
         RSL.appendComment(post, response);
+        RSL.commentProcess = false;
+      },
+      error: function() {
+        RSL.commentProcess = false;
       }
     });
   };
@@ -93,6 +110,10 @@ $(document).ready(function(){
       data: {'user': user, 'post': post, 'liked': liked},
       success: function(response){
         $('#like-btn-'+post).html(response);
+        RSL.likeProcess = false;
+      },
+      error: function() {
+        RSL.likeProcess = false;
       }
     });
   };
