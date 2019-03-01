@@ -1,11 +1,12 @@
-<div class="comment-list">
-    <div class="bg-img">
-        <img src="http://via.placeholder.com/40x40" alt="">
+<li>
+    <div class="comment-list">
+        <div class="bg-img">
+            <img src="http://via.placeholder.com/40x40" alt="">
+        </div>
+        <div class="comment">
+            <h3>{{ comment.user.username }}</h3>
+            <span><img src="{{ asset('build/images/clock.png') }}" alt="">{{ comment.createdAt|ago }}</span>
+            <p>{{ comment.comment|md2html }} </p>
+        </div>
     </div>
-    <div class="comment">
-        <h3>John Doe</h3>
-        <span><img src="{{ asset('build/images/clock.png') }}" alt=""> 3 min ago</span>
-        <p>Lorem ipsum dolor sit amet, </p>
-        <a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
-    </div>
-</div>
+</li>

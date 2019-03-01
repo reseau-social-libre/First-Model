@@ -67,12 +67,13 @@ block:
         edit: 'Edit Post'
         delete: 'Delete Post'
         view_more: 'View more'
-        comment: 'Comment'
-        add_comment: 'Add a comment'
+        comment: "{0} Add a comment|{1}1 Comment|]1,Inf]%count% Comments"
+        placeholder_comment: 'Post a comment'
         views: 'Views'
         like: 'Like'
 form:
     cancel: 'Cancel'
+    send: 'Send'
     post:
         text:
           add_new: 'Add a new text post'

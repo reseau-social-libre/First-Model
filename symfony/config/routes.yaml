@@ -1,3 +1,9 @@
-#home:
-#    path: /
-#    controller: App\Controller\HomeController:index
+api_comment:
+    type: rest
+    prefix: /{_locale}/api
+    resource: App\Controller\Api\PostCommentController
+
+api_likes:
+    type: rest
+    prefix: /{_locale}/api
+    resource: App\Controller\Api\PostLikeController

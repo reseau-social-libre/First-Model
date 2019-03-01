@@ -1,0 +1,24 @@
+{% if isUserLike(post.id, app.user.id) %}
+    {% set style = "color: #e44d3a" %}
+    {% set liked = 1 %}
+{% else %}
+    {% set style = "" %}
+    {% set liked = 0 %}
+{% endif %}
+
+<a class="liker-btn"
+   data-post="{{ post.id }}"
+   data-user="{{ app.user.id }}"
+   data-liked="{{ liked }}"
+   data-locale="{{ app.request.locale }}"
+   href="#"
+   style="{{ style }}">
+    <i class="la la-heart"></i> {{ 'block.post.like'|trans }}
+</a>
+
+{% if post.likes|length > 0 %}
+    <img src="{{ asset('build/images/liked-img.png') }}" alt="">
+    <span>{{ post.likes|length }}</span>
+{% else %}
+    <span class="ml-2">0</span>
+{% endif %}
