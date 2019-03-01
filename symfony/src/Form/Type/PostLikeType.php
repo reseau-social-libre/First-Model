@@ -34,6 +34,7 @@ class PostLikeType extends AbstractType
         $resolver->setDefaults([
             'data_class' => PostLike::class,
             'csrf_protection' => false,
+            'allow_extra_fields' => true,
         ]);
     }
 

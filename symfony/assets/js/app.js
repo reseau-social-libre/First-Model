@@ -26,7 +26,36 @@ $(document).ready(function(){
   var RSL = {};
 
   RSL.init = function() {
+    RSL.bindCommentEvent();
+    RSL.bindLikeEvent();
 
+    $('a.com').on('click', function(e){
+      e.preventDefault();
+      var $this;
+
+      $this = $(this);
+      var post = $this.data('post');
+
+      $('#comment-section-'+post).toggleClass('hidden');
+    });
+  };
+
+  RSL.bindLikeEvent = function() {
+    $(document).on('click', 'a.liker-btn', function(e){
+      e.preventDefault();
+      var $this;
+
+      $this = $(this);
+      var user = $this.data('user');
+      var post = $this.data('post');
+      var liked = $this.data('liked');
+      var locale = $this.data('locale');
+
+      RSL.postLike(user, post, liked, locale);
+    });
+  };
+
+  RSL.bindCommentEvent = function() {
     $('form.comment-form').on('submit', function(e){
       e.preventDefault();
       var $this;
@@ -35,28 +64,37 @@ $(document).ready(function(){
       var comment = $this.find('textarea.comment-text').val();
       var user = $this.data('user');
       var post = $this.data('post');
+      var locale = $this.data('locale');
 
-      RSL.postComment(user, comment, post);
-
+      RSL.postComment(user, comment, post, locale);
     });
   };
 
-  RSL.postComment = function(user, comment, post) {
-
+  RSL.postComment = function(user, comment, post, locale) {
     $.ajax({
-      url: '/api/comments',
+      url: '/'+locale+'/api/comments',
       type: "POST",
       data: {'user': user, 'comment': comment, 'post': post},
       success: function(response){
         RSL.appendComment(post, response);
       }
     });
-
   };
 
   RSL.appendComment = function(post, response) {
     $('ul#comment-list-'+post).append(response);
     $('textarea.comment-text').val('');
+  };
+
+  RSL.postLike = function(user, post, liked, locale) {
+    $.ajax({
+      url: '/'+locale+'/api/likes',
+      type: "POST",
+      data: {'user': user, 'post': post, 'liked': liked},
+      success: function(response){
+        $('#like-btn-'+post).html(response);
+      }
+    });
   };
 
   RSL.init();

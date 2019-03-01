@@ -1,70 +1,3 @@
-<div class="post-bar">
-    <div class="post_topbar">
-        <div class="usy-dt">
-            <img src="http://via.placeholder.com/50x50" alt="">
-            <div class="usy-name">
-                <h3>{{ app.user.username }}</h3>
-                <span><img src="{{ asset('build/images/clock.png') }}" alt="">3 min ago</span>
-            </div>
-        </div>
-        <div class="ed-opts">
-            <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-            <ul class="ed-options">
-                <li><a href="#" title="">Edit Post</a></li>
-                <li><a href="#" title="">Unsaved</a></li>
-                <li><a href="#" title="">Unbid</a></li>
-                <li><a href="#" title="">Close</a></li>
-                <li><a href="#" title="">Hide</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="epi-sec">
-        <ul class="descp">
-            <li><img src="{{ asset('build/images/icon8.png') }}" alt=""><span>Manif</span></li>
-            <li><img src="{{ asset('build/images/icon9.png') }}" alt=""><span>Gilets Jaunes</span></li>
-        </ul>
-        <ul class="bk-links">
-            <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-            <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-        </ul>
-    </div>
-    <div class="job_descp">
-        <h3>Paris : Acte Décisif: NOUS NE BOUGERONS PAS !</h3>
-        <ul class="job-dt">
-            <li><a href="#" title="">Event</a></li>
-            <li><span>Du 8 au 10 mars</span></li>
-        </ul>
-        <div class="post-image">
-            <img src="{{ asset('build/images/decisif.jpg') }}">
-        </div>
-        <p>TOUS LES CITOYENS DE FRANCE :<br/>
-            QUI VEULENT RETROUVER DU POUVOIR D'ACHAT, DE LA JUSTICE FISCALE, DE LA JUSTICE SOCIALE<br/>
-            QUI VEULENT DE LA CONSOMMATION SAINE ET UNE VRAIE TRANSITION ECOLOGIQUE<br/>
-            QUI VEULENT UN MODE DE REPRESENTATIVITE DIFFERENT = UN SYSTEME DE DEMOCRATIE PARTICIPATIVE<br/>
-            ET QUI A DEFAUT DE L'ANNONCE DE VRAIES MESURES RESTERONT SUR PLACE TOUT LE WEEKEND ET AU DELA
-            SI NECESSAIRE CAMPING, SITTING</p>
-        <a href="#" title="">View more -></a></p>
-        <ul class="skill-tags">
-            <li><a href="#" title="">Gilets Jaune</a></li>
-            <li><a href="#" title="">Macron démission</a></li>
-            <li><a href="#" title="">RIC</a></li>
-            <li><a href="#" title="">Démocratie Directe</a></li>
-        </ul>
-    </div>
-    <div class="job-status-bar">
-        <ul class="like-com">
-            <li>
-                <a href="#"><i class="la la-heart"></i> Like</a>
-                <img src="{{ asset('build/images/liked-img.png') }}" alt="">
-                <span>25</span>
-            </li>
-            <li><a href="#" title="" class="com"><img src="{{ asset('build/images/com.png') }}" alt=""> Comment 15</a>
-            </li>
-        </ul>
-        <a><i class="la la-eye"></i>Views 50</a>
-    </div>
-</div>
-
 {% for post in posts %}
     <div class="post-bar">
         <div class="post_topbar">
@@ -100,29 +33,20 @@
         </div>
         <div class="job-status-bar">
             <ul class="like-com">
-                <li>
-                    <a href="#"><i class="la la-heart"></i> {{ 'block.post.like'|trans }}</a>
-                    <img src="{{ asset('build/images/liked-img.png') }}" alt="">
-                    {% if post.likes|length > 0 %}
-                        <span>{{ post.likes|length }}</span>
-                    {% else %}
-                        <span>0</span>
-                    {% endif %}
+                <li id="like-btn-{{ post.id }}">
+                    {{ include('home/block/like-btn.html.twig') }}
                 </li>
-                {% if post.comments|length > 0 %}
-                    <li><a href="#" title="" class="com"><img src="{{ asset('build/images/com.png') }}" alt="">
-                            {{ 'block.post.comment'|trans }} {{ post.comments|length }}</a></li>
-                {% else %}
-                    <li>
-                        <a href="#" title="" class="com"><img src="{{ asset('build/images/com.png') }}" alt="">
-                            {{ 'block.post.add_comment'|trans }}
-                        </a>
-                    </li>
-                {% endif %}
+
+                <li>
+                    <a href="#" title="" class="com" data-post="{{ post.id }}"><img src="{{ asset('build/images/com.png') }}" alt="">
+                        {% set count =  post.comments|length %}
+                        {% transchoice count with {'%count%': count} %}block.post.comment{% endtranschoice %}
+                    </a>
+                </li>
             </ul>
             <a><i class="la la-eye"></i>{{ 'block.post.views'|trans }} 50</a>
         </div>
-        <div class="comment-section">
+        <div class="comment-section hidden" id="comment-section-{{ post.id }}">
             <div class="comment-sec">
                 <ul id="comment-list-{{ post.id }}">
                     {% for comment in post.comments %}

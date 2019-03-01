@@ -1637,7 +1637,7 @@ main {
 	float: left;
 }
 .comment_box input, .comment_box textarea {
-	width: 387px;
+	width: 369px;
 	height: 40px;
 	border: 1px solid #e5e5e5;
 	background-color: #efefef;
@@ -5460,4 +5460,11 @@ a:hover {
 
 .main-page ul li {
 	line-height: 18px;
+}
+
+.hidden{
+	visibility: hidden;
+	height: 0;
+	opacity: 0;
+	transition: visibility 0s linear 0.33s, opacity 0.33s linear;
 }

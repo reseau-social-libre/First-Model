@@ -1,9 +1,9 @@
 api_comment:
     type: rest
-    prefix: /api
+    prefix: /{_locale}/api
     resource: App\Controller\Api\PostCommentController
 
 api_likes:
     type: rest
-    prefix: /api
+    prefix: /{_locale}/api
     resource: App\Controller\Api\PostLikeController

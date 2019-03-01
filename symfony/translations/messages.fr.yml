@@ -67,12 +67,13 @@ block:
         edit: 'Editer'
         delete: 'Supprimer'
         view_more: 'Voir plus'
-        comment: 'Commentaire'
-        add_comment: 'Ajouter un commentaire'
+        comment: "{0} Ajouter un commentaire|{1}1 Commentaire|]1,Inf]%count% Commentaires"
+        placeholder_comment: 'Poster un commentaire'
         views: 'Vues'
         like: "J'aime"
 form:
     cancel: 'Annuler'
+    send: 'Envoyer'
     post:
         text:
           add_new: 'Ajouter un nouveau post texte'
