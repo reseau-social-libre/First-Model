@@ -82,3 +82,6 @@ form:
     field:
         title: 'Titre'
         content: 'Contenu de votre post ici'
+nav:
+    next: Suivante
+    prev: Précédente

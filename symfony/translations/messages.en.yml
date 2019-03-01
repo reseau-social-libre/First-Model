@@ -82,3 +82,6 @@ form:
     field:
         title: 'Title'
         content: 'Write your content here'
+nav:
+    next: Next
+    prev: Previous
