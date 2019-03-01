@@ -1,4 +1,4 @@
-{% for post in posts %}
+{% for post in posts.currentPageResults %}
     <div class="post-bar">
         <div class="post_topbar">
             <div class="usy-dt">
@@ -59,10 +59,41 @@
     </div>
 {% endfor %}
 
-<div class="process-comm">
-    <div class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-    </div>
-</div>
+<nav aria-label="Page navigation example" class="full-pagi">
+    {% if posts.haveToPaginate %}
+        <ul class="pagination">
+            {% if posts.hasPreviousPage %}
+                {% if posts.currentPage -1 == 1%}
+                    <li class="page-item">
+                        <a class="page-link pvr" href="{{ path('home') }}">{{ 'nav.prev'|trans }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link pvr" href="{{ path('home_paginated', {page: posts.currentPage -1}) }}">{{ 'nav.prev'|trans }}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+            {% for i in 1..posts.nbPages %}
+                <li class="page-item">
+                    {% if i == posts.currentPage %}
+                        {% if i == 1 %}
+                            <a class="page-link active" href="{{ path('home') }}">{{ i }}</a></li>
+                        {% else %}
+                            <a class="page-link active" href="{{ path('home_paginated', {page: i}) }}">{{ i }}</a></li>
+                        {% endif %}
+
+                    {% else %}
+                        {% if i == 1 %}
+                            <a class="page-link" href="{{ path('home') }}">{{ i }}</a></li>
+                        {% else %}
+                            <a class="page-link" href="{{ path('home_paginated', {page: i}) }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+            {% if posts.hasNextPage %}
+                <li class="page-item"><a class="page-link pvr" href="{{ path('home_paginated', {page: posts.currentPage +1}) }}">{{ 'nav.next'|trans }}</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</nav>
