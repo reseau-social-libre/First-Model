@@ -8,12 +8,12 @@
                     <span><img src="{{ asset('build/images/clock.png') }}" alt=""/>{{ post.createdAt|ago }}</span>
                 </div>
             </div>
-            {% if app.user.id == post.user.id %}
+            {% if app.user.id == post.user.id or is_granted('ROLE_ADMIN') %}
                 <div class="ed-opts">
                     <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
                     <ul class="ed-options">
                         <li><a href="#" title="">{{ 'block.post.edit'|trans }}</a></li>
-                        <li><a href="#" title="">{{ 'block.post.delete'|trans }}</a></li>
+                        <li><a href="{{ path('post-remove', {'id': post.id}) }}" title="">{{ 'block.post.delete'|trans }}</a></li>
                     </ul>
                 </div>
             {% endif %}

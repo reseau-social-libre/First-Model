@@ -39,7 +39,7 @@ abstract class Post
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PostComment", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="App\Entity\PostComment", mappedBy="post", cascade={"persist", "remove"})
      */
     private $comments;
 
@@ -50,12 +50,12 @@ abstract class Post
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PostLike", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="App\Entity\PostLike", mappedBy="post", cascade={"persist", "remove"})
      */
     private $likes;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\PostTag", mappedBy="posts", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\PostTag", mappedBy="posts", cascade={"persist", "remove"})
      */
     private $postTags;
 

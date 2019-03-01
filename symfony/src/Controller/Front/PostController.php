@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller\Front;
 
+use App\Entity\Post;
 use App\Entity\PostText;
+use App\Entity\User;
 use App\Form\Type\PostTextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,5 +57,35 @@ class PostController extends AbstractController
         return $this->render('post/text/add.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/remove/{id}", name="post-remove")
+     *
+     * @param Request $request
+     * @param int     $id
+     *
+     * @return Response
+     */
+    public function removePost(Request $request, int $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Post::class);
+
+        $post = $repository->find($id);
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // Check if user is admin or is the post owner and delete post.
+        // Then, redirect to the homepage.
+        if ($user->hasRole('ROLE_ADMIN') || $user->getId() == $post->getUser()->getId()) {
+            if (null !== $post) {
+                $em->remove($post);
+                $em->flush();
+            }
+        }
+
+        return $this->redirectToRoute('home');
     }
 }
