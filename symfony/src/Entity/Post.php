@@ -29,40 +29,40 @@ abstract class Post
 
     use TimestampableEntity, SluggableTrait;
 
-    const NUM_POST_PER_PAGE = 10;
+    const NUM_POST_PER_PAGE = 20;
 
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\PostComment", mappedBy="post", cascade={"persist", "remove"})
      */
-    private $comments;
+    protected $comments;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    protected $user;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\PostLike", mappedBy="post", cascade={"persist", "remove"})
      */
-    private $likes;
+    protected $likes;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\PostTag", mappedBy="posts", cascade={"persist", "remove"})
      */
-    private $postTags;
+    protected $postTags;
 
     /**
      * @ORM\Column(name="locale", type="string", length=4)
      */
-    private $locale;
+    protected $locale;
 
     /**
      * Post constructor.

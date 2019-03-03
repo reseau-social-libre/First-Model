@@ -14,7 +14,7 @@ trait SluggableTrait
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    protected $title;
 
     /**
      * @Gedmo\Slug(fields={"title"})

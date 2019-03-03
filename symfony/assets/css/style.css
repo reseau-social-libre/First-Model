@@ -1191,6 +1191,9 @@ main {
 	font-weight: 600;
 	margin-bottom: 20px;
 }
+.job_descp img {
+	width: 100%;
+}
 .job-dt {
 	float: left;
 	width: 100%;

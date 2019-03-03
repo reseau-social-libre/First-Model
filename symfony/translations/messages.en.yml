@@ -76,9 +76,13 @@ form:
     send: 'Send'
     post:
         text:
-          add_new: 'Add a new text post'
-          add: 'Add text post'
-          btn_submit: 'Add post'
+            add_new: 'Add a new text post'
+            add: 'Add text post'
+            btn_submit: 'Add post'
+        image:
+            add_new: 'Add a new image post'
+            add: 'Add image post'
+            add_more: 'Add image'
     field:
         title: 'Title'
         content: 'Write your content here'

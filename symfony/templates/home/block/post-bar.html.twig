@@ -30,6 +30,15 @@
         <div class="job_descp">
             <h3>{{ post.title }}</h3>
             {{ post.content|md2html }}
+
+            {% if post.post_type == 'Image' %}
+                {% if post.getImages|length > 0 %}
+                    {% for image in post.getImages %}
+                        <img src="{{ asset('/uploads/post/images/'~ image.document) |imagine_filter('post_image') }}" />
+                    {% endfor %}
+                {% endif %}
+            {%  endif %}
+
         </div>
         <div class="job-status-bar">
             <ul class="like-com">

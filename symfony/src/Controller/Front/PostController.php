@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Controller\Front;
 
 use App\Entity\Post;
+use App\Entity\PostImage;
 use App\Entity\PostText;
 use App\Entity\User;
+use App\Form\Type\PostImageType;
 use App\Form\Type\PostTextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,6 +57,44 @@ class PostController extends AbstractController
         }
 
         return $this->render('post/text/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/image/add", name="post-image-add")
+     *
+     * @param Request $request
+     * @param string  $defaultLocale
+     *
+     * @return Response
+     */
+    public function imageAdd(Request $request, string $defaultLocale): Response
+    {
+        // Get the current locale or default.
+        if (null == $locale = $request->getLocale()) {
+            $locale = $defaultLocale;
+        }
+
+        $postImage = new PostImage();
+        $postImage->setUser($this->getUser());
+        $postImage->setLocale($locale);
+
+        $form = $this->createForm(PostImageType::class, $postImage);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($postImage);
+            $em->flush();
+
+            $this->addFlash('success', 'Post is successfully created.');
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('post/image/add.html.twig', [
             'form' => $form->createView(),
         ]);
     }
