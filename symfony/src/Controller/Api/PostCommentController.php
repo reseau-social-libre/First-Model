@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
+use App\Entity\Post;
 use App\Entity\PostComment;
 use App\Form\Type\PostCommentType;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -53,5 +54,32 @@ class PostCommentController extends AbstractFOSRestController
         } else {
             return $form;
         }
+    }
+
+    /**
+     * @Rest\View()
+     * @Rest\Get("/comments/post/{id}")
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function postCommentsNumberAction(Request $request, int $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Post::class);
+
+        $post = $repository->find($id);
+
+        $templateData = ['post' => $post];
+
+        $view = $this->view($post, Response::HTTP_OK)
+                     ->setTemplate('home/block/post-comment-number.html.twig')
+                     ->setTemplateVar('comment')
+                     ->setTemplateData($templateData)
+        ;
+
+        return $this->handleView($view);
     }
 }

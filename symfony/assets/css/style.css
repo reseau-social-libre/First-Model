@@ -1647,6 +1647,8 @@ main {
 	font-weight: 600;
 	line-height: 40px;
 	resize: none;
+	max-width: 100%;
+	margin-bottom: 10px;
 }
 .comment_box form button {
 	float: right;
