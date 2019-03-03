@@ -29,7 +29,16 @@
         </div>
         <div class="job_descp">
             <h3>{{ post.title }}</h3>
-            <p>{{ post.content|md2html }}</p>
+            {{ post.content|md2html }}
+
+            {% if post.post_type == 'Image' %}
+                {% if post.getImages|length > 0 %}
+                    {% for image in post.getImages %}
+                        <img src="{{ asset('/uploads/post/images/'~ image.document) |imagine_filter('post_image') }}" />
+                    {% endfor %}
+                {% endif %}
+            {%  endif %}
+
         </div>
         <div class="job-status-bar">
             <ul class="like-com">
@@ -45,7 +54,6 @@
                     </a>
                 </li>
             </ul>
-            <a><i class="la la-eye"></i>{{ 'block.post.views'|trans }} 50</a>
         </div>
         <div class="comment-section hidden" id="comment-section-{{ post.id }}">
             <div class="comment-sec">

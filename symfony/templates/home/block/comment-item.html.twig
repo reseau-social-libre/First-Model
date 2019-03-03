@@ -6,7 +6,7 @@
         <div class="comment">
             <h3>{{ comment.user.username }}</h3>
             <span><img src="{{ asset('build/images/clock.png') }}" alt="">{{ comment.createdAt|ago }}</span>
-            <p>{{ comment.comment|md2html }} </p>
+            {{ comment.comment|md2html }}
         </div>
     </div>
 </li>

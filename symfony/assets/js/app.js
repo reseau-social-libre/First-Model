@@ -31,8 +31,11 @@ $(document).ready(function(){
   RSL.init = function() {
     RSL.bindCommentEvent();
     RSL.bindLikeEvent();
+    RSL.bindCommentLinkEvent();
+  };
 
-    $('a.com').on('click', function(e){
+  RSL.bindCommentLinkEvent = function() {
+    $(document).on('click', 'a.com', function(e){
       e.preventDefault();
       var $this;
 
@@ -91,6 +94,7 @@ $(document).ready(function(){
       success: function(response){
         RSL.appendComment(post, response);
         RSL.commentNumber(post, locale);
+
         RSL.commentProcess = false;
       },
       error: function() {
