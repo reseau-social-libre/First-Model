@@ -90,6 +90,7 @@ $(document).ready(function(){
       data: {'user': user, 'comment': comment, 'post': post},
       success: function(response){
         RSL.appendComment(post, response);
+        RSL.commentNumber(post, locale);
         RSL.commentProcess = false;
       },
       error: function() {
@@ -101,6 +102,16 @@ $(document).ready(function(){
   RSL.appendComment = function(post, response) {
     $('ul#comment-list-'+post).append(response);
     $('textarea.comment-text').val('');
+  };
+
+  RSL.commentNumber = function(post, locale) {
+    $.ajax({
+      url: '/'+locale+'/api/comments/post/'+post,
+      type: "GET",
+      success: function(response){
+        $('li#comment-number-'+post).html(response);
+      }
+    });
   };
 
   RSL.postLike = function(user, post, liked, locale) {

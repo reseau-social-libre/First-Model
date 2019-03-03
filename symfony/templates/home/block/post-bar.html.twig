@@ -37,8 +37,9 @@
                     {{ include('home/block/like-btn.html.twig') }}
                 </li>
 
-                <li>
-                    <a href="#" title="" class="com" data-post="{{ post.id }}"><img src="{{ asset('build/images/com.png') }}" alt="">
+                <li id="comment-number-{{ post.id }}">
+                    <a href="#" title="" class="com" data-post="{{ post.id }}">
+                        <img src="{{ asset('build/images/com.png') }}" alt="">
                         {% set count =  post.comments|length %}
                         {% transchoice count with {'%count%': count} %}block.post.comment{% endtranschoice %}
                     </a>
