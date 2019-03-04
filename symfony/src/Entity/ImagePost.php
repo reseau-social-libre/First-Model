@@ -5,11 +5,16 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ImagePost
  *
  * @ORM\Entity()
+ *
+ * @Vich\Uploadable
  */
 class ImagePost extends AbstractDocument
 {
@@ -21,6 +26,19 @@ class ImagePost extends AbstractDocument
      * @ORM\JoinColumn(nullable=false)
      */
     protected $post;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="post_image", fileNameProperty="document")
+     *
+     * @Assert\File(
+     *     maxSize = "8192k",
+     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png"},
+     *     mimeTypesMessage = "jpg, png, jpeg only!"
+     * )
+     */
+    protected $documentFile;
 
     /**
      * Set post.

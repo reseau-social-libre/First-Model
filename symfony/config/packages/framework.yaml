@@ -20,3 +20,4 @@ framework:
         engines: ['twig', 'php']
 
     translator:      { fallback: '%locale%' }
+    validation: { enable_annotations: true }

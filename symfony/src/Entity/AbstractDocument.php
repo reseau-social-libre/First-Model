@@ -39,7 +39,10 @@ abstract class AbstractDocument
     protected $document;
 
     /**
-    * @Vich\UploadableField(mapping="post_image", fileNameProperty="document")
+     * This property must be override by child class.
+     * The mapping must specified to a valid vich config mapping.
+     *
+    * @Vich\UploadableField(mapping="to_override", fileNameProperty="document")
      *
      * @var File
      */
