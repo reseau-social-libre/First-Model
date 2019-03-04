@@ -27,6 +27,7 @@
                                                     {{ form_row(form.content) }}
                                                 </div>
                                                 <div class="col-lg-12">
+                                                    {{ form_errors(form) }}
                                                     <ul id="post_image_images"
                                                         data-prototype="{{ form_widget(form.images.vars.prototype)|e }}"
                                                         data-widget-tags="{{ '<li></li>'|e }}"
@@ -34,7 +35,6 @@
 
                                                     {% for image in form.images %}
                                                         <li id="widget-images">
-                                                            {{ form_errors(image) }}
                                                             {{ form_widget(image) }}
                                                         </li>
                                                     {% endfor %}
