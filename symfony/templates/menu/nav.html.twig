@@ -28,7 +28,7 @@
                 {{ 'menu.profiles.main'|trans }}
             </a>
             <ul>
-                <li><a href="{{ path('my-profile') }}" title="">{{ 'menu.profiles.my'|trans }}</a></li>
+                <li><a href="{{ path('profile', {'username' : app.user.username}) }}" title="">{{ 'menu.profiles.my'|trans }}</a></li>
                 <li><a href="#" title="">{{ 'menu.profiles.top'|trans }}</a></li>
             </ul>
         </li>

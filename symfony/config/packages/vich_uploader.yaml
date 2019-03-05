@@ -9,6 +9,20 @@ vich_uploader:
             delete_on_update: true
             delete_on_remove: true
             namer: vich_uploader.namer_uniqid
+        user_cover:
+            uri_prefix: /uploads/user/covers
+            upload_destination: '%kernel.project_dir%/public/uploads/user/covers'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer: vich_uploader.namer_uniqid
+        user_profile:
+            uri_prefix: /uploads/user/profiles
+            upload_destination: '%kernel.project_dir%/public/uploads/user/profiles'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer: vich_uploader.namer_uniqid
 
     #mappings:
     #    products:
