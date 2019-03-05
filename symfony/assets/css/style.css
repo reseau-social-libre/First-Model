@@ -3024,7 +3024,10 @@ footer {
 
 /* ============== overview-box ============= */
 
-.overview-box {
+.overview-box,
+.status-box,
+.cover-box,
+.profile-photo-box {
 	width: 570px;
 	position: fixed;
 	top: 50%;
@@ -3059,18 +3062,27 @@ footer {
 .close-box:hover {
 	color: #fff;
 }
-.overview-box.open {
+.overview-box.open,
+.status-box.open,
+.cover-box.open,
+.profile-photo-box.open {
 	opacity: 1;
 	visibility: visible;
 	z-index: 99999;
 }
-.overview-edit {
+.overview-edit,
+.status-edit,
+.cover-edit,
+.profile-photo-edit {
 	float: left;
 	width: 100%;
 	background-color: #fff;
 	padding: 30px 20px;
 }
-.overview-edit h3 {
+.overview-edit h3,
+.status-edit h3,
+.cover-edit h3,
+.profile-photo-edit h3 {
 	color: #000000;
 	font-size: 18px;
 	font-weight: 600;
@@ -3078,36 +3090,60 @@ footer {
 	width: 100%;
 	margin-bottom: 25px;	
 }
-.overview-edit span {
+.overview-edit span,
+.status-edit span,
+.cover-edit span,
+.profile-photo-edit span {
 	color: #b2b2b2;
 	font-size: 12px;
 	float: right;
 	margin-bottom: 5px;
 }
-.overview-edit form {
+.overview-edit form,
+.status-edit form,
+.cover-edit form,
+.profile-photo-edit form {
 	float: left;
 	width: 100%;
 }
-.overview-edit form input {
+.overview-edit form input,
+.status-edit form input,
+.cover-edit form input,
+.profile-photo-edit form input {
 	height: 40px;
 	padding-left: 15px;
 	margin-bottom: 20px;
 }
 .overview-edit form textarea,
 .overview-edit form input,
-.overview-edit form select {
+.overview-edit form select,
+.status-edit form textarea,
+.status-edit form input,
+.status-edit form select,
+.cover-edit form textarea,
+.cover-edit form input,
+.cover-edit form select,
+.profile-photo-edit form textarea,
+.profile-photo-edit form input,
+.profile-photo-edit form select {
 	width: 100%;
 	border: 1px solid #e5e5e5;
 	resize: none;
 	color: #b2b2b2;
 	font-size: 14px;
 }
-.overview-edit form select {
+.overview-edit form select,
+.status-edit form select,
+.cover-edit form select,
+.profile-photo-edit form select {
 	line-height: 40px;
 	padding-left: 40px;
 	margin-bottom: 20px;
 }
-.overview-edit form textarea {
+.overview-edit form textarea,
+.status-edit form textarea,
+.cover-edit form textarea,
+.profile-photo-edit form textarea {
 	height: 160px;
 	margin-bottom: 30px;
 	padding: 15px;
@@ -3121,7 +3157,10 @@ footer {
 	background-color: #fff;
 	padding: 13px 13px !important;
 }
-.overview-edit button {
+.overview-edit button,
+.status-edit button,
+.cover-edit button,
+.profile-photo-edit button {
 	float: left;
 	border: 1px solid #e5e5e5;
 	font-weight: 600;
