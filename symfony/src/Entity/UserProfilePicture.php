@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity()
  *
- * @Vich\Uploadable
+ * @Vich\Uploadable()
  */
 class UserProfilePicture extends AbstractDocument
 {

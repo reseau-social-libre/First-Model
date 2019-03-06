@@ -68,6 +68,86 @@ liip_imagine:
                     mode:          outbound
                     allow_upscale: true
 
+        user_cover:
+            # set your image quality defaults
+            jpeg_quality:          85
+            png_compression_level: 8
+
+            # setup the filter steps to apply for this transformation
+            filters:
+
+                # auto rotate the image using EXIF metadata
+                auto_rotate: ~
+
+                # strip the image of all metadata
+                strip: ~
+
+                # scale and square the image to the given dimensions
+                thumbnail:
+                    size:          [1600,400]
+                    mode:          outbound
+                    allow_upscale: true
+
+        user_profile_big:
+            # set your image quality defaults
+            jpeg_quality:          85
+            png_compression_level: 8
+
+            # setup the filter steps to apply for this transformation
+            filters:
+
+                # auto rotate the image using EXIF metadata
+                auto_rotate: ~
+
+                # strip the image of all metadata
+                strip: ~
+
+                # scale and square the image to the given dimensions
+                thumbnail:
+                    size:          [170,170]
+                    mode:          outbound
+                    allow_upscale: true
+
+        user_profile_medium:
+            # set your image quality defaults
+            jpeg_quality:          85
+            png_compression_level: 8
+
+            # setup the filter steps to apply for this transformation
+            filters:
+
+                # auto rotate the image using EXIF metadata
+                auto_rotate: ~
+
+                # strip the image of all metadata
+                strip: ~
+
+                # scale and square the image to the given dimensions
+                thumbnail:
+                    size:          [50,50]
+                    mode:          outbound
+                    allow_upscale: true
+
+        user_profile_small:
+            # set your image quality defaults
+            jpeg_quality:          85
+            png_compression_level: 8
+
+            # setup the filter steps to apply for this transformation
+            filters:
+
+                # auto rotate the image using EXIF metadata
+                auto_rotate: ~
+
+                # strip the image of all metadata
+                strip: ~
+
+                # scale and square the image to the given dimensions
+                thumbnail:
+                    size:          [40,40]
+                    mode:          outbound
+                    allow_upscale: true
+
 #        # an example thumbnail transformation definition
 #        # https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html#create-thumbnails
 #        squared_thumbnail:

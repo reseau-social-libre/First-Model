@@ -86,6 +86,7 @@ form:
     field:
         title: 'Title'
         content: 'Write your content here'
+        status: 'Status'
 nav:
     next: Next
     prev: Previous

@@ -25,12 +25,12 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user", cascade={"persist", "remove"})
      */
     private $posts;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserStatus", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserStatus", mappedBy="user", cascade={"persist", "remove"})
      */
     private $userStatuses;
 
@@ -40,12 +40,12 @@ class User extends BaseUser
     private $userInfo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserCoverPicture", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserCoverPicture", mappedBy="user", cascade={"persist", "remove"})
      */
     private $userCoverPictures;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserProfilePicture", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserProfilePicture", mappedBy="user", cascade={"persist", "remove"})
      */
     private $userProfilePictures;
 
