@@ -37,11 +37,29 @@ class PostRepository extends ServiceEntityRepository
     public function findLatest(string $locale, int $page = 1): Pagerfanta
     {
         $qb = $this->createQueryBuilder('p')
-                   ->where('p.createdAt <= :now')
                    ->andWhere('p.locale = :locale' )
                    ->orderBy('p.createdAt', 'DESC')
-                   ->setParameter('now', new \DateTime())
-                   ->setParameter('locale', $locale);
+                   ->setParameter('locale', $locale)
+        ;
+
+        return $this->createPaginator($qb->getQuery(), $page);
+    }
+
+    /**
+     * Find the latest posts by user.
+     *
+     * @param int $page
+     * @param int $userId
+     *
+     * @return \Pagerfanta\Pagerfanta
+     */
+    public function findLatestByUser(int $userId, int $page = 1): Pagerfanta
+    {
+        $qb = $this->createQueryBuilder('p')
+                   ->andWhere('p.user = :user')
+                   ->orderBy('p.createdAt', 'DESC')
+                   ->setParameter('user', $userId)
+        ;
 
         return $this->createPaginator($qb->getQuery(), $page);
     }
@@ -62,6 +80,22 @@ class PostRepository extends ServiceEntityRepository
         $paginator->setCurrentPage($page);
 
         return $paginator;
+    }
+
+    /**
+     * Get all post paginated.
+     *
+     * @param int $page
+     *
+     * @return Pagerfanta
+     */
+    public function findAllLatest(int $page)
+    {
+        $qb = $this->createQueryBuilder('p')
+                   ->orderBy('p.createdAt', 'DESC')
+        ;
+
+        return $this->createPaginator($qb->getQuery(), $page);
     }
 
 }

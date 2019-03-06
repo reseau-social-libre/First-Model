@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Front;
 
+use App\Entity\Post;
 use App\Entity\User;
 use App\Entity\UserCoverPicture;
 use App\Entity\UserInfo;
@@ -13,9 +14,12 @@ use App\Form\Type\UserCoverPictureType;
 use App\Form\Type\UserInfoType;
 use App\Form\Type\UserProfilePictureType;
 use App\Form\Type\UserStatusType;
+use App\Manager\PostManager;
+use App\Manager\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -25,27 +29,62 @@ class ProfileController extends AbstractController
 {
 
     /**
+     * @var UserManager
+     */
+    protected $userManager;
+
+    /**
+     * @var PostManager
+     */
+    protected $postManager;
+
+    /**
+     * ProfileController constructor.
+     *
+     * @param UserManager $userManager
+     * @param PostManager $postManager
+     */
+    public function __construct(
+        UserManager $userManager,
+        PostManager $postManager
+    ) {
+        $this->userManager = $userManager;
+        $this->postManager = $postManager;
+    }
+
+    /**
      * Show a user profile.
      *
-     * @Route("/profile/{username}", name="profile")
+     * @Route("/profile/{username}",
+     *     defaults={"page": "1", "_format"="html"},
+     *     methods={"GET", "POST"},
+     *     name="profile"
+     * )
+     * @Route("/profile/{username}/page/{page<[1-9]\d*>}",
+     *     defaults={"_format"="html"},
+     *     methods={"GET", "POST"},
+     *     name="profile_paginated"
+     * )
      *
      * @param Request $request
      * @param string  $username
+     * @param int     $page
      *
      * @return Response
      */
-    public function index(Request $request, string $username): Response
+    public function index(Request $request, string $username, int $page): Response
     {
 
         // Check if user profile is the current logged in user.
-        if ($username == $this->getUser()->getUsername()) {
-            $user = $this->getUser();
-        } else {
-            $userRepository = $this->getDoctrine()->getRepository(User::class);
-            $user = $userRepository->findOneBy([
-               'username' => $username,
-            ]);
+        $user = $this->userManager->checkUserByUsername($username, $this->getUser()->getUsername())
+            ? $this->getUser() : $this->userManager->getUserByUsername($username);
+
+        if (null == $user) {
+            throw new NotFoundHttpException('Sorry not existing!');
         }
+
+        // Get the user paginated user wall.
+        $posts = $this->postManager->getWallPaginated($user, $page);
 
         // Form UserStatus
         $userStatus = new UserStatus();
@@ -135,6 +174,7 @@ class ProfileController extends AbstractController
             'formProfile' => $formUserProfilePicture->createView(),
             'formInfo' => $formUserInfo->createView(),
             'user' => $user,
+            'posts' => $posts,
         ]);
 
     }
