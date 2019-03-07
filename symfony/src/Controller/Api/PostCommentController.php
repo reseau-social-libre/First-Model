@@ -7,6 +7,7 @@ namespace App\Controller\Api;
 use App\Entity\Post;
 use App\Entity\PostComment;
 use App\Form\Type\PostCommentType;
+use App\Manager\PostManager;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +21,21 @@ use FOS\RestBundle\Controller\Annotations as Rest;
  */
 class PostCommentController extends AbstractFOSRestController
 {
+
+    /**
+     * @var PostManager
+     */
+    protected $postManager;
+
+    /**
+     * PostCommentController constructor.
+     *
+     * @param \App\Manager\PostManager $postManager
+     */
+    public function __construct(PostManager $postManager)
+    {
+        $this->postManager = $postManager;
+    }
 
     /**
      * @Rest\View()
@@ -66,11 +82,7 @@ class PostCommentController extends AbstractFOSRestController
      */
     public function postCommentsNumberAction(Request $request, int $id)
     {
-
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository(Post::class);
-
-        $post = $repository->find($id);
+        $post = $this->postManager->getPostById($id);
 
         $templateData = ['post' => $post];
 

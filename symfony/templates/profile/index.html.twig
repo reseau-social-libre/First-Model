@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RSL | My profile{% endblock %}
+{% block title %}RSL | {{ 'menu.profiles.main'|trans ~ ' ' ~ user.username }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}

@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Post;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method Post|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,15 +15,15 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Post[]    findAll()
  * @method Post[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PostRepository extends ServiceEntityRepository
+class PostRepository extends AbstractRepository
 {
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function __construct(RegistryInterface $registry)
+    public function getClass(): string
     {
-        parent::__construct($registry, Post::class);
+        return Post::class;
     }
 
     /**
@@ -89,7 +89,7 @@ class PostRepository extends ServiceEntityRepository
      *
      * @return Pagerfanta
      */
-    public function findAllLatest(int $page)
+    public function findAllLatest(int $page): Pagerfanta
     {
         $qb = $this->createQueryBuilder('p')
                    ->orderBy('p.createdAt', 'DESC')

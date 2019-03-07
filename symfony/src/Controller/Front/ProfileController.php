@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Front;
 
-use App\Entity\Post;
-use App\Entity\User;
 use App\Entity\UserCoverPicture;
 use App\Entity\UserInfo;
 use App\Entity\UserProfilePicture;
@@ -95,10 +93,7 @@ class ProfileController extends AbstractController
 
         if ($formUserStatus->isSubmitted() && $formUserStatus->isValid()) {
             $user->addUserStatus($userStatus);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            $this->userManager->saveUser($user);
 
             $this->addFlash('success', 'Your status is updated.');
 
@@ -115,10 +110,7 @@ class ProfileController extends AbstractController
 
         if ($formUserCoverPicture->isSubmitted() && $formUserCoverPicture->isValid()) {
             $user->addUserCoverPicture($userCoverPicture);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            $this->userManager->saveUser($user);
 
             $this->addFlash('success', 'Your cover is updated.');
 
@@ -135,10 +127,7 @@ class ProfileController extends AbstractController
 
         if ($formUserProfilePicture->isSubmitted() && $formUserProfilePicture->isValid()) {
             $user->addUserProfilePicture($userProfilePicture);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            $this->userManager->saveUser($user);
 
             $this->addFlash('success', 'Your profile picture is updated.');
 
@@ -157,9 +146,8 @@ class ProfileController extends AbstractController
         $formUserInfo->handleRequest($request);
 
         if ($formUserInfo->isSubmitted() && $formUserInfo->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($userInfo);
-            $em->flush();
+            $user->setUserInfo($userInfo);
+            $this->userManager->saveUser($user);
 
             $this->addFlash('success', 'Your profile information is updated.');
 
@@ -178,4 +166,5 @@ class ProfileController extends AbstractController
         ]);
 
     }
+
 }

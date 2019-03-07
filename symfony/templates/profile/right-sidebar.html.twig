@@ -1,11 +1,13 @@
 <div class="col-lg-3">
     <div class="right-sidebar">
         <div class="message-btn">
-            <a href="#" title=""><i class="fa fa-envelope"></i> Message</a>
+            {% if app.user.id != user.id %}
+                <a href="#" title=""><i class="fa fa-envelope"></i> Message</a>
+            {% endif %}
         </div>
         <div class="widget widget-portfolio">
             <div class="wd-heady">
-                <h3>Following</h3>
+                <h3>{{ 'profile.following'|trans }}</h3>
                 <i class="fa fa-users" style="float:right; color:#686868;font-size: 1.2em"></i>
             </div>
             <div class="pf-gallery">

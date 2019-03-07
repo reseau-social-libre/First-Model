@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: david
- * Date: 06/03/19
- * Time: 14:42
- */
+
+declare(strict_types=1);
 
 namespace App\Repository;
 
-
 use App\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class UserRepository
@@ -21,15 +14,14 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends AbstractRepository
 {
 
     /**
      * {@inheritdoc}
      */
-    public function __construct(RegistryInterface $registry)
+    public function getClass(): string
     {
-        parent::__construct($registry, User::class);
+        return User::class;
     }
-
 }

@@ -2,7 +2,16 @@
     <div class="post-bar">
         <div class="post_topbar">
             <div class="usy-dt">
-                <img src="http://via.placeholder.com/50x50" alt="">
+                {% if post.user.getUserProfilePictures().last() %}
+                    <a href="{{ path('profile', {username: post.user.username }) }}">
+                        <img src="{{ asset('/uploads/user/profiles/'~ post.user.getUserProfilePictures().last().document)|imagine_filter('user_profile_medium') }}" alt="">
+                    </a>
+                {% else %}
+                    <a href="{{ path('profile', {username: post.user.username }) }}">
+                        <img src="http://via.placeholder.com/50x50" alt="">
+                    </a>
+                {% endif %}
+
                 <div class="usy-name">
                     <h3>{{ post.user.username }}</h3>
                     <span><img src="{{ asset('build/images/clock.png') }}" alt=""/>{{ post.createdAt|ago }}</span>
@@ -67,42 +76,3 @@
         </div>
     </div>
 {% endfor %}
-
-<nav aria-label="Page navigation example" class="full-pagi">
-    {% if posts.haveToPaginate %}
-        <ul class="pagination">
-            {% if posts.hasPreviousPage %}
-                {% if posts.currentPage -1 == 1%}
-                    <li class="page-item">
-                        <a class="page-link pvr" href="{{ path('home') }}">{{ 'nav.prev'|trans }}</a>
-                    </li>
-                {% else %}
-                    <li class="page-item">
-                        <a class="page-link pvr" href="{{ path('home_paginated', {page: posts.currentPage -1}) }}">{{ 'nav.prev'|trans }}</a>
-                    </li>
-                {% endif %}
-            {% endif %}
-            {% for i in 1..posts.nbPages %}
-                <li class="page-item">
-                    {% if i == posts.currentPage %}
-                        {% if i == 1 %}
-                            <a class="page-link active" href="{{ path('home') }}">{{ i }}</a></li>
-                        {% else %}
-                            <a class="page-link active" href="{{ path('home_paginated', {page: i}) }}">{{ i }}</a></li>
-                        {% endif %}
-
-                    {% else %}
-                        {% if i == 1 %}
-                            <a class="page-link" href="{{ path('home') }}">{{ i }}</a></li>
-                        {% else %}
-                            <a class="page-link" href="{{ path('home_paginated', {page: i}) }}">{{ i }}</a></li>
-                        {% endif %}
-                    {% endif %}
-                </li>
-            {% endfor %}
-            {% if posts.hasNextPage %}
-                <li class="page-item"><a class="page-link pvr" href="{{ path('home_paginated', {page: posts.currentPage +1}) }}">{{ 'nav.next'|trans }}</a></li>
-            {% endif %}
-        </ul>
-    {% endif %}
-</nav>

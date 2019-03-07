@@ -2,7 +2,7 @@
 
 namespace App\Controller\Front;
 
-use App\Repository\PostRepository;
+use App\Manager\PostManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,23 +15,40 @@ class HomeController extends AbstractController
 {
 
     /**
+     * @var PostManager
+     */
+    protected $postManager;
+
+    /**
+     * HomeController constructor.
+     *
+     * @param PostManager $postManager
+     */
+    public function __construct(PostManager $postManager)
+    {
+        $this->postManager = $postManager;
+    }
+
+    /**
      * @Route("/", defaults={"page": "1", "_format"="html"}, methods={"GET"}, name="home")
      * @Route("/page/{page<[1-9]\d*>}", defaults={"_format"="html"}, methods={"GET"}, name="home_paginated")
      *
-     * @param Request        $request
-     * @param int            $page
-     * @param PostRepository $postRepository
+     * @param Request $request
+     * @param int     $page
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(Request $request, int $page, PostRepository $postRepository): Response
+    public function index(Request $request, int $page): Response
     {
-        $locale = $request->getLocale();
-
-        $post = $postRepository->findLatest($locale, $page);
+        $posts = $this->postManager->getWallPaginated(
+            null,
+            $page,
+            $request->getLocale()
+        );
 
         return $this->render('home/index.html.twig', [
-            'posts' => $post,
+            'posts' => $posts,
         ]);
     }
+
 }

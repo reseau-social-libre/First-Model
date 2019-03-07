@@ -35,9 +35,19 @@ class UserService
      *
      * @return User|null
      */
-    public function getUserBy(array $criteria)
+    public function getUserBy(array $criteria): ?User
     {
         return $this->userRepository->findOneBy($criteria);
+    }
+
+    /**
+     * Save the user in db.
+     *
+     * @param User $user
+     */
+    public function saveUser(User $user)
+    {
+        $this->userRepository->persistAndFlush($user);
     }
 
 }

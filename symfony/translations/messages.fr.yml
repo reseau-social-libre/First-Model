@@ -45,9 +45,14 @@ post:
     video:
         btn: 'Vidéo'
 profile:
-    view_profile: 'Voir le profile'
+    view_profile: 'Voir le profil'
     following: 'Suivi'
     followers: 'Suit'
+    btn_change_cover: 'Modifier le cover'
+    follow: 'Suivre'
+    friend: 'Ami'
+    people_viewed_profile: 'Les membres qui ont vu ce profil'
+    overview: 'Quelques information à propos de moi'
 block:
     about:
         non_censured: 'Réseau social non censuré'
@@ -56,7 +61,7 @@ block:
     donate:
         title: 'Donation'
         support: 'Aidez ce projet'
-        btn: 'Faire un don'
+        btn: 'Faire un don sur leetchi'
     tags_menu:
         about: 'A propos'
         privacy_policy: 'Vie privé'

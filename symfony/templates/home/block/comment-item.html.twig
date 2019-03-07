@@ -1,7 +1,15 @@
 <li>
     <div class="comment-list">
         <div class="bg-img">
-            <img src="http://via.placeholder.com/40x40" alt="">
+            {% if comment.user.getUserProfilePictures().last() %}
+                <a href="{{ path('profile', {username: comment.user.username}) }}">
+                    <img src="{{ asset('/uploads/user/profiles/'~ comment.user.getUserProfilePictures().last().document)|imagine_filter('user_profile_small') }}" alt="">
+                </a>
+            {% else %}
+            <a href="{{ path('profile', {username: comment.user.username}) }}">
+                <img src="http://via.placeholder.com/40x40" alt="">
+            </a>
+            {% endif %}
         </div>
         <div class="comment">
             <h3>{{ comment.user.username }}</h3>

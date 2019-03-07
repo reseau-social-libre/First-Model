@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\PostTag;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method PostTag|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,39 +12,15 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method PostTag[]    findAll()
  * @method PostTag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PostTagRepository extends ServiceEntityRepository
+class PostTagRepository extends AbstractRepository
 {
-    public function __construct(RegistryInterface $registry)
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getClass(): string
     {
-        parent::__construct($registry, PostTag::class);
+        return PostTag::class;
     }
 
-    // /**
-    //  * @return PostTag[] Returns an array of PostTag objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?PostTag
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

@@ -2,21 +2,32 @@
     <div class="main-left-sidebar">
         <div class="user_profile">
             <div class="user-pro-img">
-                <img src="{{ asset('/uploads/user/profiles/'~ user.getUserProfilePictures().last().document)|imagine_filter('user_profile_big') }}" alt="">
-                <a href="#" class="profile-photo-open" title=""><i class="fa fa-camera"></i></a>
+                {% if user.getUserProfilePictures().last() %}
+                    <img src="{{ asset('/uploads/user/profiles/'~ user.getUserProfilePictures().last().document)|imagine_filter('user_profile_big') }}" alt="">
+                {% else %}
+                    <img src="http://via.placeholder.com/170x170" alt="">
+                {% endif %}
+
+                {% if app.user.id == user.id %}
+                    <a href="#" class="profile-photo-open" title=""><i class="fa fa-camera"></i></a>
+                {% endif %}
+
             </div><!--user-pro-img end-->
             <div class="user_pro_status">
-                <ul class="flw-hr">
-                    <li><a href="#" title="" class="flww"><i class="la la-plus"></i> Follow</a></li>
-                    <li><a href="#" title="" class="hre"><i class="la la-plus"></i> Friend</a></li>
-                </ul>
+                {% if app.user.id != user.id %}
+                    <ul class="flw-hr">
+                        <li><a href="#" title="" class="flww"><i class="la la-plus"></i> {{ 'profile.follow'|trans }}</a></li>
+                        <li><a href="#" title="" class="hre"><i class="la la-plus"></i> {{ 'profile.friend'|trans }}</a></li>
+                    </ul>
+                {% endif %}
+
                 <ul class="flw-status">
                     <li>
-                        <span>Following</span>
+                        <span>{{ 'profile.following'|trans }}</span>
                         <b>34</b>
                     </li>
                     <li>
-                        <span>Followers</span>
+                        <span>{{ 'profile.followers'|trans }}</span>
                         <b>155</b>
                     </li>
                 </ul>
@@ -34,8 +45,7 @@
         </div><!--user_profile end-->
         <div class="suggestions full-width">
             <div class="sd-title">
-                <h3>People Viewed Profile</h3>
-                <i class="la la-ellipsis-v"></i>
+                <h3>{{ 'profile.people_viewed_profile'|trans }}</h3>
             </div><!--sd-title end-->
             <div class="suggestions-list">
                 <div class="suggestion-usd">

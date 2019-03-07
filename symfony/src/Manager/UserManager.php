@@ -34,7 +34,7 @@ class UserManager
      *
      * @return bool
      */
-    public function checkUserByUsername(string $username, string $sessionUsername)
+    public function checkUserByUsername(string $username, string $sessionUsername): bool
     {
         return $username == $sessionUsername;
     }
@@ -46,12 +46,21 @@ class UserManager
      *
      * @return User|null
      */
-    public function getUserByUsername(string $username)
+    public function getUserByUsername(string $username): ?User
     {
         return $this->userService->getUserBy([
             'username' => $username,
         ]);
     }
 
+    /**
+     * Save user in db.
+     *
+     * @param User $user
+     */
+    public function saveUser(User $user)
+    {
+        $this->userService->saveUser($user);
+    }
 
 }
