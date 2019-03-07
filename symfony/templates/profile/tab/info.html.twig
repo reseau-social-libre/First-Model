@@ -1,0 +1,13 @@
+<div class="product-feed-tab" id="info-dd">
+    <div class="user-profile-ov">
+        <h3>
+            <a href="#" title="" class="overview-open">{{ 'profile.overview'|trans }}</a>
+            {% if app.user.id == user.id %}
+                <a href="#" title="" class="overview-open"><i class="fa fa-pencil"></i></a>
+            {% endif %}
+        </h3>
+        {% if user.userInfo %}
+            {{ user.userInfo.content }}
+        {% endif %}
+    </div>
+</div>

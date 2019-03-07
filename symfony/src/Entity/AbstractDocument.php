@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\Timestampable;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -17,6 +17,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\DiscriminatorColumn(name="document_type", type="string", length=20)
  * @ORM\DiscriminatorMap({
  *     "Image"="ImagePost",
+ *     "UserCover"="UserCoverPicture",
+ *     "UserProfile"="UserProfilePicture"
  * })
  *
  * @Vich\Uploadable
@@ -24,7 +26,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 abstract class AbstractDocument
 {
 
-    use Timestampable;
+    use TimestampableEntity;
 
     /**
      * @ORM\Id()
@@ -34,7 +36,7 @@ abstract class AbstractDocument
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     protected $document;
 

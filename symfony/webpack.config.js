@@ -58,7 +58,7 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('post', './assets/js/post.js')
-    //.addEntry('page2', './assets/js/page2.js')
+    .addEntry('profile', './assets/js/profile.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app

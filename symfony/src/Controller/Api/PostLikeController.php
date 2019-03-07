@@ -7,6 +7,7 @@ namespace App\Controller\Api;
 use App\Entity\Post;
 use App\Entity\PostLike;
 use App\Form\Type\PostLikeType;
+use App\Manager\PostManager;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
@@ -21,6 +22,21 @@ class PostLikeController extends AbstractFOSRestController
 {
 
     /**
+     * @var PostManager
+     */
+    protected $postManager;
+
+    /**
+     * PostLikeController constructor.
+     *
+     * @param PostManager $postManager
+     */
+    public function __construct(PostManager $postManager)
+    {
+        $this->postManager = $postManager;
+    }
+
+    /**
      * @Rest\View()
      * @Rest\Post("/likes")
      *
@@ -30,19 +46,14 @@ class PostLikeController extends AbstractFOSRestController
      */
     public function postLikesAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-
         if ((bool)$request->get('liked')) {
-
-            $postLike = $em->getRepository(PostLike::class)
-                           ->findOneBy([
-                               'post' => $request->get('post'),
-                               'user' => $request->get('user'),
-                           ]);
+            $postLike = $this->postManager->getPostLike(
+                intval($request->request->get('user')),
+                intval($request->request->get('post'))
+            );
 
             if (null !== $postLike) {
-                $em->remove($postLike);
-                $em->flush();
+                $this->postManager->removePostLike($postLike);
             }
         } else {
             $postLike = new PostLike();
@@ -51,14 +62,14 @@ class PostLikeController extends AbstractFOSRestController
             $form->submit($request->request->all());
 
             if ($form->isValid()) {
-                $em->persist($postLike);
-                $em->flush();
+                $this->postManager->addPostLike($postLike);
             } else {
                 return $form;
             }
         }
 
         $post = $postLike->getPost();
+
         $templateData = ['post' => $post];
 
         $view = $this->view($post, Response::HTTP_CREATED)

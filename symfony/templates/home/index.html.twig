@@ -12,13 +12,14 @@
                     <div class="main-section-data">
                         <div class="row">
                             <div class="col-lg-3 col-md-4 pd-left-none no-pd">
-                                {{ include('sidebar/left-sidebar.html.twig')}}
+                                {% include 'sidebar/left-sidebar.html.twig' %}
                             </div>
                             <div class="col-lg-6 col-md-8 no-pd">
                                 <div class="main-ws-sec">
-                                    {{ include('/home/block/post-top-bar.html.twig') }}
+                                    {% include '/home/block/post-top-bar.html.twig' %}
                                     <div class="posts-section">
-                                        {{ include('home/block/post-bar.html.twig') }}
+                                        {% include 'home/block/post-bar.html.twig' %}
+                                        {% include 'home/block/nav.html.twig' %}
                                     </div>
                                 </div>
                             </div>

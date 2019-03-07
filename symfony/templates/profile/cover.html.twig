@@ -1,0 +1,11 @@
+<section class="cover-sec">
+    {% if user.getUserCoverPictures().last() %}
+        <img src="{{ asset('/uploads/user/covers/'~ user.getUserCoverPictures().last().document)|imagine_filter('user_cover') }}" alt="">
+    {% else %}
+        <img src="http://via.placeholder.com/1600x400" alt="">
+    {% endif %}
+
+    {% if app.user.id == user.id %}
+        <a href="#" title="" class="cover-open"><i class="fa fa-camera"></i> {{ 'profile.btn_change_cover'|trans }}</a>
+    {% endif %}
+</section>

@@ -2,12 +2,22 @@
     <div class="user-profile">
         <div class="username-dt">
             <div class="usr-pic">
-                <img src="http://via.placeholder.com/100x100" alt="">
+                {% if app.user.getUserProfilePictures().last() %}
+                    <img src="{{ asset('/uploads/user/profiles/'~ app.user.getUserProfilePictures().last().document)|imagine_filter('user_profile_100') }}" alt="">
+                {% else %}
+                    <img src="http://via.placeholder.com/100x100" alt="">
+                {% endif %}
+
             </div>
         </div>
         <div class="user-specs">
             <h3>{{ app.user.username }}</h3>
-            <span>tagline</span>
+            {% if app.user.getUserStatuses().last() %}
+                <span>{{ app.user.getUserStatuses.last().status }}</span>
+            {% else %}
+                <span></span>
+            {% endif %}
+
         </div>
     </div>
     <ul class="user-fw-status">
@@ -20,7 +30,7 @@
             <span>0</span>
         </li>
         <li>
-            <a href="#" title="">{{ 'profile.view_profile'|trans }}</a>
+            <a href="{{ path('profile', { username: app.user.username }) }}" title="">{{ 'profile.view_profile'|trans }}</a>
         </li>
     </ul>
 </div>

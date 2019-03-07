@@ -1,0 +1,105 @@
+<div class="col-lg-3">
+    <div class="main-left-sidebar">
+        <div class="user_profile">
+            <div class="user-pro-img">
+                {% if user.getUserProfilePictures().last() %}
+                    <img src="{{ asset('/uploads/user/profiles/'~ user.getUserProfilePictures().last().document)|imagine_filter('user_profile_big') }}" alt="">
+                {% else %}
+                    <img src="http://via.placeholder.com/170x170" alt="">
+                {% endif %}
+
+                {% if app.user.id == user.id %}
+                    <a href="#" class="profile-photo-open" title=""><i class="fa fa-camera"></i></a>
+                {% endif %}
+
+            </div><!--user-pro-img end-->
+            <div class="user_pro_status">
+                {% if app.user.id != user.id %}
+                    <ul class="flw-hr">
+                        <li><a href="#" title="" class="flww"><i class="la la-plus"></i> {{ 'profile.follow'|trans }}</a></li>
+                        <li><a href="#" title="" class="hre"><i class="la la-plus"></i> {{ 'profile.friend'|trans }}</a></li>
+                    </ul>
+                {% endif %}
+
+                <ul class="flw-status">
+                    <li>
+                        <span>{{ 'profile.following'|trans }}</span>
+                        <b>34</b>
+                    </li>
+                    <li>
+                        <span>{{ 'profile.followers'|trans }}</span>
+                        <b>155</b>
+                    </li>
+                </ul>
+            </div><!--user_pro_status end-->
+            {#<ul class="social_links">#}
+                {#<li><a href="#" title=""><i class="la la-globe"></i> www.example.com</a></li>#}
+                {#<li><a href="#" title=""><i class="fa fa-facebook-square"></i> Http://www.facebook.com/john...</a></li>#}
+                {#<li><a href="#" title=""><i class="fa fa-twitter"></i> Http://www.Twitter.com/john...</a></li>#}
+                {#<li><a href="#" title=""><i class="fa fa-google-plus-square"></i> Http://www.googleplus.com/john...</a></li>#}
+                {#<li><a href="#" title=""><i class="fa fa-behance-square"></i> Http://www.behance.com/john...</a></li>#}
+                {#<li><a href="#" title=""><i class="fa fa-pinterest"></i> Http://www.pinterest.com/john...</a></li>#}
+                {#<li><a href="#" title=""><i class="fa fa-instagram"></i> Http://www.instagram.com/john...</a></li>#}
+                {#<li><a href="#" title=""><i class="fa fa-youtube"></i> Http://www.youtube.com/john...</a></li>#}
+            {#</ul>#}
+        </div><!--user_profile end-->
+        <div class="suggestions full-width">
+            <div class="sd-title">
+                <h3>{{ 'profile.people_viewed_profile'|trans }}</h3>
+            </div><!--sd-title end-->
+            <div class="suggestions-list">
+                <div class="suggestion-usd">
+                    <img src="http://via.placeholder.com/35x35" alt="">
+                    <div class="sgt-text">
+                        <h4>Jessica William</h4>
+                        <span>Graphic Designer</span>
+                    </div>
+                    <span><i class="la la-plus"></i></span>
+                </div>
+                <div class="suggestion-usd">
+                    <img src="http://via.placeholder.com/35x35" alt="">
+                    <div class="sgt-text">
+                        <h4>John Doe</h4>
+                        <span>PHP Developer</span>
+                    </div>
+                    <span><i class="la la-plus"></i></span>
+                </div>
+                <div class="suggestion-usd">
+                    <img src="http://via.placeholder.com/35x35" alt="">
+                    <div class="sgt-text">
+                        <h4>Poonam</h4>
+                        <span>Wordpress Developer</span>
+                    </div>
+                    <span><i class="la la-plus"></i></span>
+                </div>
+                <div class="suggestion-usd">
+                    <img src="http://via.placeholder.com/35x35" alt="">
+                    <div class="sgt-text">
+                        <h4>Bill Gates</h4>
+                        <span>C & C++ Developer</span>
+                    </div>
+                    <span><i class="la la-plus"></i></span>
+                </div>
+                <div class="suggestion-usd">
+                    <img src="http://via.placeholder.com/35x35" alt="">
+                    <div class="sgt-text">
+                        <h4>Jessica William</h4>
+                        <span>Graphic Designer</span>
+                    </div>
+                    <span><i class="la la-plus"></i></span>
+                </div>
+                <div class="suggestion-usd">
+                    <img src="http://via.placeholder.com/35x35" alt="">
+                    <div class="sgt-text">
+                        <h4>John Doe</h4>
+                        <span>PHP Developer</span>
+                    </div>
+                    <span><i class="la la-plus"></i></span>
+                </div>
+                <div class="view-more">
+                    <a href="#" title="">View More</a>
+                </div>
+            </div><!--suggestions-list end-->
+        </div><!--suggestions end-->
+    </div><!--main-left-sidebar end-->
+</div>

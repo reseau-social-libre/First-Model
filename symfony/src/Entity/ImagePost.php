@@ -19,11 +19,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ImagePost extends AbstractDocument
 {
 
-    const POST_TYPE = 'Image';
+    const DOCUMENT_TYPE = 'Image';
 
     /**
      * @ORM\ManyToOne(targetEntity="PostImage", inversedBy="images")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     protected $post;
 

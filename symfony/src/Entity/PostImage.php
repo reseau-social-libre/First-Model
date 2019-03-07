@@ -24,7 +24,7 @@ class PostImage extends PostText
      *
      * @ORM\OneToMany(targetEntity="ImagePost", mappedBy="post", cascade={"persist", "remove"})
      *
-     *  @Assert\Valid
+     * @Assert\Valid
      */
     protected $images;
 

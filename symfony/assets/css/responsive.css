@@ -93,7 +93,7 @@
 	.comment_box {width: 88%;}
 	.no-pd {padding: 0;}
 	.sign-in-page {padding: 60px 0;}
-	.overview-box {width: 100%;}
+	.overview-box, .status-box, .cover-box, .profile-photo-box {width: 100%;}
 	.close-box {top: -23px;right: 2px;}
 	.forum-links ul li {margin-right: 20px;}
 	.forum-links ul li a {font-size: 13px;}
