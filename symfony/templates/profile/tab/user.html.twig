@@ -14,7 +14,9 @@
             <li><i class="fa fa-star"></i></li>
             <li><i class="fa fa-star-half-o"></i></li>
         </ul>
-        <a href="#" title="" class="status-open"><i class="fa fa-pencil"></i></a>
+        {% if app.user.id == user.id %}
+            <a href="#" title="" class="status-open"><i class="fa fa-pencil"></i></a>
+        {% endif %}
     </div>
     <div class="tab-feed st2">
         <ul>
