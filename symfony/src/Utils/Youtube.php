@@ -35,7 +35,7 @@ class Youtube
      * @return string
      */
     public function makeYoutubePlayer(string $vidId, string $cssClass): string {
-        return '<object class="'.$cssClass.'" data="http://www.youtube.com/embed/'.$vidId.'"></object>';
+        return '<iframe class="'.$cssClass.'" width="100%" height="315" src="https://www.youtube.com/embed/'.$vidId.'"></iframe>';
     }
 
 }

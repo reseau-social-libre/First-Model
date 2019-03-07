@@ -54,7 +54,7 @@ class YoutubeExtension extends AbstractExtension
             return $this->youtubeUtils->makeYoutubePlayer($matches[0], 'youtubePlayer');
         }
 
-        return $content;
+        return '';
     }
 
 }
