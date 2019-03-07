@@ -5469,9 +5469,14 @@ a:hover {
 	line-height: 18px;
 }
 
-.hidden{
+.hidden {
 	visibility: hidden;
 	height: 0;
 	opacity: 0;
 	transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+}
+
+.youtubePlayer {
+	width: 100%;
+	height: 250px;
 }
