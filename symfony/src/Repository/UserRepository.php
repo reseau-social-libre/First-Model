@@ -24,4 +24,21 @@ class UserRepository extends AbstractRepository
     {
         return User::class;
     }
+
+    /**
+     * Find users by ids.
+     *
+     * @param array $ids
+     *
+     * @return mixed
+     */
+    public function findUsersFromIds(array $ids)
+    {
+        $qb = $this->createQueryBuilder('u')
+                   ->where('u.id IN (:ids)')
+                    ->setParameter('ids', $ids)
+        ;
+
+        return $qb->getQuery()->execute();
+    }
 }

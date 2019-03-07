@@ -43,7 +43,7 @@ class Relationship
     protected $toUser;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=50)
      */
     protected $type;
 

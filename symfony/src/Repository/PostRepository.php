@@ -37,7 +37,7 @@ class PostRepository extends AbstractRepository
     public function findLatest(string $locale, int $page = 1): Pagerfanta
     {
         $qb = $this->createQueryBuilder('p')
-                   ->andWhere('p.locale = :locale' )
+                   ->where('p.locale = :locale' )
                    ->orderBy('p.createdAt', 'DESC')
                    ->setParameter('locale', $locale)
         ;
@@ -56,7 +56,7 @@ class PostRepository extends AbstractRepository
     public function findLatestByUser(int $userId, int $page = 1): Pagerfanta
     {
         $qb = $this->createQueryBuilder('p')
-                   ->andWhere('p.user = :user')
+                   ->where('p.user = :user')
                    ->orderBy('p.createdAt', 'DESC')
                    ->setParameter('user', $userId)
         ;

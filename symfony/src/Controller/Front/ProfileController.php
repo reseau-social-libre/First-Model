@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Front;
 
+use App\Entity\Relationship;
 use App\Entity\UserCoverPicture;
 use App\Entity\UserInfo;
 use App\Entity\UserProfilePicture;
@@ -13,6 +14,7 @@ use App\Form\Type\UserInfoType;
 use App\Form\Type\UserProfilePictureType;
 use App\Form\Type\UserStatusType;
 use App\Manager\PostManager;
+use App\Manager\RelationshipManager;
 use App\Manager\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,17 +39,25 @@ class ProfileController extends AbstractController
     protected $postManager;
 
     /**
+     * @var RelationshipManager
+     */
+    protected $relationshipManager;
+
+    /**
      * ProfileController constructor.
      *
-     * @param UserManager $userManager
-     * @param PostManager $postManager
+     * @param UserManager         $userManager
+     * @param PostManager         $postManager
+     * @param RelationshipManager $relationshipManager
      */
     public function __construct(
         UserManager $userManager,
-        PostManager $postManager
+        PostManager $postManager,
+        RelationshipManager $relationshipManager
     ) {
         $this->userManager = $userManager;
         $this->postManager = $postManager;
+        $this->relationshipManager = $relationshipManager;
     }
 
     /**
@@ -80,6 +90,17 @@ class ProfileController extends AbstractController
         if (null == $user) {
             throw new NotFoundHttpException('Sorry not existing!');
         }
+
+        // Followers count.
+        $nbrFollowers = $this->relationshipManager->getFollowersCount($user->getId());
+
+        // Followings count.
+        $nbrFollowings = $this->relationshipManager->getFollowingCount($user->getId());
+
+        // Friends
+        $friends = $this->relationshipManager->getFriends($user->getId());
+
+        $this->relationshipManager->removeRelationship(0, 1,4, Relationship::TYPE_FRIEND);
 
         // Get the user paginated user wall.
         $posts = $this->postManager->getWallPaginated($user, $page);
@@ -163,6 +184,9 @@ class ProfileController extends AbstractController
             'formInfo' => $formUserInfo->createView(),
             'user' => $user,
             'posts' => $posts,
+            'followersCount' => $nbrFollowers,
+            'followingsCount' => $nbrFollowings,
+            'friends' => $friends,
         ]);
 
     }

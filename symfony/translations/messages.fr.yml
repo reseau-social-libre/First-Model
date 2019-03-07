@@ -46,8 +46,9 @@ post:
         btn: 'Vidéo'
 profile:
     view_profile: 'Voir le profil'
-    following: 'Suivi'
-    followers: 'Suit'
+    following: 'Suit'
+    followers: 'Suivi'
+    follow_by: 'Suivi par'
     btn_change_cover: 'Modifier le cover'
     follow: 'Suivre'
     friend: 'Ami'

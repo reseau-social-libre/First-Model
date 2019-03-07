@@ -48,6 +48,7 @@ profile:
     view_profile: 'View profile'
     following: 'Following'
     followers: 'Followers'
+    follow_by: 'Followed by'
     btn_change_cover: 'Change cover'
     follow: 'Follow'
     friend: 'Friend'

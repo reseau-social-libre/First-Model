@@ -60,10 +60,32 @@ class RelationshipManager
     public function removeRelationship(int $id, int $from = null, int $to = null, string $type = null)
     {
         if (null !== $from && null !== $to && null !== $type) {
-            $this->relationshipService->removeRelationshipByUsersAndType($from, $to, $type)
+            $this->relationshipService->removeRelationshipByUsersAndType($from, $to, $type);
         } else {
             $this->relationshipService->removeRelationshipById($id);
         }
+    }
+
+    /**
+     * Get the number of followers for a user.
+     *
+     * @param int $user
+     *
+     * @return int
+     */
+    public function getFollowersCount(int $user)
+    {
+        return count($this->relationshipService->getFollowersCount($user));
+    }
+
+    public function getFollowingCount(int $user)
+    {
+        return count($this->relationshipService->getFollowingCount($user));
+    }
+
+    public function getFriends(int $user)
+    {
+        return $this->relationshipService->getFriends($user);
     }
 
 }

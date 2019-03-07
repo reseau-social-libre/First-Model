@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\Relationship;
 use App\Repository\RelationshipRepository;
+use App\Repository\UserRepository;
 
 /**
  * Class RelationshipService
@@ -17,6 +18,11 @@ class RelationshipService
      * @var RelationshipRepository
      */
     protected $relationshipRepository;
+
+    /**
+     * @var UserRepository
+     */
+    protected $userRepository;
 
     /**
      * The relationship type.
@@ -32,10 +38,14 @@ class RelationshipService
      * RelationshipService constructor.
      *
      * @param RelationshipRepository $relationshipRepository
+     * @param UserRepository         $userRepository
      */
-    public function __construct(RelationshipRepository $relationshipRepository)
-    {
+    public function __construct(
+        RelationshipRepository $relationshipRepository,
+        UserRepository $userRepository
+    ) {
         $this->relationshipRepository = $relationshipRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -53,11 +63,15 @@ class RelationshipService
             throw new \Exception('Relationship type not implemented');
         }
 
-        if (null == $relationship = $this->relationshipRepository->findOneBy([
-                'user_from' => $userFrom,
-                'user_to' => $userTo,
+        if ((null == $relationship = $this->relationshipRepository->findOneBy([
+                'fromUser' => $userFrom,
+                'toUser' => $userTo,
                 'type' => $type,
-            ])
+            ])) && (null == $relationship = $this->relationshipRepository->findOneBy([
+                'fromUser' => $userTo,
+                'toUser' => $userFrom,
+                'type' => $type,
+            ]))
         ) {
             $relationship = new Relationship();
             $relationship->setFromUser($userFrom)
@@ -93,11 +107,15 @@ class RelationshipService
      */
     public function removeRelationshipByUsersAndType(int $userFrom, int $userTo, string $type)
     {
-        if (null !== $relationship = $this->relationshipRepository->findOneBy([
-                'user_from' => $userFrom,
-                'user_to' => $userTo,
+        if ((null !== $relationship = $this->relationshipRepository->findOneBy([
+                'fromUser' => $userFrom,
+                'toUser' => $userTo,
                 'type' => $type,
-            ])
+            ])) || (null !== $relationship = $this->relationshipRepository->findOneBy([
+                'fromUser' => $userTo,
+                'toUser' => $userFrom,
+                'type' => $type,
+            ]))
         ) {
             $this->relationshipRepository->removeAndFlush($relationship);
         }
@@ -130,6 +148,51 @@ class RelationshipService
         }
 
         return true;
+    }
+
+    /**
+     * Get number of followers for a user.
+     *
+     * @param int $user
+     *
+     * @return Relationship[]
+     */
+    public function getFollowersCount(int $user)
+    {
+        return $this->relationshipRepository->findBy([
+           'toUser' => $user,
+           'type' => Relationship::TYPE_FOLLOWERS,
+        ]);
+    }
+
+    /**
+     * Get the number of following users.
+     *
+     * @param $user
+     *
+     * @return Relationship[]
+     */
+    public function getFollowingCount($user)
+    {
+        return $this->relationshipRepository->findBy([
+            'fromUser' => $user,
+            'type' => Relationship::TYPE_FOLLOWERS,
+        ]);
+    }
+
+    /**
+     * Get friends for a user.
+     *
+     * @param int $user
+     *
+     * @return mixed
+     */
+    public function getFriends(int $user)
+    {
+        $friendIdsFrom = $this->relationshipRepository->findFriendsFrom($user);
+        $friendIdsTo = $this->relationshipRepository->findFriendsTo($user);
+
+        return $this->userRepository->findUsersFromIds(array_merge($friendIdsFrom, $friendIdsTo));
     }
 
 }
