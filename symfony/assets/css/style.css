@@ -2524,6 +2524,8 @@ footer {
 
 .cover-sec img {
 	width: 100%;
+	max-height: 400px;
+	object-fit: cover;
 }
 .cover-sec > a {
 	display: inline-block;
