@@ -14,7 +14,7 @@
         <div class="comment">
             <h3>{{ comment.user.username }}</h3>
             <span><img src="{{ asset('build/images/clock.png') }}" alt="">{{ comment.createdAt|ago }}</span>
-            {{ comment.comment|md2html }}
+            {{ comment.comment|md2html|linksTargetBlank }}
         </div>
     </div>
 </li>
