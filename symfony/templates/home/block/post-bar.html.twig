@@ -38,7 +38,7 @@
         </div>
         <div class="job_descp">
             <h3>{{ post.title }}</h3>
-            {{ post.content|md2html}}
+            {{ post.content|md2html|linksTargetBlank}}
             {{ post.content|youtube }}
 
             {% if post.post_type == 'Image' %}

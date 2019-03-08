@@ -46,6 +46,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFilter('md2html', [$this, 'markdownToHtml'], ['is_safe' => ['html']]),
+            new TwigFilter('linksTargetBlank', [$this, 'makeLinksTargetBlank'], ['is_safe' => ['html']])
         ];
     }
 
@@ -65,6 +66,17 @@ class AppExtension extends AbstractExtension
     public function markdownToHtml(string $content): string
     {
         return $this->parser->toHtml($content);
+    }
+
+    /**
+     * Make links target blank so they open in a new tab
+     *
+     * @param string $content
+     * @return string
+     */
+    public function makeLinksTargetBlank(string $content): string
+    {
+        return str_replace('<a', '<a target="_blank"', $content);
     }
 
     /**
