@@ -24,11 +24,11 @@
                 <ul class="flw-status">
                     <li>
                         <span>{{ 'profile.following'|trans }}</span>
-                        <b>0</b>
+                        <b>{{ userRelationShip.following|length }}</b>
                     </li>
                     <li>
                         <span>{{ 'profile.follow_by'|trans }}</span>
-                        <b>0</b>
+                        <b>{{ userRelationShip.followers|length }}</b>
                     </li>
                 </ul>
             </div><!--user_pro_status end-->

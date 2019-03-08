@@ -29,6 +29,7 @@ class FriendShipService
      * FriendShipService constructor.
      *
      * @param FriendShipRepository $friendShipRepository
+     * @param HydratorInterface    $hydrator
      */
     public function __construct(FriendShipRepository $friendShipRepository, HydratorInterface $hydrator)
     {
@@ -37,9 +38,12 @@ class FriendShipService
     }
 
     /**
-     * @param User   $fromUser
-     * @param User   $toUser
-     * @param string $friendShipType
+     * Find friendship.
+     *
+     * @param User      $fromUser
+     * @param User      $toUser
+     * @param string    $friendShipType
+     * @param bool|null $accepted
      *
      * @return \App\Entity\FriendShip
      */
@@ -51,19 +55,26 @@ class FriendShipService
             'friendShipType' => $friendShipType,
         ];
 
-        if (null != $accepted) {
+        if (null !== $accepted) {
             $params['accepted'] = $accepted;
         }
 
         return $this->friendShipRepository->findOneBy($params);
     }
 
+    /**
+     * Add a friendRelationShip.
+     *
+     * @param User   $fromUser
+     * @param User   $toUser
+     * @param string $friendShipType
+     */
     public function addFriendShip(User $fromUser, User $toUser, string $friendShipType)
     {
-        if ( null == $friendShip = $this->findFriendShip($fromUser, $toUser, $friendShipType, null) ) {
+        if (null === $friendShip = $this->findFriendShip($fromUser, $toUser, $friendShipType, null)) {
             // TODO: Use strategy instead statements.
-            if (FriendShip::TYPE_FOLLOW == $friendShipType) {
-                if (null == $this->findFriendShip($fromUser, $toUser, FriendShip::TYPE_FRIEND, true)) {
+            if (FriendShip::TYPE_FOLLOW === $friendShipType) {
+                if (null === $this->findFriendShip($fromUser, $toUser, FriendShip::TYPE_FRIEND, true)) {
                     $friendShip = $this->friendShipHydrator->hydrate(
                         [
                             'friend' => $fromUser,
@@ -77,7 +88,7 @@ class FriendShipService
                 }
             }
 
-            if (FriendShip::TYPE_FRIEND == $friendShipType) {
+            if (FriendShip::TYPE_FRIEND === $friendShipType) {
                 $friendShip = $this->friendShipHydrator->hydrate(
                     [
                         'friend' => $fromUser,
@@ -91,10 +102,19 @@ class FriendShipService
         }
     }
 
+    /**
+     * Accept a friend request.
+     *
+     * @param User $fromUser
+     *  The user who send the request.
+     * @param User $toUser
+     *  The user who accept the friend request.
+     */
     public function acceptFriendShip(User $fromUser, User $toUser)
     {
-        if ( null != $friendShip = $this->findFriendShip($fromUser, $toUser, FriendShip::TYPE_FRIEND, false) ) {
+        if (null !== $friendShip = $this->findFriendShip($fromUser, $toUser, FriendShip::TYPE_FRIEND, false)) {
             $friendShip->setAccept(true);
+
             $inverseFriendShip = $this->friendShipHydrator->hydrate(
                 [
                     'friend' => $toUser,
@@ -104,14 +124,95 @@ class FriendShipService
                 ]
             );
 
-
             $this->friendShipRepository->persistAndFlush($friendShip);
             $this->friendShipRepository->persistAndFlush($inverseFriendShip);
         }
     }
 
+    /**
+     * Get all friends.
+     *
+     * @param User     $user
+     * @param int|null $limit
+     *
+     * @return User[]
+     */
+    public function getAllFriends(User $user, int $limit = null): array
+    {
+        $friends = $this->friendShipRepository->findAllFriends($user, $limit);
+
+        return $friends;
+    }
+
+    /**
+     * Remove a friendShip.
+     *
+     * @param FriendShip $friendShip
+     */
     public function removeFriendShip(FriendShip $friendShip)
     {
         $this->friendShipRepository->removeAndFlush($friendShip);
+    }
+
+    /**
+     * Get the pending friend request for a user.
+     *
+     * @param User $user
+     *
+     * @return FriendShip[]
+     */
+    public function getPendingFriendRequest(User $user): array
+    {
+        $friendRequest = $this->friendShipRepository->findPendingFriendRequest($user);
+
+        return $friendRequest;
+    }
+
+    /**
+     * Check if two users are friends.
+     *
+     * @param User $user
+     * @param User $friend
+     *
+     * @return bool
+     */
+    public function checkIsFriend(User $user, User $friend): bool
+    {
+        $friendShip = $this->friendShipRepository->findOneBy(
+            [
+                'friend' => $friend,
+                'friendWithMe' => $user,
+                'friendShipType' => FriendShip::TYPE_FRIEND,
+                'accepted' => true,
+            ]
+        );
+
+        return null !== $friendShip;
+    }
+
+    /**
+     * Find the user's followers.
+     *
+     * @param User     $user
+     * @param int|null $limit
+     *
+     * @return User[]
+     */
+    public function findFollowers(User $user, int $limit = null): array
+    {
+        return  $this->friendShipRepository->findFollowers($user, $limit);
+    }
+
+    /**
+     * Find users who are followed by a user.
+     *
+     * @param User     $user
+     * @param int|null $limit
+     *
+     * @return User[]
+     */
+    public function findFollowing(User $user, int $limit = null): array
+    {
+        return $this->friendShipRepository->findFollowing($user, $limit);
     }
 }

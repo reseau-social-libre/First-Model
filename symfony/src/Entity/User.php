@@ -298,6 +298,11 @@ class User extends BaseUser
         return $this->friends;
     }
 
+    /**
+     * @param FriendShip $friend
+     *
+     * @return User
+     */
     public function addFriend(FriendShip $friend): self
     {
         if (!$this->friends->contains($friend)) {
@@ -308,6 +313,11 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @param FriendShip $friend
+     *
+     * @return User
+     */
     public function removeFriend(FriendShip $friend): self
     {
         if ($this->friends->contains($friend)) {
@@ -329,6 +339,11 @@ class User extends BaseUser
         return $this->friendsWithMe;
     }
 
+    /**
+     * @param FriendShip $friendWithMe
+     *
+     * @return User
+     */
     public function addFriendWithMe(FriendShip $friendWithMe): self
     {
         if (!$this->friendsWithMe->contains($friendWithMe)) {
@@ -339,6 +354,11 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @param FriendShip $friendWithMe
+     *
+     * @return User
+     */
     public function removeFriendWithMe(FriendShip $friendWithMe): self
     {
         if ($this->friendsWithMe->contains($friendWithMe)) {
@@ -351,5 +371,4 @@ class User extends BaseUser
 
         return $this;
     }
-
 }

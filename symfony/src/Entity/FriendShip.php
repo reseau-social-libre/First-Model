@@ -58,22 +58,32 @@ class FriendShip
             $this->friendShipType = self::TYPE_FRIEND;
         }
 
-        if ($this->friendShipType == self::TYPE_FOLLOW) {
+        if ($this->friendShipType === self::TYPE_FOLLOW) {
             $this->accepted = true;
         }
     }
 
-
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return User|null
+     */
     public function getFriend(): ?User
     {
         return $this->friend;
     }
 
+    /**
+     * @param User|null $friend
+     *
+     * @return FriendShip
+     */
     public function setFriend(?User $friend): self
     {
         $this->friend = $friend;
@@ -81,11 +91,19 @@ class FriendShip
         return $this;
     }
 
+    /**
+     * @return User|null
+     */
     public function getFriendWithMe(): ?User
     {
         return $this->friendWithMe;
     }
 
+    /**
+     * @param User|null $friendWithMe
+     *
+     * @return FriendShip
+     */
     public function setFriendWithMe(?User $friendWithMe): self
     {
         $this->friendWithMe = $friendWithMe;
@@ -93,11 +111,19 @@ class FriendShip
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getFriendShipType(): ?string
     {
         return $this->friendShipType;
     }
 
+    /**
+     * @param string $friendShipType
+     *
+     * @return FriendShip
+     */
     public function setFriendShipType(string $friendShipType): self
     {
         $this->friendShipType = $friendShipType;
@@ -105,11 +131,19 @@ class FriendShip
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function isAccepted(): ?bool
     {
         return $this->accepted;
     }
 
+    /**
+     * @param bool $value
+     *
+     * @return FriendShip
+     */
     public function setAccept(bool $value): self
     {
         $this->accepted = $value;

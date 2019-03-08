@@ -15,7 +15,8 @@ class FriendShipHydrator implements HydratorInterface
     /**
      * {@inheritdoc}
      */
-    public function hydrate(array $properties): FriendShip {
+    public function hydrate(array $properties): FriendShip
+    {
         $friendShip = new FriendShip();
 
         foreach ($properties as $key => $property) {
@@ -25,5 +26,4 @@ class FriendShipHydrator implements HydratorInterface
 
         return $friendShip;
     }
-
 }

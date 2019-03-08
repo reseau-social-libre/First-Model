@@ -9,6 +9,7 @@ use App\Entity\Relationship;
 use App\Entity\UserCoverPicture;
 use App\Entity\UserInfo;
 use App\Entity\UserProfilePicture;
+use App\Entity\UserRelationShip;
 use App\Entity\UserStatus;
 use App\Form\Type\UserCoverPictureType;
 use App\Form\Type\UserInfoType;
@@ -51,11 +52,8 @@ class ProfileController extends AbstractController
      * @param PostManager       $postManager
      * @param FriendShipManager $friendShipManager
      */
-    public function __construct(
-        UserManager $userManager,
-        PostManager $postManager,
-        FriendShipManager $friendShipManager
-    ) {
+    public function __construct(UserManager $userManager, PostManager $postManager, FriendShipManager $friendShipManager)
+    {
         $this->userManager = $userManager;
         $this->postManager = $postManager;
         $this->friendShipManager = $friendShipManager;
@@ -88,13 +86,14 @@ class ProfileController extends AbstractController
         $user = $this->userManager->checkUserByUsername($username, $this->getUser()->getUsername())
             ? $this->getUser() : $this->userManager->getUserByUsername($username);
 
-        if (null == $user) {
+        if (null === $user) {
             throw new NotFoundHttpException('Sorry not existing!');
         }
 
-        $toUser = $this->userManager->getUserByUsername('test');
-//        $this->friendShipManager->addFriendShip($user, $toUser, FriendShip::TYPE_FOLLOW);
-        $this->friendShipManager->acceptFriendShip($user, $toUser);
+        // Set the user relationShip.
+        $userRelationShip = $this->friendShipManager->setUserRelationShip(
+            new UserRelationShip($user)
+        );
 
         // Get the user paginated user wall.
         $posts = $this->postManager->getWallPaginated($user, $page);
@@ -113,7 +112,7 @@ class ProfileController extends AbstractController
             $this->addFlash('success', 'Your status is updated.');
 
             return $this->redirectToRoute('profile', [
-               'username' => $this->getUser()->getUsername(),
+                'username' => $this->getUser()->getUsername(),
             ]);
         }
 
@@ -152,7 +151,7 @@ class ProfileController extends AbstractController
         }
 
         // Form UserInfo
-        if (null == $userInfo = $user->getUserInfo()) {
+        if (null === $userInfo = $user->getUserInfo()) {
             $userInfo = new UserInfo();
             $userInfo->setUser($user);
         }
@@ -178,8 +177,7 @@ class ProfileController extends AbstractController
             'formInfo' => $formUserInfo->createView(),
             'user' => $user,
             'posts' => $posts,
+            'userRelationShip' => $userRelationShip,
         ]);
-
     }
-
 }
