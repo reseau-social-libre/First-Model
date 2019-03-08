@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Front;
 
+use App\Entity\FriendShip;
 use App\Entity\Relationship;
 use App\Entity\UserCoverPicture;
 use App\Entity\UserInfo;
@@ -14,7 +15,7 @@ use App\Form\Type\UserInfoType;
 use App\Form\Type\UserProfilePictureType;
 use App\Form\Type\UserStatusType;
 use App\Manager\PostManager;
-use App\Manager\RelationshipManager;
+use App\Manager\FriendShipManager;
 use App\Manager\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,25 +40,25 @@ class ProfileController extends AbstractController
     protected $postManager;
 
     /**
-     * @var RelationshipManager
+     * @var FriendShipManager
      */
-    protected $relationshipManager;
+    protected $friendShipManager;
 
     /**
      * ProfileController constructor.
      *
-     * @param UserManager         $userManager
-     * @param PostManager         $postManager
-     * @param RelationshipManager $relationshipManager
+     * @param UserManager       $userManager
+     * @param PostManager       $postManager
+     * @param FriendShipManager $friendShipManager
      */
     public function __construct(
         UserManager $userManager,
         PostManager $postManager,
-        RelationshipManager $relationshipManager
+        FriendShipManager $friendShipManager
     ) {
         $this->userManager = $userManager;
         $this->postManager = $postManager;
-        $this->relationshipManager = $relationshipManager;
+        $this->friendShipManager = $friendShipManager;
     }
 
     /**
@@ -91,16 +92,9 @@ class ProfileController extends AbstractController
             throw new NotFoundHttpException('Sorry not existing!');
         }
 
-        // Followers count.
-        $nbrFollowers = $this->relationshipManager->getFollowersCount($user->getId());
-
-        // Followings count.
-        $nbrFollowings = $this->relationshipManager->getFollowingCount($user->getId());
-
-        // Friends
-        $friends = $this->relationshipManager->getFriends($user->getId());
-
-        $this->relationshipManager->removeRelationship(0, 1,4, Relationship::TYPE_FRIEND);
+        $toUser = $this->userManager->getUserByUsername('test');
+//        $this->friendShipManager->addFriendShip($user, $toUser, FriendShip::TYPE_FOLLOW);
+        $this->friendShipManager->acceptFriendShip($user, $toUser);
 
         // Get the user paginated user wall.
         $posts = $this->postManager->getWallPaginated($user, $page);
@@ -184,9 +178,6 @@ class ProfileController extends AbstractController
             'formInfo' => $formUserInfo->createView(),
             'user' => $user,
             'posts' => $posts,
-            'followersCount' => $nbrFollowers,
-            'followingsCount' => $nbrFollowings,
-            'friends' => $friends,
         ]);
 
     }

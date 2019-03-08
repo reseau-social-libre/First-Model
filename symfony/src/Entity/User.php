@@ -27,27 +27,37 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $posts;
+    protected $posts;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserStatus", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $userStatuses;
+    protected $userStatuses;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\UserInfo", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $userInfo;
+    protected $userInfo;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserCoverPicture", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $userCoverPictures;
+    protected $userCoverPictures;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserProfilePicture", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $userProfilePictures;
+    protected $userProfilePictures;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FriendShip", mappedBy="friend", cascade={"persist", "remove"})
+     */
+    protected $friends;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FriendShip", mappedBy="friendWithMe", cascade={"persist", "remove"})
+     */
+    protected $friendsWithMe;
 
     /**
      * User constructor.
@@ -55,10 +65,12 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->posts = new ArrayCollection();
-        $this->userStatuses = new ArrayCollection();
-        $this->userCoverPictures = new ArrayCollection();
+        $this->posts               = new ArrayCollection();
+        $this->userStatuses        = new ArrayCollection();
+        $this->userCoverPictures   = new ArrayCollection();
         $this->userProfilePictures = new ArrayCollection();
+        $this->friends             = new ArrayCollection();
+        $this->friendsWithMe       = new ArrayCollection();
     }
 
     /**
@@ -272,6 +284,68 @@ class User extends BaseUser
             // set the owning side to null (unless already changed)
             if ($userProfilePicture->getUser() === $this) {
                 $userProfilePicture->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FriendShip[]
+     */
+    public function getFriends(): Collection
+    {
+        return $this->friends;
+    }
+
+    public function addFriend(FriendShip $friend): self
+    {
+        if (!$this->friends->contains($friend)) {
+            $this->friends[] = $friend;
+            $friend->setFriend($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFriend(FriendShip $friend): self
+    {
+        if ($this->friends->contains($friend)) {
+            $this->friends->removeElement($friend);
+            // set the owning side to null (unless already changed)
+            if ($friend->getFriend() === $this) {
+                $friend->setFriend(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FriendShip[]
+     */
+    public function getFriendsWithMe(): Collection
+    {
+        return $this->friendsWithMe;
+    }
+
+    public function addFriendWithMe(FriendShip $friendWithMe): self
+    {
+        if (!$this->friendsWithMe->contains($friendWithMe)) {
+            $this->friendsWithMe[] = $friendWithMe;
+            $friendWithMe->setFriendWithMe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFriendWithMe(FriendShip $friendWithMe): self
+    {
+        if ($this->friendsWithMe->contains($friendWithMe)) {
+            $this->friendsWithMe->removeElement($friendWithMe);
+            // set the owning side to null (unless already changed)
+            if ($friendWithMe->getFriendWithMe() === $this) {
+                $friendWithMe->setFriendWithMe(null);
             }
         }
 
