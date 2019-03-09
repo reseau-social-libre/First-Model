@@ -183,4 +183,15 @@ class ProfileController extends AbstractController
             'userRelationShip' => $userRelationShip,
         ]);
     }
+
+    public function profileBox()
+    {
+        $userRelationShip = $this->friendShipManager->setUserRelationShip(
+            new UserRelationShip($this->getUser())
+        );
+
+        return $this->render('home/block/profile.html.twig', [
+                'userRelationShip' => $userRelationShip,
+        ]);
+    }
 }

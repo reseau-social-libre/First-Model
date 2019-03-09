@@ -31,6 +31,12 @@ $(window).on("load", function () {
     $(".wrapper").removeClass("overlay");
     return false;
   });
+  $("button.cancel").on("click", function (e) {
+    e.preventDefault();
+    $("#overview-box").removeClass("open");
+    $(".wrapper").removeClass("overlay");
+    return false;
+  });
 
   //  ============= STATUS EDIT FUNCTION =========
 
@@ -40,6 +46,12 @@ $(window).on("load", function () {
     return false;
   });
   $(".close-box").on("click", function () {
+    $("#status-box").removeClass("open");
+    $(".wrapper").removeClass("overlay");
+    return false;
+  });
+  $("button.cancel").on("click", function (e) {
+    e.preventDefault();
     $("#status-box").removeClass("open");
     $(".wrapper").removeClass("overlay");
     return false;
@@ -57,6 +69,12 @@ $(window).on("load", function () {
     $(".wrapper").removeClass("overlay");
     return false;
   });
+  $("button.cancel").on("click", function (e) {
+    e.preventDefault();
+    $("#cover-box").removeClass("open");
+    $(".wrapper").removeClass("overlay");
+    return false;
+  });
 
   //  ============= PROFILE PHOTO EDIT FUNCTION =========
 
@@ -66,6 +84,12 @@ $(window).on("load", function () {
     return false;
   });
   $(".close-box").on("click", function () {
+    $("#profile-photo-box").removeClass("open");
+    $(".wrapper").removeClass("overlay");
+    return false;
+  });
+  $("button.cancel").on("click", function (e) {
+    e.preventDefault();
     $("#profile-photo-box").removeClass("open");
     $(".wrapper").removeClass("overlay");
     return false;
