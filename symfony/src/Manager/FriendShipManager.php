@@ -134,6 +134,16 @@ class FriendShipManager
         return $this->friendShipService->findFollowing($user, $limit);
     }
 
+    public function hasFriendPendingRequest(User $user, User $friendWithMe)
+    {
+        return $this->friendShipService->hasFriendPendingRequest($user, $friendWithMe);
+    }
+
+    public function isFollowed(User $user, User $friendWithMe)
+    {
+        return $this->friendShipService->checkIfFollowed($user, $friendWithMe);
+    }
+
     /**
      * Set the userRelationShip.
      *

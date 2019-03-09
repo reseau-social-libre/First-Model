@@ -190,6 +190,19 @@ class FriendShipService
         return null !== $friendShip;
     }
 
+    public function checkIfFollowed($user, $friendWithMe)
+    {
+        $followed = $this->friendShipRepository->findOneBy(
+            [
+                'friend' => $user,
+                'friendWithMe' => $friendWithMe,
+                'friendShipType' => FriendShip::TYPE_FOLLOW,
+            ]
+        );
+
+        return null !== $followed;
+    }
+
     /**
      * Find the user's followers.
      *
@@ -214,5 +227,25 @@ class FriendShipService
     public function findFollowing(User $user, int $limit = null): array
     {
         return $this->friendShipRepository->findFollowing($user, $limit);
+    }
+
+    /**
+     * @param $user
+     * @param $friendWithMe
+     *
+     * @return bool
+     */
+    public function hasFriendPendingRequest($user, $friendWithMe): bool
+    {
+        $pending = $this->friendShipRepository->findOneBy(
+            [
+                'friend' => $user,
+                'friendWithMe' => $friendWithMe,
+                'friendShipType' => FriendShip::TYPE_FRIEND,
+                'accepted' => false
+            ]
+        );
+
+        return null !== $pending;
     }
 }

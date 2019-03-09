@@ -31,6 +31,21 @@ class UserRelationShip
     protected $following;
 
     /**
+     * @var bool
+     */
+    protected $isFollowed = false;
+
+    /**
+     * @var bool
+     */
+    protected $isFriendPending = false;
+
+    /**
+     * @var bool
+     */
+    protected $isFriend = false;
+
+    /**
      * @var FriendShip[]
      */
     protected $friendRequest;
@@ -129,6 +144,66 @@ class UserRelationShip
     public function setFriendRequest(array $friendRequest): UserRelationShip
     {
         $this->friendRequest = $friendRequest;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFollowed(): bool
+    {
+        return $this->isFollowed;
+    }
+
+    /**
+     * @param bool $isFollowed
+     *
+     * @return UserRelationShip
+     */
+    public function setIsFollowed(bool $isFollowed): UserRelationShip
+    {
+        $this->isFollowed = $isFollowed;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFriendPending(): bool
+    {
+        return $this->isFriendPending;
+    }
+
+    /**
+     * @param bool $isFriendPending
+     *
+     * @return UserRelationShip
+     */
+    public function setIsFriendPending(bool $isFriendPending): UserRelationShip
+    {
+        $this->isFriendPending = $isFriendPending;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFriend(): bool
+    {
+        return $this->isFriend;
+    }
+
+    /**
+     * @param bool $isFriend
+     *
+     * @return UserRelationShip
+     */
+    public function setIsFriend(bool $isFriend): UserRelationShip
+    {
+        $this->isFriend = $isFriend;
 
         return $this;
     }

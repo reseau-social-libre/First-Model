@@ -16,21 +16,40 @@
             <div class="user_pro_status">
                 {% if app.user.id != user.id %}
                     <ul class="flw-hr">
-                        <li><a href="#" title="" class="flww"><i class="la la-plus"></i> {{ 'profile.follow'|trans }}</a></li>
-                        <li><a href="#" title="" class="hre"><i class="la la-plus"></i> {{ 'profile.friend'|trans }}</a></li>
+                        {% if userRelationShip.isFollowed %}
+                            <li><a href="#" title="" class="flww"><i class="la la-thumbs-o-down"></i> {{ 'profile.unfollow'|trans }}</a></li>
+                        {% else %}
+                            <li><a href="#" title="" class="flww"><i class="la la-thumbs-o-up"></i> {{ 'profile.follow'|trans }}</a></li>
+                        {% endif %}
+
+                    </ul>
+                    <ul class="flw-hr">
+                        {% if userRelationShip.isFriend %}
+                            <li><a href="#" title="" class="hre"><i class="la la-check"></i> {{ 'profile.friend'|trans }}</a></li>
+                        {% elseif userRelationShip.isFriendPending %}
+                            <li><a href="#" title="" class="hre"><i class="la la-user-plus"></i> {{ 'profile.cancel_friend'|trans }}</a></li>
+                        {% else %}
+                            <li><a href="#" title="" class="hre"><i class="la la-user-plus"></i> {{ 'profile.be_friend'|trans }}</a></li>
+                        {% endif %}
+                    </ul>
+                {% else %}
+                    <ul class="flw-hr">
+                        <li>
+                            <a href="#" title="" class="flww"><i class="la la-rocket"></i>
+                                {% set count =  userRelationShip.followers|length %}
+                                {% transchoice count with {'%count%': count} %}profile.count_followers{% endtranschoice %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" title="" class="hre"><i class="la la-users"></i>
+                                {% set count =  userRelationShip.friends|length %}
+                                {% transchoice count with {'%count%': count} %}profile.count_friends{% endtranschoice %}
+                            </a>
+                        </li>
                     </ul>
                 {% endif %}
 
-                <ul class="flw-status">
-                    <li>
-                        <span>{{ 'profile.following'|trans }}</span>
-                        <b>{{ userRelationShip.following|length }}</b>
-                    </li>
-                    <li>
-                        <span>{{ 'profile.follow_by'|trans }}</span>
-                        <b>{{ userRelationShip.followers|length }}</b>
-                    </li>
-                </ul>
+
             </div><!--user_pro_status end-->
             {#<ul class="social_links">#}
                 {#<li><a href="#" title=""><i class="la la-globe"></i> www.example.com</a></li>#}

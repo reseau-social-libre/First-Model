@@ -94,6 +94,9 @@ class ProfileController extends AbstractController
         $userRelationShip = $this->friendShipManager->setUserRelationShip(
             new UserRelationShip($user)
         );
+        $userRelationShip->setIsFriendPending($this->friendShipManager->hasFriendPendingRequest($this->getUser(), $user));
+        $userRelationShip->setIsFriend($this->friendShipManager->isUserMyFriend($this->getUser(), $user));
+        $userRelationShip->setIsFollowed($this->friendShipManager->isFollowed($this->getUser(), $user));
 
         // Get the user paginated user wall.
         $posts = $this->postManager->getWallPaginated($user, $page);
