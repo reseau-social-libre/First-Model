@@ -60,6 +60,11 @@ class User extends BaseUser
     protected $friendsWithMe;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Notification", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $notifications;
+
+    /**
      * User constructor.
      */
     public function __construct()
@@ -71,6 +76,7 @@ class User extends BaseUser
         $this->userProfilePictures = new ArrayCollection();
         $this->friends             = new ArrayCollection();
         $this->friendsWithMe       = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     /**
@@ -366,6 +372,53 @@ class User extends BaseUser
             // set the owning side to null (unless already changed)
             if ($friendWithMe->getFriendWithMe() === $this) {
                 $friendWithMe->setFriendWithMe(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the notifications.
+     *
+     * @return Collection|Notification[]
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    /**
+     * Add notification.
+     *
+     * @param Notification $notification
+     *
+     * @return User
+     */
+    public function addNotification(Notification $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications[] = $notification;
+            $notification->setUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove notification.
+     *
+     * @param Notification $notification
+     *
+     * @return User
+     */
+    public function removeNotification(Notification $notification): self
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+            // set the owning side to null (unless already changed)
+            if ($notification->getUser() === $this) {
+                $notification->setUser(null);
             }
         }
 
