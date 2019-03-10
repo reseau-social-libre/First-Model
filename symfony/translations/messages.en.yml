@@ -59,7 +59,7 @@ profile:
     people_viewed_profile: 'People Viewed Profile'
     overview: 'About me'
     count_following: 'Following %count% members'
-    count_friends: "{0} friend|{1}1 friend|]1,Inf]%count% friends"
+    count_friends: "{0}No friend|{1}1 friend|]1,Inf]%count% friends"
     count_followers: "{0} follower|{1}1 follower|]1,Inf]%count% followers"
 block:
     about:

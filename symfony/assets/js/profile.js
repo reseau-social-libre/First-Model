@@ -26,6 +26,10 @@ $(document).ready(function(){
     RSL.bindUnFollowEvent();
   };
 
+  RSL.updateButtons = function(response) {
+    $('div.relationship-button').html(response);
+  };
+
   RSL.bindAddFriendEvent = function() {
     $(document).on('click', 'a#add-friend', function(e){
       e.preventDefault();
@@ -51,7 +55,7 @@ $(document).ready(function(){
       type: "POST",
       data: {'user': user, 'friend': friend},
       success: function(response){
-        // Update dom here
+        RSL.updateButtons(response);
         RSL.addFriendProcess = false;
       },
       error: function() {
@@ -85,7 +89,7 @@ $(document).ready(function(){
       type: "POST",
       data: {'user': user, 'friend': friend},
       success: function(response){
-        // Update dom here
+        RSL.updateButtons(response);
         RSL.cancelFriendRequestProcess = false;
       },
       error: function() {
@@ -119,7 +123,7 @@ $(document).ready(function(){
       type: "POST",
       data: {'user': user, 'friend': friend},
       success: function(response){
-        // Update dom here
+        RSL.updateButtons(response);
         RSL.acceptFriendRequestProcess = false;
       },
       error: function() {
@@ -153,7 +157,7 @@ $(document).ready(function(){
       type: "POST",
       data: {'user': user, 'friend': friend},
       success: function(response){
-        // Update dom here
+        RSL.updateButtons(response);
         RSL.removeFriendProcess = false;
       },
       error: function() {
@@ -187,7 +191,7 @@ $(document).ready(function(){
       type: "POST",
       data: {'user': user, 'friend': friend},
       success: function(response){
-        // Update dom here
+        RSL.updateButtons(response);
         RSL.followFriendProcess = false;
       },
       error: function() {
@@ -221,7 +225,7 @@ $(document).ready(function(){
       type: "POST",
       data: {'user': user, 'friend': friend},
       success: function(response){
-        // Update dom here
+        RSL.updateButtons(response);
         RSL.unFollowFriendProcess = false;
       },
       error: function() {

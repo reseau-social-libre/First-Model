@@ -6,12 +6,14 @@ namespace App\Controller\Api;
 
 use App\Entity\FriendShip;
 use App\Entity\User;
+use App\Entity\UserRelationShip;
 use App\Manager\FriendShipManager;
 use App\Repository\UserRepository;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class FriendShipController
@@ -46,8 +48,16 @@ class FriendShipController extends AbstractFOSRestController
         $user = $repo->find($request->request->get('user'));
         $friend = $repo->find($request->request->get('friend'));
 
-        if (null !== $user && null !== $friend) {
+        if (null === $user || null === $friend) {
+            return new Response(Response::HTTP_NOT_FOUND);
+        }
+
+        try {
             $this->friendShipManager->addFriendShip($user, $friend, FriendShip::TYPE_FRIEND);
+
+            return $this->handleButtonView($user, $friend);
+        } catch (\Exception $e) {
+            return new Response(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -70,7 +80,11 @@ class FriendShipController extends AbstractFOSRestController
 
             $em->remove($friendRequest);
             $em->flush();
+
+            return $this->handleButtonView($user, $friend);
         }
+
+        return new Response(Response::HTTP_NOT_FOUND);
     }
 
     /**
@@ -95,6 +109,8 @@ class FriendShipController extends AbstractFOSRestController
                 $em->remove($friendRequest);
                 $em->remove($inverseFriendRequest);
                 $em->flush();
+
+                return $this->handleButtonView($user, $friend);
             }
         }
     }
@@ -115,6 +131,8 @@ class FriendShipController extends AbstractFOSRestController
 
         if (null !== $user && null !== $friend) {
             $this->friendShipManager->acceptFriendShip($friend, $user);
+
+            return $this->handleButtonView($user, $friend);
         }
     }
 
@@ -134,6 +152,8 @@ class FriendShipController extends AbstractFOSRestController
 
         if (null !== $user && null !== $friend) {
             $this->friendShipManager->addFriendShip($user, $friend, FriendShip::TYPE_FOLLOW);
+
+            return $this->handleButtonView($user, $friend);
         }
     }
 
@@ -156,7 +176,34 @@ class FriendShipController extends AbstractFOSRestController
 
             $em->remove($friendShip);
             $em->flush();
+
+            return $this->handleButtonView($user, $friend);
         }
+    }
+
+    private function handleButtonView(User $user, User $friend)
+    {
+        // Set the user relationShip.
+        $userRelationShip = $this->friendShipManager->setUserRelationShip(
+            new UserRelationShip($user)
+        );
+        $userRelationShip->setIsFriendPending($this->friendShipManager->hasFriendPendingRequest($user, $friend));
+        $userRelationShip->setIsRequestMeFriend($this->friendShipManager->hasFriendPendingRequest($friend, $user));
+        $userRelationShip->setIsFriend($this->friendShipManager->isUserMyFriend($user, $friend));
+        $userRelationShip->setIsFollowed($this->friendShipManager->isFollowed($user, $friend));
+
+        $templateData = [
+            'userRelationShip' => $userRelationShip,
+            'user' => $friend,
+        ];
+
+        $view = $this->view($userRelationShip, Response::HTTP_CREATED)
+                     ->setTemplate('profile/box/relationship-buttons.html.twig')
+                     ->setTemplateVar('userRelationShip')
+                     ->setTemplateData($templateData)
+        ;
+
+        return $this->handleView($view);
     }
 
 

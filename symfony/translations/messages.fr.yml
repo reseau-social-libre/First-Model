@@ -59,7 +59,7 @@ profile:
     people_viewed_profile: 'Les membres qui ont vu ce profil'
     overview: 'Quelques information à propos de moi'
     count_following: 'Suit %count% membres'
-    count_friends: "{0} ami|{1}1 ami|]1,Inf]%count% amis"
+    count_friends: "{0}0 ami|{1}1 ami|]1,Inf]%count% amis"
     count_followers: "{0} follower|{1}1 follower|]1,Inf]%count% followers"
 block:
     about:
