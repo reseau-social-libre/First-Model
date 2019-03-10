@@ -95,6 +95,7 @@ class ProfileController extends AbstractController
             new UserRelationShip($user)
         );
         $userRelationShip->setIsFriendPending($this->friendShipManager->hasFriendPendingRequest($this->getUser(), $user));
+        $userRelationShip->setIsRequestMeFriend($this->friendShipManager->hasFriendPendingRequest($user, $this->getUser()));
         $userRelationShip->setIsFriend($this->friendShipManager->isUserMyFriend($this->getUser(), $user));
         $userRelationShip->setIsFollowed($this->friendShipManager->isFollowed($this->getUser(), $user));
 

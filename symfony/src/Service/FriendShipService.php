@@ -74,18 +74,16 @@ class FriendShipService
         if (null === $friendShip = $this->findFriendShip($fromUser, $toUser, $friendShipType, null)) {
             // TODO: Use strategy instead statements.
             if (FriendShip::TYPE_FOLLOW === $friendShipType) {
-                if (null === $this->findFriendShip($fromUser, $toUser, FriendShip::TYPE_FRIEND, true)) {
-                    $friendShip = $this->friendShipHydrator->hydrate(
-                        [
-                            'friend' => $fromUser,
-                            'friendWithMe' => $toUser,
-                            'friendShipType' => FriendShip::TYPE_FOLLOW,
-                            'accept' => true,
-                        ]
-                    );
+                $friendShip = $this->friendShipHydrator->hydrate(
+                    [
+                        'friend' => $fromUser,
+                        'friendWithMe' => $toUser,
+                        'friendShipType' => FriendShip::TYPE_FOLLOW,
+                        'accept' => true,
+                    ]
+                );
 
-                    $this->friendShipRepository->persistAndFlush($friendShip);
-                }
+                $this->friendShipRepository->persistAndFlush($friendShip);
             }
 
             if (FriendShip::TYPE_FRIEND === $friendShipType) {

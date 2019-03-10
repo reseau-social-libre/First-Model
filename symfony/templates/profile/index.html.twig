@@ -40,12 +40,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('/build/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('/build/js/popper.js') }}"></script>
-    <script src="{{ asset('/build/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('/build/lib/slick/slick.min.js') }}"></script>
-    <script src="{{ asset('/build/js/flatpickr.min.js') }}"></script>
-    <script src="{{ asset('/build/js/script.js') }}"></script>
-
-    {{ encore_entry_script_tags('app') }}
+    {{ parent() }}
+    {{ encore_entry_script_tags('profile') }}
 {% endblock %}

@@ -55,6 +55,7 @@ profile:
     friend: 'Friend'
     be_friend: 'Become friend'
     cancel_friend: "Cancel friend request"
+    accept_friend: "Accept friend request"
     people_viewed_profile: 'People Viewed Profile'
     overview: 'About me'
     count_following: 'Following %count% members'

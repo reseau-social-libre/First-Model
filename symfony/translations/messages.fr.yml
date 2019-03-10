@@ -55,6 +55,7 @@ profile:
     friend: 'Ami'
     be_friend: 'Devenir ami'
     cancel_friend: "Annuler la demande d'ami"
+    accept_friend: "Accepter la demande d'ami"
     people_viewed_profile: 'Les membres qui ont vu ce profil'
     overview: 'Quelques information à propos de moi'
     count_following: 'Suit %count% membres'

@@ -43,6 +43,11 @@ class UserRelationShip
     /**
      * @var bool
      */
+    protected $isRequestMeFriend = false;
+
+    /**
+     * @var bool
+     */
     protected $isFriend = false;
 
     /**
@@ -184,6 +189,26 @@ class UserRelationShip
     public function setIsFriendPending(bool $isFriendPending): UserRelationShip
     {
         $this->isFriendPending = $isFriendPending;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRequestMeFriend(): bool
+    {
+        return $this->isRequestMeFriend;
+    }
+
+    /**
+     * @param bool $isRequestMeFriend
+     *
+     * @return UserRelationShip
+     */
+    public function setIsRequestMeFriend(bool $isRequestMeFriend): UserRelationShip
+    {
+        $this->isRequestMeFriend = $isRequestMeFriend;
 
         return $this;
     }
