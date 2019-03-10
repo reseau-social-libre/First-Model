@@ -9,42 +9,22 @@
             <a href="#" title="">{{ 'global.clear_all'|trans }}</a>
         </div>
         <div class="nott-list">
-            <div class="notfication-details">
-                <div class="noty-user-img">
-                    <img src="{{ asset('build/images/resources/ny-img1.png') }}" alt="">
+            {% for notification in notifications %}
+                <div class="notfication-details">
+                    <div class="noty-user-img">
+                        {% if notification.userSender.getUserProfilePictures().last() %}
+                            <img src="{{ asset('/uploads/user/profiles/'~ notification.userSender.getUserProfilePictures().last().document)|imagine_filter('user_profile_small') }}" alt="">
+                        {% else %}
+                            <img src="http://via.placeholder.com/40x40" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="notification-info">
+                        <h3><a href="{{ notification.link  }}" title="">{{ notification.userSender.username }}</a> {{ notification.content }}</h3>
+                        <span>{{ notification.createdAt|ago }}</span>
+                    </div>
                 </div>
-                <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                </div>
-            </div>
-            <div class="notfication-details">
-                <div class="noty-user-img">
-                    <img src="{{ asset('build/images/resources/ny-img2.png') }}" alt="">
-                </div>
-                <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                </div>
-            </div>
-            <div class="notfication-details">
-                <div class="noty-user-img">
-                    <img src="{{ asset('build/images/resources/ny-img3.png') }}" alt="">
-                </div>
-                <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                </div>
-            </div>
-            <div class="notfication-details">
-                <div class="noty-user-img">
-                    <img src="{{ asset('build/images/resources/ny-img2.png') }}" alt="">
-                </div>
-                <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                </div>
-            </div>
+            {% endfor %}
+
             <div class="view-all-nots">
                 <a href="#" title="">{{ 'menu.notifications.view_all'|trans }}</a>
             </div>

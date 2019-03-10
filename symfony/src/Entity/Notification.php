@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NotificationRepository")
  */
 class Notification
 {
+
+    use TimestampableEntity;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -37,7 +41,12 @@ class Notification
     /**
      * @ORM\Column(type="boolean")
      */
-    private $read = false;
+    private $seen = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     */
+    private $userSender;
 
     /**
      * Get the id.
@@ -124,16 +133,36 @@ class Notification
     /**
      * @return mixed
      */
-    public function isRead()
+    public function isSeen()
     {
-        return $this->read;
+        return $this->seen;
     }
 
     /**
-     * @param mixed $read
+     * @param bool $seen
      */
-    public function setRead($read)
+    public function setSeen(bool $seen)
     {
-        $this->read = $read;
+        $this->seen = $seen;
+    }
+
+    /**
+     * @return User|null
+     */
+    public function getUserSender(): ?User
+    {
+        return $this->userSender;
+    }
+
+    /**
+     * @param User|null $userSender
+     *
+     * @return Notification
+     */
+    public function setUserSender(?User $userSender): self
+    {
+        $this->userSender = $userSender;
+
+        return $this;
     }
 }

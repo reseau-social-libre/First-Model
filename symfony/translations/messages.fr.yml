@@ -103,3 +103,7 @@ form:
 nav:
     next: Suivante
     prev: Précédente
+notification:
+    sent_friend_request: "t'a envoyé une nouvelle demande d'ami."
+    accept_friend_request: "a accepté ta demande d'ami. Vous êtes ami!"
+    follow_request: 'a commençé à te suivre. Nouveau follower!'

@@ -7,7 +7,10 @@ namespace App\Manager;
 use App\Entity\FriendShip;
 use App\Entity\User;
 use App\Entity\UserRelationShip;
+use App\Event\FriendShipEvent;
+use App\Event\FriendShipEvents;
 use App\Service\FriendShipService;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class FriendShipManager
@@ -21,13 +24,20 @@ class FriendShipManager
     protected $friendShipService;
 
     /**
+     * @var EventDispatcherInterface
+     */
+    protected $dispatcher;
+
+    /**
      * RelationshipManager constructor.
      *
-     * @param FriendShipService $friendShipService
+     * @param FriendShipService                                           $friendShipService
+     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
      */
-    public function __construct(FriendShipService $friendShipService)
+    public function __construct(FriendShipService $friendShipService, EventDispatcherInterface $dispatcher)
     {
         $this->friendShipService = $friendShipService;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -40,6 +50,25 @@ class FriendShipManager
     public function addFriendShip(User $fromUser, User $toUser, string $friendShipType)
     {
         $this->friendShipService->addFriendShip($fromUser, $toUser, $friendShipType);
+
+        if ($friendShipType === FriendShip::TYPE_FRIEND) {
+            // Dispatch the event
+            $event = new FriendShipEvent();
+            $event->setUser($fromUser)
+                  ->setFriend($toUser);
+
+            $this->dispatcher->dispatch(FriendShipEvents::FRIEND_REQUEST, $event);
+        }
+
+        if ($friendShipType === FriendShip::TYPE_FOLLOW) {
+            // Dispatch the event
+            $event = new FriendShipEvent();
+            $event->setUser($fromUser)
+                  ->setFriend($toUser);
+
+            $this->dispatcher->dispatch(FriendShipEvents::FOLLOW_REQUEST, $event);
+        }
+
     }
 
     /**
@@ -70,6 +99,13 @@ class FriendShipManager
     public function acceptFriendShip(User $user, User $toUser)
     {
         $this->friendShipService->acceptFriendShip($user, $toUser);
+
+        // Dispatch the event
+        $event = new FriendShipEvent();
+        $event->setUser($user)
+              ->setFriend($toUser);
+
+        $this->dispatcher->dispatch(FriendShipEvents::ACCEPT_FRIEND_REQUEST, $event);
     }
 
     /**

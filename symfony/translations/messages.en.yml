@@ -103,3 +103,7 @@ form:
 nav:
     next: Next
     prev: Previous
+notification:
+    sent_friend_request: 'sent you a friend request'
+    accept_friend_request: 'has accepted your friend request. You are friend now!'
+    follow_request: 'is just starting to follow you.'

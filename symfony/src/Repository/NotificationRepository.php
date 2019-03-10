@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Notification;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -12,39 +13,36 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Notification[]    findAll()
  * @method Notification[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class NotificationRepository extends ServiceEntityRepository
+class NotificationRepository extends AbstractRepository
 {
-    public function __construct(RegistryInterface $registry)
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getClass(): string
     {
-        parent::__construct($registry, Notification::class);
+        return Notification::class;
     }
 
-    // /**
-    //  * @return Notification[] Returns an array of Notification objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param \App\Entity\User $user
+     *
+     * @return mixed
+     */
+    public function findUnreadNotificationByUser(User $user)
     {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('n.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $qb = $this->createQueryBuilder('n')
+                   ->innerJoin('n.userSender', 'u')
+                   ->addSelect('u')
+                   ->where('n.user = :user')
+                   ->andWhere('n.seen = :seen')
+                   ->orderBy('n.createdAt', 'DESC')
+                   ->setParameter('user', $user)
+                   ->setParameter('seen', false)
         ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Notification
-    {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
     }
-    */
 }
