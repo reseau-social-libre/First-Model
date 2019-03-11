@@ -1,4 +1,4 @@
-<div class="col-lg-3">
+<div class="col-lg-3 col-md-4 pd-left-none no-pd">
     <div class="main-left-sidebar">
         <div class="user_profile">
             <div class="user-pro-img">
@@ -15,22 +15,25 @@
             </div><!--user-pro-img end-->
             <div class="user_pro_status">
                 {% if app.user.id != user.id %}
+                    <div class="relationship-button">
+                        {% include 'profile/box/relationship-buttons.html.twig' %}
+                    </div>
+                {% else %}
                     <ul class="flw-hr">
-                        <li><a href="#" title="" class="flww"><i class="la la-plus"></i> {{ 'profile.follow'|trans }}</a></li>
-                        <li><a href="#" title="" class="hre"><i class="la la-plus"></i> {{ 'profile.friend'|trans }}</a></li>
+                        <li>
+                            <a href="#" title="" class="flww"><i class="la la-rocket"></i>
+                                {% set count =  userRelationShip.followers|length %}
+                                {% transchoice count with {'%count%': count} %}profile.count_followers{% endtranschoice %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" title="" class="hre"><i class="la la-users"></i>
+                                {% set count =  userRelationShip.friends|length %}
+                                {% transchoice count with {'%count%': count} %}profile.count_friends{% endtranschoice %}
+                            </a>
+                        </li>
                     </ul>
                 {% endif %}
-
-                <ul class="flw-status">
-                    <li>
-                        <span>{{ 'profile.following'|trans }}</span>
-                        <b>34</b>
-                    </li>
-                    <li>
-                        <span>{{ 'profile.followers'|trans }}</span>
-                        <b>155</b>
-                    </li>
-                </ul>
             </div><!--user_pro_status end-->
             {#<ul class="social_links">#}
                 {#<li><a href="#" title=""><i class="la la-globe"></i> www.example.com</a></li>#}

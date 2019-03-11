@@ -20,17 +20,33 @@
 
         </div>
     </div>
+    <ul class="flw-hr">
+        <li>
+            <a href="{{ path('profile', { username: app.user.username }) }}" title="" class="flww"><i class="la la-thumbs-o-up"></i>
+                {% set count =  userRelationShip.followers|length %}
+                {% transchoice count with {'%count%': count} %}profile.count_followers{% endtranschoice %}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('profile', { username: app.user.username }) }}" title="" class="hre"><i class="la la-users"></i>
+                {% set count =  userRelationShip.friends|length %}
+                {% transchoice count with {'%count%': count} %}profile.count_friends{% endtranschoice %}
+            </a>
+        </li>
+    </ul>
     <ul class="user-fw-status">
+        {#<li>#}
+            {#<h4>{{ 'profile.following'|trans }}</h4>#}
+            {#{% set count =  userRelationShip.following|length %}#}
+            {#<span>{% transchoice count with {'%count%': count} %}profile.count_following{% endtranschoice %}</span>#}
+        {#</li>#}
+        {#<li>#}
+            {#<h4>{{ 'profile.follow_by'|trans }}</h4>#}
+            {#{% set count =  userRelationShip.followers|length %}#}
+            {#<span>{% transchoice count with {'%count%': count} %}profile.count_followers{% endtranschoice %}</span>#}
+        {#</li>#}
         <li>
-            <h4>{{ 'profile.following'|trans }}</h4>
-            <span>0</span>
-        </li>
-        <li>
-            <h4>{{ 'profile.followers'|trans }}</h4>
-            <span>0</span>
-        </li>
-        <li>
-            <a href="{{ path('profile', { username: app.user.username }) }}" title="">{{ 'profile.view_profile'|trans }}</a>
+            <a href="{{ path('profile', { username: app.user.username }) }}" title=""><i class="la la-eye"></i> {{ 'profile.view_profile'|trans }}</a>
         </li>
     </ul>
 </div>

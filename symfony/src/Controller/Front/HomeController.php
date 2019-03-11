@@ -2,6 +2,8 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\UserRelationShip;
+use App\Manager\FriendShipManager;
 use App\Manager\PostManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,13 +22,20 @@ class HomeController extends AbstractController
     protected $postManager;
 
     /**
+     * @var FriendShipManager
+     */
+    protected $friendShipManager;
+
+    /**
      * HomeController constructor.
      *
-     * @param PostManager $postManager
+     * @param PostManager       $postManager
+     * @param FriendShipManager $friendShipManager
      */
-    public function __construct(PostManager $postManager)
+    public function __construct(PostManager $postManager, FriendShipManager $friendShipManager)
     {
         $this->postManager = $postManager;
+        $this->friendShipManager = $friendShipManager;
     }
 
     /**
@@ -40,6 +49,10 @@ class HomeController extends AbstractController
      */
     public function index(Request $request, int $page): Response
     {
+        $userRelationShip = $this->friendShipManager->setUserRelationShip(
+            new UserRelationShip($this->getUser())
+        );
+
         $posts = $this->postManager->getWallPaginated(
             null,
             $page,
@@ -48,6 +61,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'posts' => $posts,
+            'userRelationShip' => $userRelationShip,
         ]);
     }
 

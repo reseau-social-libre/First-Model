@@ -48,11 +48,19 @@ profile:
     view_profile: 'View profile'
     following: 'Following'
     followers: 'Followers'
+    follow_by: 'Followed by'
     btn_change_cover: 'Change cover'
     follow: 'Follow'
+    unfollow: 'UnFollow'
     friend: 'Friend'
+    be_friend: 'Become friend'
+    cancel_friend: "Cancel friend request"
+    accept_friend: "Accept friend request"
     people_viewed_profile: 'People Viewed Profile'
     overview: 'About me'
+    count_following: 'Following %count% members'
+    count_friends: "{0}No friend|{1}1 friend|]1,Inf]%count% friends"
+    count_followers: "{0} follower|{1}1 follower|]1,Inf]%count% followers"
 block:
     about:
         non_censured: 'A non censured social network'
@@ -95,3 +103,7 @@ form:
 nav:
     next: Next
     prev: Previous
+notification:
+    sent_friend_request: 'sent you a friend request'
+    accept_friend_request: 'has accepted your friend request. You are friend now!'
+    follow_request: 'is just starting to follow you.'

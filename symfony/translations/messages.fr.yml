@@ -46,13 +46,21 @@ post:
         btn: 'Vidéo'
 profile:
     view_profile: 'Voir le profil'
-    following: 'Suivi'
-    followers: 'Suit'
+    following: 'Suit'
+    followers: 'Suivi'
+    follow_by: 'Suivi par'
     btn_change_cover: 'Modifier le cover'
     follow: 'Suivre'
+    unfollow: 'Ne plus suivre'
     friend: 'Ami'
+    be_friend: 'Devenir ami'
+    cancel_friend: "Annuler la demande d'ami"
+    accept_friend: "Accepter la demande d'ami"
     people_viewed_profile: 'Les membres qui ont vu ce profil'
     overview: 'Quelques information à propos de moi'
+    count_following: 'Suit %count% membres'
+    count_friends: "{0}0 ami|{1}1 ami|]1,Inf]%count% amis"
+    count_followers: "{0} follower|{1}1 follower|]1,Inf]%count% followers"
 block:
     about:
         non_censured: 'Réseau social non censuré'
@@ -95,3 +103,7 @@ form:
 nav:
     next: Suivante
     prev: Précédente
+notification:
+    sent_friend_request: "t'a envoyé une nouvelle demande d'ami."
+    accept_friend_request: "a accepté ta demande d'ami. Vous êtes ami!"
+    follow_request: 'a commençé à te suivre. Nouveau follower!'

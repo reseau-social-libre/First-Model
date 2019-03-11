@@ -27,27 +27,42 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $posts;
+    protected $posts;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserStatus", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $userStatuses;
+    protected $userStatuses;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\UserInfo", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $userInfo;
+    protected $userInfo;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserCoverPicture", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $userCoverPictures;
+    protected $userCoverPictures;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserProfilePicture", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $userProfilePictures;
+    protected $userProfilePictures;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FriendShip", mappedBy="friend", cascade={"persist", "remove"})
+     */
+    protected $friends;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FriendShip", mappedBy="friendWithMe", cascade={"persist", "remove"})
+     */
+    protected $friendsWithMe;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Notification", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $notifications;
 
     /**
      * User constructor.
@@ -55,10 +70,13 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->posts = new ArrayCollection();
-        $this->userStatuses = new ArrayCollection();
-        $this->userCoverPictures = new ArrayCollection();
+        $this->posts               = new ArrayCollection();
+        $this->userStatuses        = new ArrayCollection();
+        $this->userCoverPictures   = new ArrayCollection();
         $this->userProfilePictures = new ArrayCollection();
+        $this->friends             = new ArrayCollection();
+        $this->friendsWithMe       = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     /**
@@ -278,4 +296,132 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @return Collection|FriendShip[]
+     */
+    public function getFriends(): Collection
+    {
+        return $this->friends;
+    }
+
+    /**
+     * @param FriendShip $friend
+     *
+     * @return User
+     */
+    public function addFriend(FriendShip $friend): self
+    {
+        if (!$this->friends->contains($friend)) {
+            $this->friends[] = $friend;
+            $friend->setFriend($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param FriendShip $friend
+     *
+     * @return User
+     */
+    public function removeFriend(FriendShip $friend): self
+    {
+        if ($this->friends->contains($friend)) {
+            $this->friends->removeElement($friend);
+            // set the owning side to null (unless already changed)
+            if ($friend->getFriend() === $this) {
+                $friend->setFriend(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FriendShip[]
+     */
+    public function getFriendsWithMe(): Collection
+    {
+        return $this->friendsWithMe;
+    }
+
+    /**
+     * @param FriendShip $friendWithMe
+     *
+     * @return User
+     */
+    public function addFriendWithMe(FriendShip $friendWithMe): self
+    {
+        if (!$this->friendsWithMe->contains($friendWithMe)) {
+            $this->friendsWithMe[] = $friendWithMe;
+            $friendWithMe->setFriendWithMe($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param FriendShip $friendWithMe
+     *
+     * @return User
+     */
+    public function removeFriendWithMe(FriendShip $friendWithMe): self
+    {
+        if ($this->friendsWithMe->contains($friendWithMe)) {
+            $this->friendsWithMe->removeElement($friendWithMe);
+            // set the owning side to null (unless already changed)
+            if ($friendWithMe->getFriendWithMe() === $this) {
+                $friendWithMe->setFriendWithMe(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the notifications.
+     *
+     * @return Collection|Notification[]
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    /**
+     * Add notification.
+     *
+     * @param Notification $notification
+     *
+     * @return User
+     */
+    public function addNotification(Notification $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications[] = $notification;
+            $notification->setUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove notification.
+     *
+     * @param Notification $notification
+     *
+     * @return User
+     */
+    public function removeNotification(Notification $notification): self
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+            // set the owning side to null (unless already changed)
+            if ($notification->getUser() === $this) {
+                $notification->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 }

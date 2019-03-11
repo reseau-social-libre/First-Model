@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
-use App\Entity\Post;
 use App\Entity\PostLike;
 use App\Form\Type\PostLikeType;
 use App\Manager\PostManager;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations as Rest;

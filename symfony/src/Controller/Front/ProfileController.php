@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace App\Controller\Front;
 
+use App\Entity\FriendShip;
+use App\Entity\Relationship;
 use App\Entity\UserCoverPicture;
 use App\Entity\UserInfo;
 use App\Entity\UserProfilePicture;
+use App\Entity\UserRelationShip;
 use App\Entity\UserStatus;
 use App\Form\Type\UserCoverPictureType;
 use App\Form\Type\UserInfoType;
 use App\Form\Type\UserProfilePictureType;
 use App\Form\Type\UserStatusType;
 use App\Manager\PostManager;
+use App\Manager\FriendShipManager;
 use App\Manager\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,17 +41,22 @@ class ProfileController extends AbstractController
     protected $postManager;
 
     /**
+     * @var FriendShipManager
+     */
+    protected $friendShipManager;
+
+    /**
      * ProfileController constructor.
      *
-     * @param UserManager $userManager
-     * @param PostManager $postManager
+     * @param UserManager       $userManager
+     * @param PostManager       $postManager
+     * @param FriendShipManager $friendShipManager
      */
-    public function __construct(
-        UserManager $userManager,
-        PostManager $postManager
-    ) {
+    public function __construct(UserManager $userManager, PostManager $postManager, FriendShipManager $friendShipManager)
+    {
         $this->userManager = $userManager;
         $this->postManager = $postManager;
+        $this->friendShipManager = $friendShipManager;
     }
 
     /**
@@ -77,9 +86,18 @@ class ProfileController extends AbstractController
         $user = $this->userManager->checkUserByUsername($username, $this->getUser()->getUsername())
             ? $this->getUser() : $this->userManager->getUserByUsername($username);
 
-        if (null == $user) {
+        if (null === $user) {
             throw new NotFoundHttpException('Sorry not existing!');
         }
+
+        // Set the user relationShip.
+        $userRelationShip = $this->friendShipManager->setUserRelationShip(
+            new UserRelationShip($user)
+        );
+        $userRelationShip->setIsFriendPending($this->friendShipManager->hasFriendPendingRequest($this->getUser(), $user));
+        $userRelationShip->setIsRequestMeFriend($this->friendShipManager->hasFriendPendingRequest($user, $this->getUser()));
+        $userRelationShip->setIsFriend($this->friendShipManager->isUserMyFriend($this->getUser(), $user));
+        $userRelationShip->setIsFollowed($this->friendShipManager->isFollowed($this->getUser(), $user));
 
         // Get the user paginated user wall.
         $posts = $this->postManager->getWallPaginated($user, $page);
@@ -98,7 +116,7 @@ class ProfileController extends AbstractController
             $this->addFlash('success', 'Your status is updated.');
 
             return $this->redirectToRoute('profile', [
-               'username' => $this->getUser()->getUsername(),
+                'username' => $this->getUser()->getUsername(),
             ]);
         }
 
@@ -137,7 +155,7 @@ class ProfileController extends AbstractController
         }
 
         // Form UserInfo
-        if (null == $userInfo = $user->getUserInfo()) {
+        if (null === $userInfo = $user->getUserInfo()) {
             $userInfo = new UserInfo();
             $userInfo->setUser($user);
         }
@@ -163,8 +181,18 @@ class ProfileController extends AbstractController
             'formInfo' => $formUserInfo->createView(),
             'user' => $user,
             'posts' => $posts,
+            'userRelationShip' => $userRelationShip,
         ]);
-
     }
 
+    public function profileBox()
+    {
+        $userRelationShip = $this->friendShipManager->setUserRelationShip(
+            new UserRelationShip($this->getUser())
+        );
+
+        return $this->render('home/block/profile.html.twig', [
+                'userRelationShip' => $userRelationShip,
+        ]);
+    }
 }

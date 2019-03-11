@@ -33,7 +33,9 @@
             </ul>
         </li>
         {% include 'menu/message.html.twig' %}
-        {% include 'menu/notification.html.twig' %}
+        {#{% include 'menu/notification.html.twig' %}#}
+        {{ render(controller(
+        'App\\Controller\\Front\\NotificationController::notificationMenuAction')) }}
         {% include 'menu/languages.html.twig' %}
     </ul>
 </nav>

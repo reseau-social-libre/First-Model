@@ -37,7 +37,13 @@ class PostRepository extends AbstractRepository
     public function findLatest(string $locale, int $page = 1): Pagerfanta
     {
         $qb = $this->createQueryBuilder('p')
-                   ->andWhere('p.locale = :locale' )
+                   ->innerJoin('p.comments', 'c')
+                   ->innerJoin('p.likes', 'l')
+                   ->innerJoin('p.user', 'u')
+                   ->addSelect('c')
+                   ->addSelect('l')
+                   ->addSelect('u')
+                   ->where('p.locale = :locale')
                    ->orderBy('p.createdAt', 'DESC')
                    ->setParameter('locale', $locale)
         ;
@@ -48,17 +54,45 @@ class PostRepository extends AbstractRepository
     /**
      * Find the latest posts by user.
      *
-     * @param int $page
      * @param int $userId
+     * @param int $page
      *
      * @return \Pagerfanta\Pagerfanta
      */
     public function findLatestByUser(int $userId, int $page = 1): Pagerfanta
     {
         $qb = $this->createQueryBuilder('p')
-                   ->andWhere('p.user = :user')
+                   ->where('p.user = :user')
+                   ->innerJoin('p.comments', 'c')
+                   ->innerJoin('p.likes', 'l')
+                   ->innerJoin('p.user', 'u')
+                   ->addSelect('c')
+                   ->addSelect('l')
+                   ->addSelect('u')
                    ->orderBy('p.createdAt', 'DESC')
                    ->setParameter('user', $userId)
+        ;
+
+        return $this->createPaginator($qb->getQuery(), $page);
+    }
+
+    /**
+     * Get all post paginated.
+     *
+     * @param int $page
+     *
+     * @return Pagerfanta
+     */
+    public function findAllLatest(int $page): Pagerfanta
+    {
+        $qb = $this->createQueryBuilder('p')
+                   ->innerJoin('p.comments', 'c')
+                   ->innerJoin('p.likes', 'l')
+                   ->innerJoin('p.user', 'u')
+                   ->addSelect('c')
+                   ->addSelect('l')
+                   ->addSelect('u')
+                   ->orderBy('p.createdAt', 'DESC')
         ;
 
         return $this->createPaginator($qb->getQuery(), $page);
@@ -81,21 +115,4 @@ class PostRepository extends AbstractRepository
 
         return $paginator;
     }
-
-    /**
-     * Get all post paginated.
-     *
-     * @param int $page
-     *
-     * @return Pagerfanta
-     */
-    public function findAllLatest(int $page): Pagerfanta
-    {
-        $qb = $this->createQueryBuilder('p')
-                   ->orderBy('p.createdAt', 'DESC')
-        ;
-
-        return $this->createPaginator($qb->getQuery(), $page);
-    }
-
 }
