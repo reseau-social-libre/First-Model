@@ -12,3 +12,8 @@ api_friend:
     type: rest
     prefix: /{_locale}/api
     resource: App\Controller\Api\FriendShipController
+
+api_notification:
+    type: rest
+    prefix: /{_locale}/api
+    resource: App\Controller\Api\NotificationController

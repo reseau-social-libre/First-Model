@@ -40,6 +40,7 @@ class NotificationController extends AbstractController
 
         return $this->render('menu/notification.html.twig', [
             'notifications' => $notifications,
+            'user_id' => $user->getId(),
         ]);
     }
 }

@@ -45,4 +45,25 @@ class NotificationRepository extends AbstractRepository
 
         return $result;
     }
+
+    /**
+     * Set all notification as seen for a user.
+     *
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function markAllAsSeen(User $user)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'UPDATE notification n '.
+               'SET n.seen = :seen '.
+               'WHERE n.user_id = :user'
+        ;
+
+        $stmt = $conn->prepare($sql);
+
+        return $stmt->execute(['user' => $user->getId(), 'seen' => true]);
+    }
 }

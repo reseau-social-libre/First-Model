@@ -27,11 +27,49 @@ $(document).ready(function(){
 
   RSL.likeProcess = false;
   RSL.commentProcess = false;
+  RSL.clearNotificationProcess = false;
 
   RSL.init = function() {
     RSL.bindCommentEvent();
     RSL.bindLikeEvent();
     RSL.bindCommentLinkEvent();
+    RSL.bindClearNotification();
+  };
+
+  RSL.bindClearNotification = function() {
+    $(document).on('click', 'div.nt-title a', function(e) {
+      e.preventDefault();
+      var $this;
+
+      $this = $(this);
+      var user = $this.data('user');
+
+      if (RSL.clearNotificationProcess === false) {
+        RSL.clearNotificationProcess = true;
+        RSL.clearNotification(user);
+      }
+    });
+  };
+
+  RSL.clearNotification = function (user) {
+    $.ajax({
+      url: '/fr/api/notification/clear',
+      type: "POST",
+      data: {'user': user},
+      success: function(response){
+        if (response === 200) {
+          $("#nott-items").html('');
+          $('.notification-box').removeClass('active');
+
+          RSL.clearNotificationProcess = false;
+        } else {
+          RSL.clearNotificationProcess = false;
+        }
+      },
+      error: function() {
+        RSL.clearNotificationProcess = false;
+      }
+    });
   };
 
   RSL.bindCommentLinkEvent = function() {
