@@ -37,9 +37,9 @@ class PostRepository extends AbstractRepository
     public function findLatest(string $locale, int $page = 1): Pagerfanta
     {
         $qb = $this->createQueryBuilder('p')
-                   ->innerJoin('p.comments', 'c')
-                   ->innerJoin('p.likes', 'l')
-                   ->innerJoin('p.user', 'u')
+                   ->leftJoin('p.comments', 'c')
+                   ->leftJoin('p.likes', 'l')
+                   ->leftJoin('p.user', 'u')
                    ->addSelect('c')
                    ->addSelect('l')
                    ->addSelect('u')
@@ -63,9 +63,9 @@ class PostRepository extends AbstractRepository
     {
         $qb = $this->createQueryBuilder('p')
                    ->where('p.user = :user')
-                   ->innerJoin('p.comments', 'c')
-                   ->innerJoin('p.likes', 'l')
-                   ->innerJoin('p.user', 'u')
+                   ->leftJoin('p.comments', 'c')
+                   ->leftJoin('p.likes', 'l')
+                   ->leftJoin('p.user', 'u')
                    ->addSelect('c')
                    ->addSelect('l')
                    ->addSelect('u')
@@ -86,9 +86,9 @@ class PostRepository extends AbstractRepository
     public function findAllLatest(int $page): Pagerfanta
     {
         $qb = $this->createQueryBuilder('p')
-                   ->innerJoin('p.comments', 'c')
-                   ->innerJoin('p.likes', 'l')
-                   ->innerJoin('p.user', 'u')
+                   ->leftJoin('p.comments', 'c')
+                   ->leftJoin('p.likes', 'l')
+                   ->leftJoin('p.user', 'u')
                    ->addSelect('c')
                    ->addSelect('l')
                    ->addSelect('u')
