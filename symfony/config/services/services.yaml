@@ -1,0 +1,26 @@
+parameters:
+    eu_cookie_template_name: 'cookie_policy_pop.html.twig'
+    eu_cookie_name: 'eu-cookie-policy'
+    eu_cookie_value: 'accept'
+    eu_cookie_read_more_link: 'cookie-policy'
+
+services:
+    # Default configuration for services in *this* file
+    _defaults:
+        # Automatically injects dependencies in your services
+        autowire: true
+
+        # Automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+
+        # Allows optimizing the container by removing unused services; this also means
+        # fetching services directly from the container via $container->get() won't work
+        public: false
+
+    App\Service\EuCookieService:
+        arguments:
+            - '@templating'
+            - '%eu_cookie_template_name%'
+            - '%eu_cookie_name%'
+            - '%eu_cookie_value%'
+            - '%eu_cookie_read_more_link%'

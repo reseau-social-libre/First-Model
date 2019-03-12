@@ -1,0 +1,237 @@
+{% trans_default_domain 'eucookiepolicy' %}
+
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="title" content="RSL | Cookie policy" />
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+
+{% block body %}
+    <div class="wrapper">
+        <main>
+            <div class="main-section">
+                <div class="container">
+                    <div class="main-section-data">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 no-pd">
+                                <div class="main-ws-sec">
+                                    <div class="main-page">
+                                        <div class="row">
+                                            <div class="col-md-6 mt-3">
+                                                <img src="{{ asset('build/images/wd-logo.png') | imagine_filter('logo_widget')}}" alt="">
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <a href="{{ path('home') }}" class="btn btn-primary m-5">Retour au site</a>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="title">
+                                            <h1>{{ 'cookie_law.title' | trans}}</h1>
+                                        </div>
+
+                                        <p>Lorsque vous visitez ou utilisez le site https://rsllibre.com,(ci après
+                                        le « Site »), RSL ou ses prestataires de services partenaires peuvent utiliser des
+                                        cookies ou toute autre technologie de traçage/suivi/de collecte automatique de données pour stocker
+                                            des informations permettant de vous offrir une expérience améliorée, plus rapide et plus sécurisée.</p>
+
+                                        <p>La présente politique (ci-après la « Politique ») de cookies a ainsi pour but de vous aider à mieux
+                                            comprendre ces technologies et l’utilisation que nous en faisons.</p>
+
+                                        <h1 class="mt-5">1. QU’EST-CE QU’UN COOKIE ?</h1>
+                                        <p>Les cookies sont de petits fichiers texte (le plus souvent composés de lettres et de chiffres), stockés
+                                        dans la mémoire de votre navigateur ou appareil lorsque vous visitez un site Web ou consultez un
+                                            message.</p>
+                                        <p>Ils permettent à un site Web de reconnaître le navigateur ou l’appareil. Comme la plupart des sites
+                                        Web, RSL utilise des technologies, en majorité, par le biais de petits fichiers de données
+                                        enregistrées sur votre appareil qui nous permettent d’enregistrer certaines informations lorsque vous
+                                            visitez ou utilisez notre Site.</p>
+
+                                        <p><strong>Il existe plusieurs types de cookies :</strong></p>
+
+                                        <ul>
+                                            <li>
+                                                <strong>- Les cookies de session :</strong> ils expirent dès la fermeture du navigateur et nous permettent de
+                                                lier vos actions au cours de cette session en particulier,
+                                            </li>
+                                            <li>
+                                                <strong>- Les cookies persistants :</strong> ils sont stockés sur votre appareil entre les sessions de
+                                                navigation et nous permettent de mémoriser vos préférences ou actions sur plusieurs sites,
+                                            </li>
+                                            <li>
+                                                <strong>- Les cookies propriétaires :</strong> ils sont émis par le site que vous visitez,
+                                            </li>
+                                            <li>
+                                                <strong>- Les cookies tiers :</strong> ils sont émis par un site tiers, distinct du site que vous visitez.
+                                            </li>
+                                        </ul>
+
+                                        <h1 class="mt-5">2. QUELS TYPES DE COOKIES UTILISE RSL ?</h1>
+                                        <p><strong>Nos cookies ont différentes fonctions. Ils peuvent :</strong> </p>
+                                        <ul>
+                                            <li>1. Etre nécessaires au fonctionnement de nos services,</li>
+                                            <li>2. Nous aider à améliorer nos performances,</li>
+                                            <li>3. Vous offrir des fonctionnalités supplémentaires,</li>
+                                        </ul>
+
+                                        <p>Nous utilisons des cookies ou toute autre technologie similaire de traçage qui restent sur votre
+                                        appareil uniquement pendant l’ouverture de votre navigateur (cookies de session), et des cookies ou
+                                        toute autre technologie similaire qui restent sur votre appareil pendant une période plus longue
+                                            (cookies persistants).</p>
+
+                                        <h2 class="mt-3">Les cookies émis par RSL</h2>
+                                        <p>RSL émet des cookies de session, strictement nécessaires au bon fonctionnement du Site et
+                                            de votre navigation sur ce dernier. </p>
+
+                                        <ul>
+                                            <li><strong>Cookie nommé "PHPSESSID" :</strong> Ce cookie est posé par RSL et enregistre les identifiants de session de l’utilisateur.
+                                                Il identifie la session http de l'utilisateur et les requêtes d'un utilisateur lors d'une session. Il espire en fin de session.
+                                            </li>
+                                            <li><strong>Cookie nommé "REMEMBER_ME" :</strong> Ce cookie est posé par RSL et enregistre si l’utilisateur s’est déjà connecté.
+                                                Il a une durée de vie de 7 jours.
+                                            </li>
+                                        </ul>
+
+                                        <h2 class="mt-3">Les cookies ou traceurs de nos prestataires de services partenaires</h2>
+                                        <p>Les prestataires de services partenaires sont des sociétés qui nous aident dans différents aspects de
+                                        nos activités, tels que le fonctionnement du Site, de nos services et de nos outils.</p>
+                                        <p>Ces prestataires de services partenaires peuvent également collecter des informations qui leur
+                                        permettent d’identifier votre appareil via nos services (cookies tiers) et/ou collecter des informations
+                                        qui leur permettent d’identifier votre appareil, tels que votre adresse IP ou tout autre identifiant
+                                            unique.</p>
+                                        <p><strong>RSL n'utilise aucun service tiers pour le moment, mais se réserve le droit d'en utiliser dans le futur.
+                                                Notemment, pour la diffusion de vidéos en direct.<br/>
+                                                Ces services seront indiqués sur cette page pour en informer ces utilisateurs.</strong></p>
+
+                                        <h2 class="mt-3">Cookies tiers analytiques</h2>
+                                        <p>RSL peut utiliser des cookies ou traceurs lui permettant d’évaluer les performances du Site, de
+                                        ses applications, services et outils, notamment dans le cadre de pratiques analytiques, pour l’aider à
+                                        comprendre comment les visiteurs utilisent le Site, à déterminer si vous avez interagi avec les autres membres,
+                                            à détecter si vous avez consulté une page, un lien ou à améliorer le contenu de son
+                                        Site, ses applications, ses services ou outils.<p>
+                                        <p>RSL utilise les services de Google Analytics pour analyser les comportements de navigation.</p>
+                                        <p>Pour plus d’information quant à l’utilisation des données recueillies par Google Analytics, nous vous
+                                        invitons à consulter la page suivante :
+                                            <a href="https://policies.google.com/privacy/partners?hl=fr" target="_blank">
+                                                https://policies.google.com/privacy/partners?hl=fr
+                                            </a>.
+                                        </p>
+
+                                        <ul>
+                                            <li><strong>Liste des cookies posés par google, son nom, sa finalité et sa durée de vie.</strong></li>
+                                            <li><strong>APISID</strong>, Comptabilise le nombre d’utilisateurs utilisant Google Maps et leurs informations. 2 ans</li>
+                                            <li><strong>HSID</strong>, Ces cookies sont utilisés par Google pour enregistrer les préférences et informations de l’utilisateur lors de
+                                                la consultation de pages avec lesquelles Google établit
+                                                une correspondance. Facultatif</li>
+                                            <li><strong>NID</strong>, Personnalise les annonces sur les sites Google en fonction des requêtes utilisateur. Facultatif</li>
+                                            <li><strong>OTZ</strong>, Cookie des API Google. Utilisé par Google Analytics et le bouton G+. 2 ans</li>
+                                            <li><strong>PREF</strong>, Enregistre les options de paramétrage que vous avez choisies sur le site (l’interface, la langue, etc…). 2 ans</li>
+                                            <li><strong>S</strong>, Cookie de session Google. Facultatif</li>
+                                            <li><strong>SAPISID</strong>, Enregistre les options de paramétrage des utilisateurs de Google Maps. 2 ans</li>
+                                            <li><strong>SID</strong>, Identifiant panier /ajout panier et prise de commande. Facultatif</li>
+                                            <li><strong>SSID</strong>, Permet l’accès aux données de l’internaute enregistrées dans ses applications Google. 2 ans</li>
+                                            <li><strong>_utma</strong>, Mesure l’audience du site et la navigation de l’internaute ainsi que ses statistiques. Durée max 2 ans</li>
+                                            <li><strong>_utmb</strong>, Détermine si l’internaute visite le site pour la première fois ou non. 30 minutes</li>
+                                            <li><strong>_utmc</strong>, Identifie les connexions des internautes ayant déjà visité le site. jusqu’à la fin de session de navigation</li>
+                                            <li><strong>_utmt</strong>, Est utilisé pour limiter un taux trop élevé de requêtes en cas de trafic important sur le site. 10 minutes</li>
+                                            <li><strong>_utmv</strong>, Ce cookie est posé en cas d’utilisation de la fonction utmSetVar qui permet de segmenter les visiteurs. 2 ans</li>
+                                            <li><strong>_utmz</strong>, Gère les informations de provenance de l’internaute : la page à partir de laquelle l'utilisateur a accédé au site,
+                                                le moteur de recherche qu'il a utilisé pour y accéder ou le lien sur lequel il a cliqué, le(s) mot(s) clé(s) utilisé(s)
+                                                pour la recherche et le pays à partir duquel il s'est connecté. 7 mois</li>
+                                            <li><strong>_ga</strong>, Permet de distinguer les visiteurs uniques sur le site en attribuant un identifiant unique pour chaque visiteur. 13 mois</li>
+                                            <li><strong>_gid</strong>, Utilisé pour distinguer les visiteurs. 24 heures</li>
+                                        </ul>
+
+                                        <p>RSL utilise les services Paypal afin de recueillir des dons. Paypal pose des cookies par l'intermédiaire du bouton "Donation"</p>
+                                        <p>Vous trouverez les informations de politique de cookie de Paypal ici:
+                                            <a href="https://www.paypal.com/uk/webapps/mpp/ua/cookie-full">https://www.paypal.com/uk/webapps/mpp/ua/cookie-full</a>
+                                        </p>
+
+                                        <h2 class="mt-3">Cookies de réseaux sociaux</h2>
+                                        <p>Les services RSL peuvent inclure des applications tierces pour vous offrir la possibilité de
+                                            partager du contenu sur les réseaux sociaux.</p>
+
+                                        <h1 class="mt-5">3. COMMENT GERER LE DEPOT ET LA LECTURE DES COOKIES ?</h1>
+                                        <p>Certaines fonctionnalités du Site, des services, applications et outils sont mis à votre disposition
+                                            uniquement par le biais de ces cookies ou traceurs.</p>
+                                        <p>Vous pouvez bloquer, supprimer ou désactiver ces technologies si votre navigateur ou votre appareil
+                                            le permet.</p>
+                                        <p>Cependant, le refus d’utilisation de ces technologies peut entraîner l’indisponibilité de certaines
+                                        fonctionnalités du Site, de certains services, applications ou outils. Il peut également vous être
+                                        demandé de saisir votre mot de passe plus fréquemment au cours de votre session de navigation si
+                                            l’utilisation du Site nécessite la création d’un compte d’utilisateur.</p>
+                                        <p>Pour plus d’informations sur le blocage, la suppression ou la désactivation de ces technologies,
+                                            consultez les paramètres de votre navigateur ou appareil.</p>
+                                        <p>Les cookies ou traceurs peuvent être désactivés ou supprimés à l’aide d’outils disponibles dans la
+                                        plupart des navigateurs. Dans la mesure où chaque navigateur propose des fonctionnalités et options
+                                        différentes, les préférences de chacun des navigateurs que vous utilisez devront être définies de façon
+                                        distincte.</p>
+                                        <p>Voici comment contrôler ou empêcher l'enregistrement des cookies ou traceurs :</p>
+                                        <h2 class="mt-3">1 - si vous utilisez le navigateur Internet Explorer™</h2>
+                                        <p>Dans Internet Explorer, cliquez sur le bouton Outils, puis sur Options Internet et cliquez sur l’onglet
+                                        « Confidentialité » et sur le bouton « Avancé » pour faire apparaître la fenêtre des « Paramètres de
+                                        confidentialité avancés ».
+                                        Cochez ensuite la case « Ignorer la gestion automatique des cookies » et sélectionnez ensuite
+                                            « Refuser » dans la colonne « Cookies tierce partie ».</p>
+
+                                        <h2 class="mt-3">2 - si vous utilisez le navigateur Firefox™</h2>
+                                        <p>Allez dans l'onglet « Outils » du navigateur puis sélectionnez le menu « Options »
+                                        Dans la fenêtre qui s'affiche, choisissez l’onglet « Vie privée » et paramétrez le menu « Règles de
+                                        conservation » en choisissant « Utiliser les paramètres personnalisés pour l’historique ».
+                                        Dans le menu, vous pouvez choisir de décocher la case « Accepter les cookies » ou, de choisir
+                                        « Jamais », dans le menu déroulant intitulé « Accepter les cookies tiers ».
+                                        Vous pouvez également, en cliquant sur « Afficher les cookies », repérer les fichiers qui contiennent le
+                                            nom « rsllibre », les sélectionner et les et supprimer.</p>
+                                        <h2 class="mt-3">3 - si vous utilisez le navigateur Safari™</h2>
+                                        <p>Dans votre navigateur, choisissez le menu « Édition » puis « Préférences ».
+                                        Cliquez sur « Sécurité ».
+                                        Cliquez sur « Afficher les cookies »
+                                        Sélectionnez les cookies qui contiennent le nom « rsllibre » et cliquez sur « Effacer » ou sur « Tout
+                                        effacer ».
+                                            Après avoir supprimé les cookies, cliquez sur « Terminé ».</p>
+                                        <h2 class="mt-3">4 - si vous utilisez le navigateur Google Chrome™</h2>
+                                        <p>Cliquez sur l'icône du menu Paramètres puis cliquez sur « Afficher les paramètres avancés » (situé au
+                                        bas de la page).
+                                        Cliquez ensuite sur le bouton « Paramètres de contenu » puis cochez la case « Bloquer les cookies et
+                                        les données de sites tiers » puis cliquez sur « OK » pour valider votre choix.
+                                        Vous pouvez également cliquer sur « Afficher l’ensemble des cookies et données de sites », puis
+                                        procéder à une recherche à partir du mot « rsllibre » dans la barre de recherche située en haut à
+                                        droite. Vous pouvez alors choisir les cookies que vous souhaitez supprimer ou cliquer sur « Tout
+                                            supprimer ».</p>
+                                        <h2 class="mt-3">5 - si vous utilisez le navigateur Opera™</h2>
+                                        <p>Ouvrez le menu « Outils » ou « Réglages » puis sélectionnez « Supprimer les données privées » ;
+                                        cliquez sur l’onglet « Option détaillées », puis choisissez les options souhaitées ou suivez ce lien :
+                                            <a href="http://help.opera.com/windows/10.20/fr/cookies.html" target="_blank">
+                                                http://help.opera.com/windows/10.20/fr/cookies.html
+                                            </a>
+                                        </p>
+
+                                        <div class="row">
+                                            <div class="col-md-12 text-center mt-3">
+                                                <a href="{{ path('home') }}" class="btn btn-primary">Retour au site</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+{% endblock %}
+</body>
+</html>

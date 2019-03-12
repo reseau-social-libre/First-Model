@@ -12,6 +12,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "jquery": "^3.3.1"
+        "jquery": "^3.3.1",
+        "js-cookie": "^2.2.0"
     }
 }
