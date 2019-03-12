@@ -108,4 +108,16 @@ class NotificationManager
 
         $this->notificationService->sendNotification($notification);
     }
+
+    /**
+     * Mark all notification as seen.
+     *
+     * @param \App\Entity\User $user
+     *
+     * @return bool
+     */
+    public function clearNotification(User $user): bool
+    {
+        return $this->notificationService->markAllAsSeen($user);
+    }
 }

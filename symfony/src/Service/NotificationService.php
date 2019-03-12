@@ -40,6 +40,8 @@ class NotificationService
     }
 
     /**
+     * Retrieve all unseen notification.
+     *
      * @param User $user
      *
      * @return mixed
@@ -49,4 +51,15 @@ class NotificationService
         return $this->repository->findUnreadNotificationByUser($user);
     }
 
+    /**
+     * Mark all notification as seen for a user.
+     *
+     * @param $user
+     *
+     * @return bool
+     */
+    public function markAllAsSeen($user)
+    {
+        return $this->repository->markAllAsSeen($user);
+    }
 }
