@@ -31,10 +31,12 @@
             {% include 'footer-footy.html.twig' %}
         </footer>
 
-        {% include 'profile/box/overview.html.twig' %}
-        {% include 'profile/box/status.html.twig' %}
-        {% include 'profile/box/cover.html.twig' %}
-        {% include 'profile/box/profile-photo.html.twig' %}
+        {% if app.user.id == user.id %}
+            {% include 'profile/box/overview.html.twig' %}
+            {% include 'profile/box/status.html.twig' %}
+            {% include 'profile/box/cover.html.twig' %}
+            {% include 'profile/box/profile-photo.html.twig' %}
+        {% endif %}
 
     </div>
 {% endblock %}
