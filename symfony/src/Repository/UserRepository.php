@@ -41,4 +41,20 @@ class UserRepository extends AbstractRepository
 
         return $qb->getQuery()->execute();
     }
+
+    /**
+     * Count total user in db.
+     *
+     * @return mixed
+     */
+    public function countTotalActiveUser()
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->where('u.enabled = :enabled')
+            ->setParameter('enabled', true)
+        ;
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

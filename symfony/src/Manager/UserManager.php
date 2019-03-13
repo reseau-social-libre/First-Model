@@ -63,4 +63,11 @@ class UserManager
         $this->userService->saveUser($user);
     }
 
+    public function getTotalActiveUser()
+    {
+        $count = $this->userService->getTotalActiveUsers();
+
+        return $count;
+    }
+
 }

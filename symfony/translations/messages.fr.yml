@@ -87,6 +87,8 @@ block:
         placeholder_comment: 'Poster un commentaire'
         views: 'Vues'
         like: "J'aime"
+    user:
+        nbr: 'Membres sur la communité'
 form:
     cancel: 'Annuler'
     send: 'Envoyer'
