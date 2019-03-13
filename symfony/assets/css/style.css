@@ -1973,7 +1973,7 @@ select {
 .sign-in-page {
 	float: left;
 	width: 100%;
-	padding: 100px 0 20px 0;
+	padding: 100px 0 100px 0;
 }
 .signin-popup {
 	width: 870px;
@@ -5520,4 +5520,23 @@ a:hover {
 .youtubePlayer {
 	width: 100%;
 	height: 250px;
+}
+
+div.terms label {
+	font-size: 12px;
+	margin-left: 5px;
+	padding-top: 13px;
+	max-width: 80%;
+}
+
+div.terms input[type=checkbox] {
+	width: 15px;
+	float: left;
+}
+
+.error ul li {
+	font-size: 12px;
+	margin: 5px;
+	color: red;
+	font-style: italic;
 }

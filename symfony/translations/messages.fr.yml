@@ -12,6 +12,9 @@ auth:
     register_submit: 'Créer mon compte'
     request_password: 'Demander un nouveau mot de passe'
     request_password_submit: 'Réinitialiser le mot de passe'
+    read_terms: "Lire et accepter les Conditions Générales d'Utilisation"
+    general_terms_conditions: "Conditions Générales d'Utilisation"
+    accept_conditions: "J'ai lu et j'accepte les %general_terms_and_conditions%."
 global:
     settings: 'Paramètres'
     clear_all: 'Tout effacer'
@@ -73,7 +76,7 @@ block:
     tags_menu:
         about: 'A propos'
         privacy_policy: 'Vie privé'
-        guidline: 'Communité Guideline'
+        guidline: 'CGU'
         cookie_policy: 'Politique de cookie'
         license: 'Projet sous license GPLv3.'
     post:

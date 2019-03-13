@@ -18,4 +18,12 @@ class LegalsController extends AbstractController
     {
         return $this->render('cookie-policy.html.twig', []);
     }
+
+    /**
+     * @Route("/general-terms", name="general-terms")
+     */
+    public function generalConditions()
+    {
+        return $this->render('terms.html.twig', []);
+    }
 }
