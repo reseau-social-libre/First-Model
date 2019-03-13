@@ -87,6 +87,8 @@ block:
         placeholder_comment: 'Post a comment'
         views: 'Views'
         like: 'Like'
+    user:
+        nbr: 'Members in community'
 form:
     cancel: 'Cancel'
     send: 'Send'

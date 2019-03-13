@@ -50,4 +50,12 @@ class UserService
         $this->userRepository->persistAndFlush($user);
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTotalActiveUsers()
+    {
+        return $this->userRepository->countTotalActiveUser();
+    }
+
 }

@@ -5,6 +5,7 @@ namespace App\Controller\Front;
 use App\Entity\UserRelationShip;
 use App\Manager\FriendShipManager;
 use App\Manager\PostManager;
+use App\Manager\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,15 +28,22 @@ class HomeController extends AbstractController
     protected $friendShipManager;
 
     /**
+     * @var UserManager
+     */
+    protected $userManager;
+
+    /**
      * HomeController constructor.
      *
      * @param PostManager       $postManager
      * @param FriendShipManager $friendShipManager
+     * @param UserManager       $userManager
      */
-    public function __construct(PostManager $postManager, FriendShipManager $friendShipManager)
+    public function __construct(PostManager $postManager, FriendShipManager $friendShipManager, UserManager $userManager)
     {
         $this->postManager = $postManager;
         $this->friendShipManager = $friendShipManager;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -59,9 +67,12 @@ class HomeController extends AbstractController
             $request->getLocale()
         );
 
+        $nbrUsers = $this->userManager->getTotalActiveUser();
+
         return $this->render('home/index.html.twig', [
             'posts' => $posts,
             'userRelationShip' => $userRelationShip,
+            'nbrUsers' => $nbrUsers,
         ]);
     }
 
