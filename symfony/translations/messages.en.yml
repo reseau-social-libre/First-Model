@@ -12,6 +12,9 @@ auth:
     register_submit: 'Create my account'
     request_password: 'Request password'
     request_password_submit: 'Reset password'
+    read_terms: 'Read the General Terms and Conditions'
+    general_terms_conditions: 'General Terms and Conditions'
+    accept_conditions: 'I have read and accept the %general_terms_and_conditions%.'
 global:
     settings: 'Settings'
     clear_all: 'Clear all'
