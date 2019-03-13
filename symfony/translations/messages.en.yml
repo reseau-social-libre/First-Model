@@ -76,7 +76,7 @@ block:
     tags_menu:
         about: 'About'
         privacy_policy: 'Privacy Policy'
-        guidline: 'Community Guideline'
+        guidline: 'General terms'
         cookie_policy: 'Cookie Policy'
         license: 'Project under GPLv3 licence'
     post:
