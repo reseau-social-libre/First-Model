@@ -6,9 +6,11 @@ namespace App\Controller\Front;
 
 use App\Entity\Post;
 use App\Entity\PostImage;
+use App\Entity\PostLive;
 use App\Entity\PostText;
 use App\Entity\User;
 use App\Form\Type\PostImageType;
+use App\Form\Type\PostLiveType;
 use App\Form\Type\PostTextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -95,6 +97,44 @@ class PostController extends AbstractController
         }
 
         return $this->render('post/image/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/live/add", name="post-live-add")
+     *
+     * @param Request $request
+     * @param string  $defaultLocale
+     *
+     * @return Response
+     */
+    public function liveAdd(Request $request, string $defaultLocale): Response
+    {
+        // Get the current locale or default.
+        if (null == $locale = $request->getLocale()) {
+            $locale = $defaultLocale;
+        }
+
+        $postLive = new PostLive();
+        $postLive->setUser($this->getUser());
+        $postLive->setLocale($locale);
+
+        $form = $this->createForm(PostLiveType::class, $postLive);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($postLive);
+            $em->flush();
+
+            $this->addFlash('success', 'Post is successfully created.');
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('post/live/add.html.twig', [
             'form' => $form->createView(),
         ]);
     }
