@@ -678,3 +678,5 @@ function WebRTCAdaptor(initialValues)
 		}
 	};
 }
+
+module.exports = WebRTCAdaptor;

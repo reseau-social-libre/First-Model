@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\PostLike;
+use App\Entity\PostLive;
 use App\Repository\PostLikeRepository;
 
 /**
@@ -60,4 +61,11 @@ class PostLikeService
         $this->postLikeRepository->persistAndFlush($postLike);
     }
 
+    /**
+     * @param PostLive $post
+     */
+    public function savePostLive(PostLive $post)
+    {
+        $this->postLikeRepository->persistAndFlush($post);
+    }
 }

@@ -2,6 +2,11 @@
 
 {% block title %}RSL | Free social network!{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('video') }}
+{% endblock %}
+
 {% block body %}
     <div class="wrapper">
         {% include 'header.html.twig' %}
@@ -33,4 +38,9 @@
         </main>
 
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('video') }}
 {% endblock %}

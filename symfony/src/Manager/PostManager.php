@@ -6,6 +6,7 @@ namespace App\Manager;
 
 use App\Entity\Post;
 use App\Entity\PostLike;
+use App\Entity\PostLive;
 use App\Entity\User;
 use App\Service\PostLikeService;
 use App\Service\PostService;
@@ -116,9 +117,24 @@ class PostManager
         $this->postLikeService->removePostLike($postLike);
     }
 
+    /**
+     * Add post like.
+     *
+     * @param PostLike $postLike
+     */
     public function addPostLike(PostLike $postLike)
     {
         $this->postLikeService->savePostLike($postLike);
+    }
+
+    /**
+     * Create new post of type live.
+     *
+     * @param PostLive $post
+     */
+    public function createPostLive(PostLive $post)
+    {
+        $this->postLikeService->savePostLive($post);
     }
 
 }

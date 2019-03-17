@@ -38,6 +38,12 @@ class PostLiveType extends AbstractType
                 ],
                 'label' => false,
             ])
+            ->add('streamApp', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Stream App',
+                ],
+                'label' => false,
+            ])
         ;
     }
 
@@ -48,6 +54,8 @@ class PostLiveType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => PostLive::class,
+            'csrf_protection' => false,
+            'allow_extra_fields' => true,
         ]);
     }
 }
