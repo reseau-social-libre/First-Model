@@ -50,7 +50,7 @@ $(document).ready(function(){
         RSL.createPostLive(user, stream, streamApp, title, description);
       }
       else {
-        alert('Title and description are mandatory');
+        alert('Le titre et la description sont obligatoire');
       }
     });
   };
@@ -67,6 +67,7 @@ $(document).ready(function(){
 
   RSL.stopPublishing = function () {
     RSL.webRTCAdaptor.stop(RSL.stream.val());
+    location.reload();
   };
 
   RSL.startAnimation = function () {
