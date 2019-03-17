@@ -48,7 +48,10 @@
                     {% endfor %}
                 {% endif %}
             {% elseif post.post_type == 'Live' %}
-                <iframe width="100%" height="315" src="//live.rslibre.com:5443/LiveApp/play.html?name={{ post.stream }}" frameborder="0" allowfullscreen></iframe>
+                <div id="{{ post.stream ~ '-container'}}" style="display:none">
+                    <video id="{{ post.stream }}" class="video-js vjs-default-skin" data-name="{{ post.stream }}" data-app="{{ post.streamApp }}"></video>
+                </div>
+                <div id="{{ post.stream ~ '-info'}}" class="live-info"></div>
             {%  endif %}
 
         </div>

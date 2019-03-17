@@ -1,6 +1,7 @@
 {
     "devDependencies": {
         "@symfony/webpack-encore": "^0.22.0",
+        "node-sass": "^4.11.0",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -12,7 +13,13 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@videojs/http-streaming": "^1.9.2",
+        "file-loader": "^3.0.1",
         "jquery": "^3.3.1",
-        "js-cookie": "^2.2.0"
+        "js-cookie": "^2.2.0",
+        "sass-loader": "^7.1.0",
+        "url-loader": "^1.1.2",
+        "video.js": "^7.4.1",
+        "webrtc-adapter": "^7.2.1"
     }
 }

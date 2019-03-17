@@ -57,7 +57,7 @@ $(document).ready(function(){
       type: "POST",
       data: {'user': user},
       success: function(response){
-        if (response === 200) {
+        if (response === '200') {
           $("#nott-items").html('');
           $('.notification-box').removeClass('active');
 

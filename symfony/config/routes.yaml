@@ -17,3 +17,8 @@ api_notification:
     type: rest
     prefix: /{_locale}/api
     resource: App\Controller\Api\NotificationController
+
+api_post:
+    type: rest
+    prefix: /{_locale}/api
+    resource: App\Controller\Api\PostController

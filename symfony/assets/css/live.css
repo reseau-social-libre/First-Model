@@ -1,0 +1,9 @@
+video{
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+.main-ws-sec h1{
+  font-size: 3em;
+  margin-bottom: 1em;
+}

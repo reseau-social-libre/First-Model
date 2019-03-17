@@ -24,6 +24,13 @@ class PostLive extends PostText
     protected $stream;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="stream_app", type="string", length=20)
+     */
+    protected $streamApp;
+
+    /**
      * @return string|null
      */
     public function getStream(): ?string
@@ -37,5 +44,21 @@ class PostLive extends PostText
     public function setStream(string $stream)
     {
         $this->stream = $stream;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStreamApp(): ?string
+    {
+        return $this->streamApp;
+    }
+
+    /**
+     * @param string $streamApp
+     */
+    public function setStreamApp(string $streamApp)
+    {
+        $this->streamApp = $streamApp;
     }
 }
