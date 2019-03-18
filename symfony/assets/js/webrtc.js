@@ -20,8 +20,18 @@ $(document).ready(function(){
     OfferToReceiveAudio : false,
     OfferToReceiveVideo : false
   };
+
+  var videoConstraints;
+
+  if (RSL.isMobile()) {
+    videoConstraints = '{width: 480, height: 640}';
+  }
+  else {
+    videoConstraints = '{width: 640, height: 480}';
+  }
+
   RSL.mediaConstraints = {
-    video : true,
+    video : videoConstraints,
     audio : true
   };
   RSL.websocketURL = "ws://live.rslibre.com:5080/WebRTCApp/websocket";
@@ -146,6 +156,23 @@ $(document).ready(function(){
       alert(errorMessage);
     }
   });
+
+  RSL.isMobile = function () {
+    if( navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)
+    )
+    {
+      return true;
+    }
+    else {
+      return false;
+    }
+  };
 
   RSL.createPostLive = function (user, stream, streamApp, title, description) {
     $.ajax({
