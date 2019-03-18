@@ -31,13 +31,13 @@ $(document).ready(function(){
   )
   {
     RSL.mediaConstraints = {
-      video : '{width: 480, height: 640}',
+      video : {width: 480, height: 640},
       audio : true
     };
   }
   else {
     RSL.mediaConstraints = {
-      video : '{width: 640, height: 480}',
+      video : {width: 640, height: 480},
       audio : true
     };
   }
