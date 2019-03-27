@@ -17,6 +17,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\DiscriminatorColumn(name="document_type", type="string", length=20)
  * @ORM\DiscriminatorMap({
  *     "Image"="ImagePost",
+ *     "Video"="VideoPost",
  *     "UserCover"="UserCoverPicture",
  *     "UserProfile"="UserProfilePicture"
  * })

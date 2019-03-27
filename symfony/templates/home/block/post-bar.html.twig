@@ -56,6 +56,10 @@
                     <video id="{{ post.stream }}" class="video-js vjs-default-skin" data-name="{{ post.stream }}" data-app="{{ post.streamApp }}"></video>
                 </div>
                 <div id="{{ post.stream ~ '-info'}}" class="live-info"></div>
+            {% elseif post.post_type == 'Video' %}
+                {% for video in post.getVideos %}
+                    <video id="{{ video.id }}" class="video-js vjs-default-skin" data-name="{{ video.document }}" data-app="video"></video>
+                {% endfor %}
             {%  endif %}
 
         </div>
