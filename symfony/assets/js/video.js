@@ -107,8 +107,23 @@ $(document).ready(function(){
     var token = $this.data('token');
     var app = $this.data('app');
 
-    RSL.tryToPlay(name, token, app, this);
+    if (app === 'video') {
+      var player = videojs(this, {
+        poster : "previews.png",
+        controls: true,
+        autoplay: false,
+        preload: 'auto',
+        fluid: true,
+        liveui: false,
+      });
 
+      player.src([
+        { type: "video/mp4", src: "/uploads/post/videos/" + name }
+      ]);
+    }
+    else {
+      RSL.tryToPlay(name, token, app, this);
+    }
   });
 
 });

@@ -103,6 +103,10 @@ form:
             add: 'Add image post'
             add_more: 'Add image'
             edit: 'Edit image post'
+        video:
+            add_new: 'Add a new video post'
+            add: 'Add video post'
+            add_more: 'Add video'
     field:
         title: 'Title'
         content: 'Write your content here'

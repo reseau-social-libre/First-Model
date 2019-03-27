@@ -103,6 +103,10 @@ form:
             add: 'Ajouter un post texte'
             add_more: 'Ajouter une image'
             edit: 'Editer le post image'
+        video:
+            add_new: 'Ajouter un nouveau post video'
+            add: 'Ajouter un post video'
+            add_more: 'Ajouter une video'
     field:
         title: 'Titre'
         content: 'Contenu de votre post ici'

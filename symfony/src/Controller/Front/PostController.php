@@ -8,10 +8,12 @@ use App\Entity\Post;
 use App\Entity\PostImage;
 use App\Entity\PostLive;
 use App\Entity\PostText;
+use App\Entity\PostVideo;
 use App\Entity\User;
 use App\Form\Type\PostImageType;
 use App\Form\Type\PostLiveType;
 use App\Form\Type\PostTextType;
+use App\Form\Type\PostVideoType;
 use HttpResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -255,5 +257,43 @@ class PostController extends AbstractController
         }
 
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/video/add", name="post-video-add")
+     *
+     * @param Request $request
+     * @param string  $defaultLocale
+     *
+     * @return Response
+     */
+    public function videoAdd(Request $request, string $defaultLocale): Response
+    {
+        // Get the current locale or default.
+        if (null == $locale = $request->getLocale()) {
+            $locale = $defaultLocale;
+        }
+
+        $postVideo = new PostVideo();
+        $postVideo->setUser($this->getUser());
+        $postVideo->setLocale($locale);
+
+        $form = $this->createForm(PostVideoType::class, $postVideo);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($postVideo);
+            $em->flush();
+
+            $this->addFlash('success', 'Post is successfully created.');
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('post/video/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
