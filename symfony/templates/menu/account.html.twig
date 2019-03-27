@@ -4,7 +4,11 @@
 
 <div class="user-account">
     <div class="user-info">
-        <img src="http://via.placeholder.com/30x30" alt="">
+        {% if app.user.getUserProfilePictures().last() %}
+            <img src="{{ asset('/uploads/user/profiles/'~ app.user.getUserProfilePictures().last().document)|imagine_filter('user_profile_30') }}" alt="">
+        {% else %}
+            <img src="https://via.placeholder.com/30x30" alt="">
+        {% endif %}
 
         {% if app.user is not null %}
             <a href="#" title="">{{ app.user.username }}</a>

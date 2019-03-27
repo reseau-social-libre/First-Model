@@ -26,9 +26,9 @@ class ImagePostType extends AbstractType
                 'required' => false,
                 'allow_delete' => true,
                 'download_label' => '...',
-                'download_uri' => true,
-                'image_uri' => true,
-                'imagine_pattern' => '...',
+                'download_uri' => false,
+                'image_uri' => 'uploads/post/images/',
+                'imagine_pattern' => 'post_image',
             ]
         );
     }

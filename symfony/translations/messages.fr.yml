@@ -97,10 +97,12 @@ form:
             add_new: 'Ajouter un nouveau post texte'
             add: 'Ajouter un post texte'
             btn_submit: 'Ajouter le post'
+            edit: 'Editer le post text'
         image:
             add_new: 'Ajouter un nouveau post image'
             add: 'Ajouter un post texte'
             add_more: 'Ajouter une image'
+            edit: 'Editer le post image'
     field:
         title: 'Titre'
         content: 'Contenu de votre post ici'

@@ -18,7 +18,7 @@
                             {% if notification.userSender.getUserProfilePictures().last() %}
                                 <img src="{{ asset('/uploads/user/profiles/'~ notification.userSender.getUserProfilePictures().last().document)|imagine_filter('user_profile_small') }}" alt="">
                             {% else %}
-                                <img src="http://via.placeholder.com/40x40" alt="">
+                                <img src="https://via.placeholder.com/40x40" alt="">
                             {% endif %}
                         </div>
                         <div class="notification-info">

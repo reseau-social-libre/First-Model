@@ -67,7 +67,14 @@ class PostImage extends PostText
      */
     public function removeImage(ImagePost $image)
     {
-        $this->images->removeElement($image);
+        if ($this->images->contains($image)) {
+            if (null !== $image->getPost()) {
+                $image->setPost(null);
+            }
+
+            $this->images->removeElement($image);
+        }
+//        $this->images->removeElement($image);
     }
 
     /**
