@@ -5540,3 +5540,15 @@ div.terms input[type=checkbox] {
 	color: red;
 	font-style: italic;
 }
+
+.vich-image input[type=checkbox] {
+	width: 15px;
+	float: left;
+	position: relative;
+	top: -10px;
+	margin-right: 3px;
+}
+
+.add-image-collection-widget {
+	float: left;
+}

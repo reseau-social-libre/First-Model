@@ -12,6 +12,7 @@ use App\Entity\User;
 use App\Form\Type\PostImageType;
 use App\Form\Type\PostLiveType;
 use App\Form\Type\PostTextType;
+use HttpResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,7 +61,47 @@ class PostController extends AbstractController
 
         return $this->render('post/text/add.html.twig', [
             'form' => $form->createView(),
+            'title' => 'form.post.text.add',
         ]);
+    }
+
+    /**
+     * @Route("/text/edit/{id}", name="post-text-edit")
+     *
+     * @param Request              $request
+     * @param \App\Entity\PostText $id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param string $defaultLocale
+     *
+     */
+    public function textEdit(Request $request, PostText $id): Response
+    {
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
+        if ($user->getId() == $id->getUser()->getId() || $user->hasRole('ROLE_ADMIN')) {
+            $form = $this->createForm(PostTextType::class, $id);
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($id);
+                $em->flush();
+
+                $this->addFlash('success', 'Post is successfully updated.');
+
+                return $this->redirectToRoute('home');
+            }
+
+            return $this->render('post/text/add.html.twig', [
+                'form' => $form->createView(),
+                'title' => 'form.post.text.edit',
+            ]);
+        }
+
+        return new Response('', Response::HTTP_FORBIDDEN);
     }
 
     /**
@@ -99,6 +140,53 @@ class PostController extends AbstractController
         return $this->render('post/image/add.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/image/edit/{id}", name="post-image-edit")
+     *
+     * @param Request               $request
+     * @param \App\Entity\PostImage $id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param string $defaultLocale
+     *
+     */
+    public function imageEdit(Request $request, PostImage $id): Response
+    {
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
+        if ($user->getId() == $id->getUser()->getId() || $user->hasRole('ROLE_ADMIN')) {
+            $form = $this->createForm(PostImageType::class, $id);
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $images = $id->getImages();
+
+                /** @var \App\Entity\ImagePost $image */
+                foreach ($images as $image) {
+                    if (null == $image->getDocumentFile() && null == $image->getDocument()) {
+                        $id->removeImage($image);
+                    }
+                }
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($id);
+                $em->flush();
+
+                $this->addFlash('success', 'Post is successfully updated.');
+
+                return $this->redirectToRoute('home');
+            }
+
+            return $this->render('post/image/edit.html.twig', [
+                'form' => $form->createView(),
+            ]);
+        }
+
+        return new Response('',Response::HTTP_FORBIDDEN);
     }
 
     /**

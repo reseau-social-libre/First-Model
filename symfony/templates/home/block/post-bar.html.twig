@@ -8,7 +8,7 @@
                     </a>
                 {% else %}
                     <a href="{{ path('profile', {username: post.user.username }) }}">
-                        <img src="http://via.placeholder.com/50x50" alt="">
+                        <img src="https://via.placeholder.com/50x50" alt="">
                     </a>
                 {% endif %}
 
@@ -21,7 +21,11 @@
                 <div class="ed-opts">
                     <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
                     <ul class="ed-options">
-                        <li><a href="#" title="">{{ 'block.post.edit'|trans }}</a></li>
+                        {% if post.post_type == 'Image' %}
+                            <li><a href="{{ path('post-image-edit', {'id': post.id}) }}" title="">{{ 'block.post.edit'|trans }}</a></li>
+                        {% elseif post.post_type == 'Status' %}
+                            <li><a href="{{ path('post-text-edit', {'id': post.id}) }}" title="">{{ 'block.post.edit'|trans }}</a></li>
+                        {% endif %}
                         <li><a href="{{ path('post-remove', {'id': post.id}) }}" title="">{{ 'block.post.delete'|trans }}</a></li>
                     </ul>
                 </div>

@@ -24,7 +24,7 @@
                                     {% include '/home/block/post-top-bar.html.twig' %}
                                     <div class="posts-section">
                                         {% include 'home/block/post-bar.html.twig' %}
-                                        {% include 'home/block/nav.html.twig' %}
+                                        {{ rsl_pagerfanta_pager(posts, 'home/block/nav.html.twig') }}
                                     </div>
                                 </div>
                             </div>

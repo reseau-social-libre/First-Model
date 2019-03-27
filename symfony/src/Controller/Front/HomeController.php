@@ -28,22 +28,15 @@ class HomeController extends AbstractController
     protected $friendShipManager;
 
     /**
-     * @var UserManager
-     */
-    protected $userManager;
-
-    /**
      * HomeController constructor.
      *
      * @param PostManager       $postManager
      * @param FriendShipManager $friendShipManager
-     * @param UserManager       $userManager
      */
-    public function __construct(PostManager $postManager, FriendShipManager $friendShipManager, UserManager $userManager)
+    public function __construct(PostManager $postManager, FriendShipManager $friendShipManager)
     {
         $this->postManager = $postManager;
         $this->friendShipManager = $friendShipManager;
-        $this->userManager = $userManager;
     }
 
     /**
@@ -67,12 +60,9 @@ class HomeController extends AbstractController
             $request->getLocale()
         );
 
-        $nbrUsers = $this->userManager->getTotalActiveUser();
-
         return $this->render('home/index.html.twig', [
             'posts' => $posts,
             'userRelationShip' => $userRelationShip,
-            'nbrUsers' => $nbrUsers,
         ]);
     }
 
