@@ -57,8 +57,11 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    //.addEntry('page1', './assets/js/page1.js')
-    //.addEntry('page2', './assets/js/page2.js')
+    .addEntry('post', './assets/js/post.js')
+    .addEntry('profile', './assets/js/profile.js')
+    .addEntry('cookie', './assets/js/cookie.js')
+    .addEntry('video', './assets/js/video.js')
+    .addEntry('webrtc', './assets/js/webrtc.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
@@ -78,7 +81,7 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

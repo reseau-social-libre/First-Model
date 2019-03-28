@@ -1,12 +1,12 @@
 <li>
     <a href="#" title="" class="not-box-open">
         <span><img src="{{ asset('build/images/icon6.png') }}" alt=""></span>
-        Messages
+        {{ 'menu.messages.main'|trans }}
     </a>
     <div class="notification-box msg">
         <div class="nt-title">
-            <h4>Setting</h4>
-            <a href="#" title="">Clear all</a>
+            <h4>{{ 'global.settings'|trans }}</h4>
+            <a href="#" title="">{{ 'global.clear_all'|trans }}</a>
         </div>
         <div class="nott-list">
             <div class="notfication-details">
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="view-all-nots">
-                <a href="#" title="">View All Messsages</a>
+                <a href="#" title="">{{ 'menu.messages.view_all'|trans }}</a>
             </div>
         </div>
     </div>

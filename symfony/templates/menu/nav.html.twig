@@ -2,43 +2,40 @@
     <ul>
         <li>
             <a href="{{ path('home') }}" title="">
-                <span><img src="{{ asset('build/images/icon1.png') }}" alt=""></span>
-                Home
+                <span><img src="{{ asset('build/images/icon1.png') }}" alt="Homepage"></span>
+                {{ 'menu.home'|trans }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('about') }}" title="">
+                <span><img src="{{ asset('build/images/icon3.png') }}" alt="About this project"></span>
+                {{ 'menu.about'|trans }}
             </a>
         </li>
         <li>
             <a href="#" title="">
                 <span><img src="{{ asset('build/images/icon2.png') }}" alt=""></span>
-                Actualité
+                {{ 'menu.news.main'|trans }}
             </a>
             <ul>
-                <li><a href="#" title="">Actualité</a></li>
-                <li><a href="#" title="">Actualité</a></li>
+                <li><a href="#" title="">{{ 'menu.news.recent'|trans }}</a></li>
+                <li><a href="#" title="">{{ 'menu.news.most_viewed'|trans }}</a></li>
             </ul>
-        </li>
-        <li>
-            <a href="#" title="">
-                <span><img src="{{ asset('build/images/icon3.png') }}" alt=""></span>
-                Projects
-            </a>
         </li>
         <li>
             <a href="#" title="">
                 <span><img src="{{ asset('build/images/icon4.png') }}" alt=""></span>
-                Profiles
+                {{ 'menu.profiles.main'|trans }}
             </a>
             <ul>
-                <li><a href="#" title="">Profile</a></li>
-                <li><a href="#" title="">my-profile-feed</a></li>
+                <li><a href="{{ path('profile', {'username' : app.user.username}) }}" title="">{{ 'menu.profiles.my'|trans }}</a></li>
+                <li><a href="#" title="">{{ 'menu.profiles.top'|trans }}</a></li>
             </ul>
         </li>
-        <li>
-            <a href="#" title="">
-                <span><img src="{{ asset('build/images/icon5.png') }}" alt=""></span>
-                Jobs
-            </a>
-        </li>
         {% include 'menu/message.html.twig' %}
-        {% include 'menu/notification.html.twig' %}
+        {#{% include 'menu/notification.html.twig' %}#}
+        {{ render(controller(
+        'App\\Controller\\Front\\NotificationController::notificationMenuAction')) }}
+        {% include 'menu/languages.html.twig' %}
     </ul>
 </nav>

@@ -1,0 +1,12 @@
+<div class="overview-box" id="overview-box">
+    <div class="overview-edit">
+        <h3>Informations</h3>
+        <span></span>
+        {{ form_start(formInfo) }}
+        {{ form_row(formInfo.content)}}
+            <button type="submit" class="save">{{ 'form.send'|trans }}</button>
+            <button type="submit" class="cancel">{{ 'form.cancel'|trans }}</button>
+        {{ form_end(formInfo) }}
+        <a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+    </div>
+</div>

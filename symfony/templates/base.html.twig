@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
     {% block stylesheets %}
         {# 'app' must match the first argument to addEntry() in webpack.config.js #}
         {{ encore_entry_link_tags('app') }}
-
-        <!-- Renders a link tag (if your module requires any CSS)
-             <link rel="stylesheet" href="/build/app.css"> -->
     {% endblock %}
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134957459-1%22%3E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ google_tag_manager_id }}');
+    </script>
 </head>
 {% block body_class %}<body>{% endblock %}
 
@@ -36,7 +45,7 @@
     <script src="{{ asset('/build/lib/slick/slick.min.js') }}"></script>
     <script src="{{ asset('/build/js/script.js') }}"></script>
 
-    {#{{ encore_entry_script_tags('app') }}#}
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}
 </body>
 </html>

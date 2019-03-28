@@ -1,0 +1,120 @@
+auth:
+    logout: 'Se déconnecter'
+    sign_in: 'Se connecter'
+    register: "S'enregistrer"
+    username: "Nom d'utilisateur"
+    password: 'Mot de passe'
+    forgot_password: 'Mot de passe oublié ?'
+    login: 'Connexion'
+    remember_me: 'Se souvenir de moi'
+    email: 'Email'
+    repeat_password: 'Répéter le mot de passe'
+    register_submit: 'Créer mon compte'
+    request_password: 'Demander un nouveau mot de passe'
+    request_password_submit: 'Réinitialiser le mot de passe'
+    read_terms: "Lire et accepter les Conditions Générales d'Utilisation"
+    general_terms_conditions: "Conditions Générales d'Utilisation"
+    accept_conditions: "J'ai lu et j'accepte les %general_terms_and_conditions%."
+global:
+    settings: 'Paramètres'
+    clear_all: 'Tout effacer'
+menu:
+    search: 'Rechercher'
+    home: 'Accueil'
+    about: 'A propos'
+    news:
+        main: 'Actualités'
+        recent: 'Dernières actualités'
+        most_viewed: 'Les plus vues'
+    profiles:
+        main: 'Membres'
+        my: 'Mon profile'
+        top: 'Top membres'
+    choose_language: 'Choix de langue'
+    dispo_language: 'Langues disponible'
+    messages:
+        main: 'Messages'
+        view_all: 'Voir tous les messages'
+    notifications:
+        main: 'Notifications'
+        view_all: 'Voir toutes les notifications'
+post:
+    text:
+        btn: 'Texte'
+    image:
+        btn: 'Image'
+    link:
+        btn: 'Lien'
+    video:
+        btn: 'Vidéo'
+profile:
+    view_profile: 'Voir le profil'
+    following: 'Suit'
+    followers: 'Suivi'
+    follow_by: 'Suivi par'
+    btn_change_cover: 'Modifier le cover'
+    follow: 'Suivre'
+    unfollow: 'Ne plus suivre'
+    friend: 'Ami'
+    be_friend: 'Devenir ami'
+    cancel_friend: "Annuler la demande d'ami"
+    accept_friend: "Accepter la demande d'ami"
+    people_viewed_profile: 'Les membres qui ont vu ce profil'
+    overview: 'Quelques information à propos de moi'
+    count_following: 'Suit %count% membres'
+    count_friends: "{0}0 ami|{1}1 ami|]1,Inf]%count% amis"
+    count_followers: "{0} follower|{1}1 follower|]1,Inf]%count% followers"
+block:
+    about:
+        non_censured: 'Réseau social non censuré'
+        help_grow: 'Le projet sur Discord'
+        like_us_fb: 'Notre page facebook'
+    donate:
+        title: 'Donation'
+        support: 'Aidez ce projet'
+        btn: 'Faire un don sur leetchi'
+    tags_menu:
+        about: 'A propos'
+        privacy_policy: 'Vie privé'
+        guidline: 'CGU'
+        cookie_policy: 'Politique de cookie'
+        license: 'Projet sous license GPLv3.'
+    post:
+        edit: 'Editer'
+        delete: 'Supprimer'
+        view_more: 'Voir plus'
+        comment: "{0} Ajouter un commentaire|{1}1 Commentaire|]1,Inf]%count% Commentaires"
+        placeholder_comment: 'Poster un commentaire'
+        views: 'Vues'
+        like: "J'aime"
+    user:
+        nbr: 'Membres sur la communité'
+form:
+    cancel: 'Annuler'
+    send: 'Envoyer'
+    post:
+        text:
+            add_new: 'Ajouter un nouveau post texte'
+            add: 'Ajouter un post texte'
+            btn_submit: 'Ajouter le post'
+            edit: 'Editer le post text'
+        image:
+            add_new: 'Ajouter un nouveau post image'
+            add: 'Ajouter un post texte'
+            add_more: 'Ajouter une image'
+            edit: 'Editer le post image'
+        video:
+            add_new: 'Ajouter un nouveau post video'
+            add: 'Ajouter un post video'
+            add_more: 'Ajouter une video'
+    field:
+        title: 'Titre'
+        content: 'Contenu de votre post ici'
+        status: 'Statut'
+nav:
+    next: Suivante
+    prev: Précédente
+notification:
+    sent_friend_request: "t'a envoyé une nouvelle demande d'ami."
+    accept_friend_request: "a accepté ta demande d'ami. Vous êtes ami!"
+    follow_request: 'a commençé à te suivre. Nouveau follower!'

@@ -1,0 +1,12 @@
+<div class="profile-photo-box" id="profile-photo-box">
+    <div class="profile-photo-edit">
+        <h3>Photo de profil</h3>
+        <span></span>
+        {{ form_start(formProfile) }}
+        {{ form_row(formProfile.documentFile) }}
+            <button type="submit" class="save">{{ 'form.send'|trans }}</button>
+            <button type="submit" class="cancel">{{ 'form.cancel'|trans }}</button>
+        {{ form_end(formProfile) }}
+        <a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+    </div>
+</div>

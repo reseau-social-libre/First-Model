@@ -1,0 +1,37 @@
+<div class="user-tab-sec">
+    <h3>{{ user.username }}</h3>
+    <div class="star-descp">
+        {% if user.getUserStatuses().last() %}
+            <span>{{ user.getUserStatuses().last().status }}</span>
+        {% else %}
+            <span>No {{ 'form.field.status'|trans }}</span>
+        {% endif %}
+
+        <ul>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star-half-o"></i></li>
+        </ul>
+        {% if app.user.id == user.id %}
+            <a href="#" title="" class="status-open"><i class="fa fa-pencil"></i></a>
+        {% endif %}
+    </div>
+    <div class="tab-feed st2">
+        <ul>
+            <li data-tab="feed-dd" class="active">
+                <a href="#" title="">
+                    <img src="{{ asset('build/images/ic1.png') }}" alt="">
+                    <span>Feed</span>
+                </a>
+            </li>
+            <li data-tab="info-dd">
+                <a href="#" title="">
+                    <img src="{{ asset('build/images/ic2.png') }}" alt="">
+                    <span>Info</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

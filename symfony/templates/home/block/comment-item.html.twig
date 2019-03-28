@@ -1,0 +1,20 @@
+<li>
+    <div class="comment-list">
+        <div class="bg-img">
+            {% if comment.user.getUserProfilePictures().last() %}
+                <a href="{{ path('profile', {username: comment.user.username}) }}">
+                    <img src="{{ asset('/uploads/user/profiles/'~ comment.user.getUserProfilePictures().last().document)|imagine_filter('user_profile_small') }}" alt="">
+                </a>
+            {% else %}
+            <a href="{{ path('profile', {username: comment.user.username}) }}">
+                <img src="https://via.placeholder.com/40x40" alt="">
+            </a>
+            {% endif %}
+        </div>
+        <div class="comment">
+            <h3>{{ comment.user.username }}</h3>
+            <span><img src="{{ asset('build/images/clock.png') }}" alt="">{{ comment.createdAt|ago }}</span>
+            {{ comment.comment|md2html|linksTargetBlank }}
+        </div>
+    </div>
+</li>

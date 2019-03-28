@@ -1,0 +1,11 @@
+fos_rest:
+    routing_loader:
+        include_format: false
+    view:
+        view_response_listener:  true
+    format_listener:
+        rules:
+            - { path: '^/api', priorities: ['text/html', '*/*'], fallback_format: html, prefer_extension: false }
+            - { path: '^/', priorities: ['text/html', '*/*'], fallback_format: html, prefer_extension: true }
+    body_listener:
+        enabled: true

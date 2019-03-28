@@ -1,0 +1,92 @@
+{% for post in posts.currentPageResults %}
+    <div class="post-bar">
+        <div class="post_topbar">
+            <div class="usy-dt">
+                {% if post.user.getUserProfilePictures().last() %}
+                    <a href="{{ path('profile', {username: post.user.username }) }}">
+                        <img src="{{ asset('/uploads/user/profiles/'~ post.user.getUserProfilePictures().last().document)|imagine_filter('user_profile_medium') }}" alt="">
+                    </a>
+                {% else %}
+                    <a href="{{ path('profile', {username: post.user.username }) }}">
+                        <img src="https://via.placeholder.com/50x50" alt="">
+                    </a>
+                {% endif %}
+
+                <div class="usy-name">
+                    <h3>{{ post.user.username }}</h3>
+                    <span><img src="{{ asset('build/images/clock.png') }}" alt=""/>{{ post.createdAt|ago }}</span>
+                </div>
+            </div>
+            {% if app.user.id == post.user.id or is_granted('ROLE_ADMIN') %}
+                <div class="ed-opts">
+                    <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                    <ul class="ed-options">
+                        {% if post.post_type == 'Image' %}
+                            <li><a href="{{ path('post-image-edit', {'id': post.id}) }}" title="">{{ 'block.post.edit'|trans }}</a></li>
+                        {% elseif post.post_type == 'Status' %}
+                            <li><a href="{{ path('post-text-edit', {'id': post.id}) }}" title="">{{ 'block.post.edit'|trans }}</a></li>
+                        {% endif %}
+                        <li><a href="{{ path('post-remove', {'id': post.id}) }}" title="">{{ 'block.post.delete'|trans }}</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+        <div class="epi-sec">
+            <ul class="descp">
+                <li><img src="{{ asset('build/images/icon9.png') }}" alt=""><span>{{ post.post_type }}</span></li>
+            </ul>
+            <ul class="bk-links">
+                <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+                <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+            </ul>
+        </div>
+        <div class="job_descp">
+            <h3>{{ post.title }}</h3>
+            {{ post.content|md2html|linksTargetBlank}}
+            {{ post.content|youtube }}
+
+            {% if post.post_type == 'Image' %}
+                {% if post.getImages|length > 0 %}
+                    {% for image in post.getImages %}
+                        <img src="{{ asset('/uploads/post/images/'~ image.document) |imagine_filter('post_image') }}" />
+                    {% endfor %}
+                {% endif %}
+            {% elseif post.post_type == 'Live' %}
+                <div id="{{ post.stream ~ '-container'}}" style="display:none">
+                    <video id="{{ post.stream }}" class="video-js vjs-default-skin" data-name="{{ post.stream }}" data-app="{{ post.streamApp }}"></video>
+                </div>
+                <div id="{{ post.stream ~ '-info'}}" class="live-info"></div>
+            {% elseif post.post_type == 'Video' %}
+                {% for video in post.getVideos %}
+                    <video id="{{ video.id }}" class="video-js vjs-default-skin" data-name="{{ video.document }}" data-app="video"></video>
+                {% endfor %}
+            {%  endif %}
+
+        </div>
+        <div class="job-status-bar">
+            <ul class="like-com">
+                <li id="like-btn-{{ post.id }}">
+                    {{ include('home/block/like-btn.html.twig') }}
+                </li>
+
+                <li id="comment-number-{{ post.id }}">
+                    <a href="#" title="" class="com" data-post="{{ post.id }}">
+                        <img src="{{ asset('build/images/com.png') }}" alt="">
+                        {% set count =  post.comments|length %}
+                        {% transchoice count with {'%count%': count} %}block.post.comment{% endtranschoice %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="comment-section hidden" id="comment-section-{{ post.id }}">
+            <div class="comment-sec">
+                <ul id="comment-list-{{ post.id }}">
+                    {% for comment in post.comments %}
+                        {{ include('home/block/comment-item.html.twig') }}
+                    {% endfor %}
+                </ul>
+            </div>
+            {{ include('home/block/post-comment.html.twig') }}
+        </div>
+    </div>
+{% endfor %}

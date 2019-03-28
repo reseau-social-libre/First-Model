@@ -1,0 +1,12 @@
+<div class="cover-box" id="cover-box">
+    <div class="cover-edit">
+        <h3>Photo de couverture</h3>
+        <span></span>
+        {{ form_start(formCover) }}
+        {{ form_row(formCover.documentFile) }}
+            <button type="submit" class="save">{{ 'form.send'|trans }}</button>
+            <button type="submit" class="cancel">{{ 'form.cancel'|trans }}</button>
+        {{ form_end(formCover) }}
+        <a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+    </div>
+</div>

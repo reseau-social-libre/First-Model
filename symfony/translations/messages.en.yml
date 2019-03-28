@@ -1,0 +1,120 @@
+auth:
+    logout: 'Logout'
+    sign_in: 'Sign in'
+    register: 'Register'
+    username: 'Username'
+    password: 'Password'
+    forgot_password: 'Forgot password ?'
+    login: 'Login'
+    remember_me: 'Remember me'
+    email: 'Email'
+    repeat_pawword: 'Repeat password'
+    register_submit: 'Create my account'
+    request_password: 'Request password'
+    request_password_submit: 'Reset password'
+    read_terms: 'Read the General Terms and Conditions'
+    general_terms_conditions: 'General Terms and Conditions'
+    accept_conditions: 'I have read and accept the %general_terms_and_conditions%.'
+global:
+    settings: 'Settings'
+    clear_all: 'Clear all'
+menu:
+    search: 'Search'
+    home: 'Home'
+    about: 'About'
+    news:
+        main: 'News'
+        recent: 'Latest news'
+        most_viewed: 'Most views'
+    profiles:
+        main: 'Profiles'
+        my: 'My profile'
+        top: 'Top profiles'
+    choose_language: 'Language'
+    dispo_language: 'Available languages'
+    messages:
+        main: 'Messages'
+        view_all: 'View all messages'
+    notifications:
+        main: 'Notifications'
+        view_all: 'View all notifications'
+post:
+    text:
+        btn: 'Text'
+    image:
+        btn: 'Image'
+    link:
+        btn: 'Link'
+    video:
+        btn: 'Video'
+profile:
+    view_profile: 'View profile'
+    following: 'Following'
+    followers: 'Followers'
+    follow_by: 'Followed by'
+    btn_change_cover: 'Change cover'
+    follow: 'Follow'
+    unfollow: 'UnFollow'
+    friend: 'Friend'
+    be_friend: 'Become friend'
+    cancel_friend: "Cancel friend request"
+    accept_friend: "Accept friend request"
+    people_viewed_profile: 'People Viewed Profile'
+    overview: 'About me'
+    count_following: 'Following %count% members'
+    count_friends: "{0}No friend|{1}1 friend|]1,Inf]%count% friends"
+    count_followers: "{0} follower|{1}1 follower|]1,Inf]%count% followers"
+block:
+    about:
+        non_censured: 'A non censured social network'
+        help_grow: 'Project on Discord'
+        like_us_fb: 'Our facebook page'
+    donate:
+        title: 'Donate'
+        support: 'Support this project'
+        btn: 'Make a donation on Leetchi'
+    tags_menu:
+        about: 'About'
+        privacy_policy: 'Privacy Policy'
+        guidline: 'General terms'
+        cookie_policy: 'Cookie Policy'
+        license: 'Project under GPLv3 licence'
+    post:
+        edit: 'Edit Post'
+        delete: 'Delete Post'
+        view_more: 'View more'
+        comment: "{0} Add a comment|{1}1 Comment|]1,Inf]%count% Comments"
+        placeholder_comment: 'Post a comment'
+        views: 'Views'
+        like: 'Like'
+    user:
+        nbr: 'Members in community'
+form:
+    cancel: 'Cancel'
+    send: 'Send'
+    post:
+        text:
+            add_new: 'Add a new text post'
+            add: 'Add text post'
+            btn_submit: 'Add post'
+            edit: 'Edit post text'
+        image:
+            add_new: 'Add a new image post'
+            add: 'Add image post'
+            add_more: 'Add image'
+            edit: 'Edit image post'
+        video:
+            add_new: 'Add a new video post'
+            add: 'Add video post'
+            add_more: 'Add video'
+    field:
+        title: 'Title'
+        content: 'Write your content here'
+        status: 'Status'
+nav:
+    next: Next
+    prev: Previous
+notification:
+    sent_friend_request: 'sent you a friend request'
+    accept_friend_request: 'has accepted your friend request. You are friend now!'
+    follow_request: 'is just starting to follow you.'

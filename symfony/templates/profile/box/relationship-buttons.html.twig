@@ -1,0 +1,19 @@
+<ul class="flw-hr">
+    {% if userRelationShip.isFollowed %}
+        <li><a href="#" title="" class="flww" id="unfollow" data-user="{{ app.user.id }}" data-friend="{{ user.id }}" data-locale="{{ app.request.locale }}"><i class="la la-thumbs-o-down"></i> {{ 'profile.unfollow'|trans }}</a></li>
+    {% else %}
+        <li><a href="#" title="" class="flww" id="follow" data-user="{{ app.user.id }}" data-friend="{{ user.id }}" data-locale="{{ app.request.locale }}"><i class="la la-thumbs-o-up"></i> {{ 'profile.follow'|trans }}</a></li>
+    {% endif %}
+
+</ul>
+<ul class="flw-hr">
+    {% if userRelationShip.isFriend %}
+        <li><a href="#" title="" class="hre" id="remove-friend" data-user="{{ app.user.id }}" data-friend="{{ user.id }}" data-locale="{{ app.request.locale }}"><i class="la la-check"></i> {{ 'profile.friend'|trans }}</a></li>
+    {% elseif userRelationShip.isFriendPending %}
+        <li><a href="#" title="" class="hre" id="cancel-friend-request" data-user="{{ app.user.id }}" data-friend="{{ user.id }}" data-locale="{{ app.request.locale }}"><i class="la la-user-plus"></i> {{ 'profile.cancel_friend'|trans }}</a></li>
+    {% elseif userRelationShip.isRequestMeFriend %}
+        <li><a href="#" title="" class="hre" id="accept-friend-request" data-user="{{ app.user.id }}" data-friend="{{ user.id }}" data-locale="{{ app.request.locale }}"><i class="la la-user-plus"></i> {{ 'profile.accept_friend'|trans }}</a></li>
+    {% else %}
+        <li><a href="#" title="" class="hre" id="add-friend" data-user="{{ app.user.id }}" data-friend="{{ user.id }}" data-locale="{{ app.request.locale }}"><i class="la la-user-plus"></i> {{ 'profile.be_friend'|trans }}</a></li>
+    {% endif %}
+</ul>

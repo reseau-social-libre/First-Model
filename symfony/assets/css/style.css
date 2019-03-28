@@ -1191,6 +1191,9 @@ main {
 	font-weight: 600;
 	margin-bottom: 20px;
 }
+.job_descp img {
+	width: 100%;
+}
 .job-dt {
 	float: left;
 	width: 100%;
@@ -1224,6 +1227,7 @@ main {
 	font-size: 16px;
 	line-height: 24px;
 	margin-bottom: 20px;
+	overflow: hidden;
 }
 .job_descp > p a {
 	color: #e44d3a;
@@ -1552,6 +1556,7 @@ main {
 .comment-sec {
 	float: left;
 	width: 100%;
+	overflow: hidden;
 }
 .comment-sec ul {
 	float: left;
@@ -1636,8 +1641,8 @@ main {
 .comment_box {
 	float: left;
 }
-.comment_box input {
-	width: 387px;
+.comment_box input, .comment_box textarea {
+	width: 369px;
 	height: 40px;
 	border: 1px solid #e5e5e5;
 	background-color: #efefef;
@@ -1647,6 +1652,8 @@ main {
 	font-weight: 600;
 	line-height: 40px;
 	resize: none;
+	max-width: 100%;
+	margin-bottom: 10px;
 }
 .comment_box form button {
 	float: right;
@@ -1966,7 +1973,7 @@ select {
 .sign-in-page {
 	float: left;
 	width: 100%;
-	padding: 100px 0 20px 0;
+	padding: 100px 0 100px 0;
 }
 .signin-popup {
 	width: 870px;
@@ -2461,7 +2468,6 @@ select {
 	margin-top: 70px;
 }
 .footy-sec ul {
-	margin-top: 5px;
 	text-align: center;
 }
 .footy-sec ul li {
@@ -2518,6 +2524,8 @@ footer {
 
 .cover-sec img {
 	width: 100%;
+	max-height: 400px;
+	object-fit: cover;
 }
 .cover-sec > a {
 	display: inline-block;
@@ -3018,7 +3026,10 @@ footer {
 
 /* ============== overview-box ============= */
 
-.overview-box {
+.overview-box,
+.status-box,
+.cover-box,
+.profile-photo-box {
 	width: 570px;
 	position: fixed;
 	top: 50%;
@@ -3053,18 +3064,27 @@ footer {
 .close-box:hover {
 	color: #fff;
 }
-.overview-box.open {
+.overview-box.open,
+.status-box.open,
+.cover-box.open,
+.profile-photo-box.open {
 	opacity: 1;
 	visibility: visible;
 	z-index: 99999;
 }
-.overview-edit {
+.overview-edit,
+.status-edit,
+.cover-edit,
+.profile-photo-edit {
 	float: left;
 	width: 100%;
 	background-color: #fff;
 	padding: 30px 20px;
 }
-.overview-edit h3 {
+.overview-edit h3,
+.status-edit h3,
+.cover-edit h3,
+.profile-photo-edit h3 {
 	color: #000000;
 	font-size: 18px;
 	font-weight: 600;
@@ -3072,36 +3092,60 @@ footer {
 	width: 100%;
 	margin-bottom: 25px;	
 }
-.overview-edit span {
+.overview-edit span,
+.status-edit span,
+.cover-edit span,
+.profile-photo-edit span {
 	color: #b2b2b2;
 	font-size: 12px;
 	float: right;
 	margin-bottom: 5px;
 }
-.overview-edit form {
+.overview-edit form,
+.status-edit form,
+.cover-edit form,
+.profile-photo-edit form {
 	float: left;
 	width: 100%;
 }
-.overview-edit form input {
+.overview-edit form input,
+.status-edit form input,
+.cover-edit form input,
+.profile-photo-edit form input {
 	height: 40px;
 	padding-left: 15px;
 	margin-bottom: 20px;
 }
 .overview-edit form textarea,
 .overview-edit form input,
-.overview-edit form select {
+.overview-edit form select,
+.status-edit form textarea,
+.status-edit form input,
+.status-edit form select,
+.cover-edit form textarea,
+.cover-edit form input,
+.cover-edit form select,
+.profile-photo-edit form textarea,
+.profile-photo-edit form input,
+.profile-photo-edit form select {
 	width: 100%;
 	border: 1px solid #e5e5e5;
 	resize: none;
 	color: #b2b2b2;
 	font-size: 14px;
 }
-.overview-edit form select {
+.overview-edit form select,
+.status-edit form select,
+.cover-edit form select,
+.profile-photo-edit form select {
 	line-height: 40px;
 	padding-left: 40px;
 	margin-bottom: 20px;
 }
-.overview-edit form textarea {
+.overview-edit form textarea,
+.status-edit form textarea,
+.cover-edit form textarea,
+.profile-photo-edit form textarea {
 	height: 160px;
 	margin-bottom: 30px;
 	padding: 15px;
@@ -3115,7 +3159,10 @@ footer {
 	background-color: #fff;
 	padding: 13px 13px !important;
 }
-.overview-edit button {
+.overview-edit button,
+.status-edit button,
+.cover-edit button,
+.profile-photo-edit button {
 	float: left;
 	border: 1px solid #e5e5e5;
 	font-weight: 600;
@@ -5354,7 +5401,6 @@ a:hover {
 
 /* =============== ANIMATION LOADER =============== */
 
-
 .spinner {
     margin: 0 auto 0;
     width: 80px;
@@ -5401,4 +5447,108 @@ a:hover {
     -webkit-transform: scale(1.0);
     transform: scale(1.0);
   }
+}
+
+/* =============== POST =============== */
+.post-image img {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+/* ============== MAIN PAGE =============== */
+.main-page {
+	float: left;
+	width: 100%;
+	background-color: #fff;
+	padding: 25px 25px 25px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.main-page .title {
+	margin-bottom: 20px;
+}
+
+.main-page h1, .main-page h2, .main-page h3 {
+	color: #000000;
+	font-size: 26px;
+	font-weight: 600;
+	background-color: #fff;
+	position: relative;
+	padding-bottom: 10px;
+	margin-bottom: 30px;
+	width: 100%;
+}
+
+.main-page h1:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 30px;
+	height: 2px;
+	background-color: #e44d3a;
+}
+
+.main-page h2 {
+	font-size: 20px;
+	margin-bottom: 8px;
+}
+
+.main-page strong {
+	font-weight: bolder;
+}
+
+.main-page ul {
+	padding-left: 15px;
+	margin-left: 15px;
+	list-style-type: square;
+	font-size: 13px;
+	color: #666666;
+}
+
+.main-page ul li {
+	line-height: 18px;
+}
+
+.hidden {
+	visibility: hidden;
+	height: 0;
+	opacity: 0;
+	transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+}
+
+.youtubePlayer {
+	width: 100%;
+	height: 250px;
+}
+
+div.terms label {
+	font-size: 12px;
+	margin-left: 5px;
+	padding-top: 13px;
+	max-width: 80%;
+}
+
+div.terms input[type=checkbox] {
+	width: 15px;
+	float: left;
+}
+
+.error ul li {
+	font-size: 12px;
+	margin: 5px;
+	color: red;
+	font-style: italic;
+}
+
+.vich-image input[type=checkbox] {
+	width: 15px;
+	float: left;
+	position: relative;
+	top: -10px;
+	margin-right: 3px;
+}
+
+.add-image-collection-widget {
+	float: left;
 }

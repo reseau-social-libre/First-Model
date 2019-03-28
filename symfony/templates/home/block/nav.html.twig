@@ -1,0 +1,59 @@
+<nav aria-label="Page navigation example" class="full-pagi">
+    {% if haveToPaginate %}
+        <ul class="pagination">
+
+            {% if hasPreviousPage %}
+                {% if page_current -1 == 1%}
+                    <li class="page-item">
+                        <a class="page-link pvr" href="{{ path('home') }}">{{ 'nav.prev'|trans }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link pvr" href="{{ path('home_paginated', {page: page_current -1}) }}">{{ 'nav.prev'|trans }}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+
+            {% if page_left > page_first + 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('home_paginated', {page: page_left -1}) }}">...</a>
+                </li>
+            {% endif %}
+
+            {% for page in page_left..page_right %}
+                <li class="page-item">
+                {% if page == page_current %}
+
+                    {% if page == 1 %}
+                        <a class="page-link active" href="{{ path('home') }}">{{ page }}</a>
+                    {% else %}
+                        <a class="page-link active" href="{{ path('home_paginated', {page: page}) }}">{{ page }}</a>
+                    {% endif %}
+
+                {% else %}
+                    {% if page == 1 %}
+                        <a class="page-link" href="{{ path('home') }}">{{ page }}</a>
+                    {% else %}
+                        <a class="page-link" href="{{ path('home_paginated', {page: page}) }}">{{ page }}</a>
+                    {% endif %}
+                {% endif %}
+                </li>
+            {% endfor %}
+
+            {% if page_right < page_last - 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('home_paginated', {page: page_right +1}) }}">...</a>
+                </li>
+            {% endif %}
+
+            {% if page_right < page_last %}
+                <li class="page-item"><a class="page-link" href="{{ path('home_paginated', {page: page_last}) }}">{{ page_last }}</a></li>
+            {% endif %}
+
+            {% if hasNextPage %}
+                <li class="page-item"><a class="page-link pvr" href="{{ path('home_paginated', {page: page_current +1}) }}">{{ 'nav.next'|trans }}</a></li>
+            {% endif %}
+
+        </ul>
+    {% endif %}
+</nav>

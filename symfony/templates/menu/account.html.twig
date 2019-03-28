@@ -4,7 +4,11 @@
 
 <div class="user-account">
     <div class="user-info">
-        <img src="http://via.placeholder.com/30x30" alt="">
+        {% if app.user.getUserProfilePictures().last() %}
+            <img src="{{ asset('/uploads/user/profiles/'~ app.user.getUserProfilePictures().last().document)|imagine_filter('user_profile_30') }}" alt="">
+        {% else %}
+            <img src="https://via.placeholder.com/30x30" alt="">
+        {% endif %}
 
         {% if app.user is not null %}
             <a href="#" title="">{{ app.user.username }}</a>
@@ -43,11 +47,11 @@
         </div>
         <h3>Setting</h3>
         <ul class="us-links">
-            <li><a href="profile-account-setting.html" title="">Account Setting</a></li>
+            <li><a href="#" title="">Account Setting</a></li>
             <li><a href="#" title="">Privacy</a></li>
             <li><a href="#" title="">Faqs</a></li>
-            <li><a href="#" title="">Terms & Conditions</a></li>
+            <li><a href="{{ path('general-terms') }}" title="">{{ 'block.tags_menu.guidline'|trans }}</a></li>
         </ul>
-        <h3 class="tc"><a href="{{ path('fos_user_security_logout') }}" title="">Logout</a></h3>
+        <h3 class="tc"><a href="{{ path('fos_user_security_logout') }}" title="">{{ 'auth.logout'|trans }}</a></h3>
     </div>
 </div>

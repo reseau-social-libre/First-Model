@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RSL | About the project!{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        {% include 'header.html.twig' %}
+
+        <main>
+            <div class="main-section">
+                <div class="container">
+                    <div class="main-section-data">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-12 no-pd">
+                                <div class="main-ws-sec">
+                                    <div class="main-page">
+                                        <div class="title">
+                                            <h1>{{ 'About' | trans}}</h1>
+                                        </div>
+
+                                        <h2>Explication du projet</h2>
+                                        <p>Avec toutes les differentes censures que nous connaissons aujourd'hui nous
+                                            avons décidés de créer un réseau social libre (Licence GNU GPLv3),
+                                            open source, de paroles et d’expressions libres de partages et de veritées,
+                                            qui garantit à l'utilisateur 4 libertés :<br/>
+                                            celles de pouvoir utiliser, modifier et distribuer le logiciel,
+                                                mais aussi de pouvoir distribuer des versions modifiées.</p>
+                                        <p class="mt-3"><strong>De ces 4 libertés, découlent 7 conséquences directes :</strong></p>
+                                        <ul>
+                                            <li>Une capacité à être autonome sur la solution.</li>
+                                            <li>Des possibilités de personnalisation.</li>
+                                            <li>Des améliorations apportées par la communauté, qui peut devenir mondiale
+                                                assez rapidement.</li>
+                                            <li>Une mutualisation de la maintenance.</li>
+                                            <li>Une absence de coût de licence.</li>
+                                            <li>Un intérêt pédagogique grâce à la liberté d'étudier le fonctionnement
+                                                interne du logiciel.</li>
+                                            <li>La consolidation de biens communs qui permettent de favoriser
+                                                l'innovation</li>
+                                        </ul>
+                                        <p class="mt-2"><strong>Ce dernier point est primordial : d'un point de vue de la
+                                            Recherche et Développement, chaque logiciel libre grâce à son ouverture
+                                            permet de faire progresser le niveau général de connaissances, donc pousse
+                                                tous les éditeurs à innover pour se différencier.</strong></p>
+                                        <p class="mt-3">Il existe ensuite un certain nombre de conséquences indirectes
+                                            ou probables:</p>
+                                        <ul>
+                                            <li><strong>La pérennité des solutions :</strong> Ce n'est pas systématique,
+                                                mais une solution open-source peut continuer à vivre tant qu'elle a des
+                                                utilisateurs, donc une communautée.</li>
+                                            <li><strong>La sécurité :</strong> Ce n'est pas non plus automatique, mais
+                                                l'ouverture du code source contribue souvent et rapidement à une
+                                                meilleure sécurité.</li>
+                                            <li><strong>La motivation :</strong> Pour des développeurs, contribuer à un
+                                                logiciel libre est un acte avec une portée et une visibilité
+                                                universelles, de plus cela peut contribuer à votre réussite
+                                                professionnelle (beauté sur le C.V.).</li>
+                                        </ul>
+                                        <p class="mt-2"><strong>Et cette dernière conséquence indirecte est accentuée
+                                                par les 3 valeurs  suivantes portées par le Logiciel Libre :</strong></p>
+                                        <ul>
+                                            <li><strong>Le partage</strong></li>
+                                            <li><strong>La coopération</strong></li>
+                                            <li><strong>L'entraide</strong></li>
+                                        </ul>
+                                        <p class="mt-3">
+                                            Ces valeurs n'ont aucune couleur politique et ne sont pas du tout opposées à
+                                            la notion de concurrence. C'est même le contraire : publier un logiciel sous
+                                            licence libre peut être un acte concurrentiel extrêmement puissant. Mais
+                                            dans le milieu professionnel du logiciel libre on parle plus de coopération
+                                            que de concurrence. Coopération sur le code, concurrence sur les services.
+                                            Car plutôt que de se retrancher derrière une propriété intellectuelle à la
+                                            valeur éphémère, il est bien plus avantageux de se distinguer sur la qualité
+                                            de service.
+                                        </p>
+                                        <p class="mt-3">
+                                            Ce projet en préparation nous donnera accès un réseau social libre non
+                                            censuré, cela permettera de publier, de partager, de poster toutes les infos
+                                            qui pourront être verifiés par chacun et ainsi donner toujours la vrai
+                                            information ; la verité.
+                                        </p>
+                                        <p class="mt-3">
+                                            Afin d 'ameliorer et de modifier le Projet RSL avec accord. Il serait
+                                            affilié à aucune patrie,ni aucun pays et tout le code source serait
+                                            accessible sur GITHUB.
+                                        </p>
+                                        <p class="mt-3">
+                                            <strong>Nous ne cherchons qu'a donner la parole aux (cityens, au personnes)
+                                                de tout pays. Pour leur pays, et au monde entier, afin de communiquer
+                                                les informations direct et plus rapide. Et ainsi verifier au mieux les
+                                                informations partagés.</strong>
+                                        </p>
+
+                                        <h2 class="mt-5">Matériel, la team et rôle</h2>
+                                        <p>
+                                            Afin d'organiser au mieux la mise en place et l’avenir de cette application
+                                            de libre échange, plusieurs personnes sont déjà à pied d'oeuvre sur ce
+                                            projet pour nous et vous l'offrir.
+                                        </p>
+                                        <p>
+                                            Certains s'occupent des differents codages, d'autres de la mise en place de
+                                            la sécurité, d'autres encore des environements graphiques, et enfin certains
+                                            de la communication et des relais d'informations, n'hesitez pas à les
+                                            contacter sur le <a href="https://discord.gg/tvbjDgj" target="_blank">discord</a>
+                                            dans la rubrique général, que ce soit pour:
+                                        </p>
+                                        <ul>
+                                            <li>La demande d'information.</li>
+                                            <li>Ou offrir votre connaissance et votre savoir faire</li>
+                                        </ul>
+                                        <p>En vue de mieux répondre à vos attentes et du plus grand nombre, nous avons
+                                            besoin de plusieurs acteurs différents (détailler dans la 3 ieme partie)
+                                            mais aussi de vous tous pour allez plus vite et plus loin en ce projet.</p>
+                                        <p class="mt-3">
+                                            Merci de vous connectez sur l'un differents sites ci-dessous, nous vous
+                                            acceuillons à bras ouvert sur:
+                                        </p>
+                                        <ul>
+                                            <li><a href="https://discord.gg/tvbjDgj" target="_blank">Discord</a></li>
+                                            <li><a href="https://github.com/reseau-social-libre" target="_blank">GitHub</a></li>
+                                            <li><a href="https://facebook.com/resauxsociallibre" target="_blank">Facebook</a></li>
+                                            <li><a href="https://www.rslibre.com">le site rslibre.com</a></li>
+                                        </ul>
+
+                                        <h2 class="mt-5">Langagues et connaissances utilisés</h2>
+                                        <p><strong>Nous avons besoin dans l'ordre de priorité :</strong></p>
+                                        <ul>
+                                            <li>Développeurs PHP Symphony, maitrise de GIT</li>
+                                            <li>Pentesters - Crypto de niveau (compétences) OSCP, CEH</li>
+                                            <li>Equipe Infra – connaitre kubernetes et le service mesh</li>
+                                            <li>Equipe "partenaires"</li>
+                                            <li>Administrateurs systemes, maitrise de l'architecture trois tiers</li>
+                                            <li>Développeurs FrontEnd</li>
+                                            <li>Développeurs React Native, "JS", GNU FreeJS pour app Android</li>
+                                            <li>Développeurs Swift pour app IOS</li>
+                                            <li>Graphistes Web et Illustrateurs</li>
+                                            <li>Des Community Managers, des admins pour discord</li>
+                                            <li>Traducteurs de toutes langues afin d'agrandir la communuté.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 pd-right-none no-pd">
+                                {{ include('sidebar/right-sidebar.html.twig') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+{% endblock %}

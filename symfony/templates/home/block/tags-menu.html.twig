@@ -1,15 +1,11 @@
 <div class="tags-sec full-width">
     <ul>
-        <li><a href="#" title="">Help Center</a></li>
-        <li><a href="#" title="">About</a></li>
-        <li><a href="#" title="">Privacy Policy</a></li>
-        <li><a href="#" title="">Community Guidelines</a></li>
-        <li><a href="#" title="">Cookies Policy</a></li>
-        <li><a href="#" title="">Career</a></li>
-        <li><a href="#" title="">Language</a></li>
+        <li><a href="{{ path('about') }}" title="">{{ 'block.tags_menu.about'|trans }}</a></li>
+        <li><a href="{{ path('general-terms') }}" title="">{{ 'block.tags_menu.guidline'|trans }}</a></li>
+        <li><a href="{{ path('cookie-policy') }}" target="_blank" title="Cookie policy">{{ 'block.tags_menu.cookie_policy'|trans }}</a></li>
     </ul>
     <div class="cp-sec">
-        <img src="{{ asset('build/images/logo2.png') }}" alt="">
-        <p><img src="{{ asset('build/images/cp.png') }}" alt="">project under GPLv3 licence</p>
+        {#<img src="{{ asset('build/images/logo2.png') }}" alt="">#}
+        <p><img src="{{ asset('build/images/cp.png') }}" alt="">{{ 'block.tags_menu.license'|trans }}</p>
     </div>
 </div>

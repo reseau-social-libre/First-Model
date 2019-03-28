@@ -1,3 +1,24 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+api_comment:
+    type: rest
+    prefix: /{_locale}/api
+    resource: App\Controller\Api\PostCommentController
+
+api_likes:
+    type: rest
+    prefix: /{_locale}/api
+    resource: App\Controller\Api\PostLikeController
+
+api_friend:
+    type: rest
+    prefix: /{_locale}/api
+    resource: App\Controller\Api\FriendShipController
+
+api_notification:
+    type: rest
+    prefix: /{_locale}/api
+    resource: App\Controller\Api\NotificationController
+
+api_post:
+    type: rest
+    prefix: /{_locale}/api
+    resource: App\Controller\Api\PostController

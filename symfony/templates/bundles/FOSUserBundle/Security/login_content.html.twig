@@ -1,5 +1,3 @@
-{% trans_default_domain 'FOSUserBundle' %}
-
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
@@ -17,11 +15,11 @@
                     <div class="col-lg-6">
                         <div class="login-sec">
                             <ul class="sign-control">
-                                <li class="current"><a href="{{ path('fos_user_security_login') }}" title="Sign in  ">Sign In</a></li>
-                                <li><a href="{{ path('fos_user_registration_register') }}" title="Register">Register</a></li>
+                                <li class="current"><a href="{{ path('fos_user_security_login') }}" title="Sign in  ">{{ 'auth.sign_in'|trans }}</a></li>
+                                <li><a href="{{ path('fos_user_registration_register') }}" title="Register">{{ 'auth.register'|trans }}</a></li>
                             </ul>
                             <div class="sign_in_sec current" id="tab-1">
-                                <h3>Sign in</h3>
+                                <h3>{{ 'auth.sign_in'|trans }}</h3>
                                 <form action="{{ path("fos_user_security_check") }}" method="post">
                                     {% if csrf_token %}
                                         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -30,14 +28,14 @@
                                     <div class="row">
                                         <div class="col-lg-12 no-pdd">
                                             <div class="sn-field">
-                                                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" placeholder="Username" />
+                                                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" placeholder="{{ 'auth.username'|trans }}" />
                                                 <i class="la la-user"></i>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12 no-pdd">
                                             <div class="sn-field">
-                                                <input type="password" id="password" name="_password" required="required" autocomplete="current-password" placeholder="Password" />
+                                                <input type="password" id="password" name="_password" required="required" autocomplete="current-password" placeholder="{{ 'auth.password'|trans }}" />
                                                 <i class="la la-lock"></i>
                                             </div>
                                         </div>
@@ -47,14 +45,14 @@
                                                 <div class="fgt-sec">
                                                     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
                                                     <label for="remember_me"><span></span></label>
-                                                    <small>{{ 'security.login.remember_me'|trans }}</small>
+                                                    <small>{{ 'auth.remember_me'|trans }}</small>
                                                 </div>
-                                                <a href="{{ path('fos_user_resetting_request') }}">Forgot password ?</a>
+                                                <a href="{{ path('fos_user_resetting_request') }}">{{ 'auth.forgot_password'|trans }}</a>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12 no-pdd">
-                                            <button type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}">{{ 'security.login.submit'|trans }}</button>
+                                            <button type="submit" id="_submit" name="_submit">{{ 'auth.login'|trans }}</button>
                                         </div>
                                     </div>
                                 </form>

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RSL | {{ 'menu.profiles.main'|trans ~ ' ' ~ user.username }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('profile') }}
+    {{ encore_entry_link_tags('video') }}
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        {% include 'header.html.twig' %}
+
+        {% include 'profile/cover.html.twig' %}
+
+        <main>
+            <div class="main-section">
+                <div class="container">
+                    <div class="main-section-data">
+                        <div class="row">
+                            {% include 'profile/left-sidebar.html.twig' %}
+                            {% include 'profile/main.html.twig' %}
+                            {% include 'profile/right-sidebar.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            {% include 'footer-footy.html.twig' %}
+        </footer>
+
+        {% if app.user.id == user.id %}
+            {% include 'profile/box/overview.html.twig' %}
+            {% include 'profile/box/status.html.twig' %}
+            {% include 'profile/box/cover.html.twig' %}
+            {% include 'profile/box/profile-photo.html.twig' %}
+        {% endif %}
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('profile') }}
+    {{ encore_entry_script_tags('video') }}
+{% endblock %}

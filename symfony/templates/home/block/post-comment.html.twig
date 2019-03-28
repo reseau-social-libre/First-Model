@@ -1,0 +1,16 @@
+<div class="post-comment">
+    <div class="cm_img">
+        {% if app.user.getUserProfilePictures().last() %}
+            <img src="{{ asset('/uploads/user/profiles/'~ app.user.getUserProfilePictures().last().document)|imagine_filter('user_profile_small') }}" alt="">
+        {% else %}
+            <img src="https://via.placeholder.com/40x40" alt="">
+        {% endif %}
+
+    </div>
+    <div class="comment_box">
+        <form data-user="{{ app.user.id }}" data-post={{ post.id }} data-locale="{{ app.request.locale }}" class="comment-form">
+            <textarea class="comment-text" placeholder="{{ 'block.post.placeholder_comment'|trans }}"></textarea>
+            <button type="submit">{{ 'form.send'|trans }}</button>
+        </form>
+    </div>
+</div>

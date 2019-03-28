@@ -1,52 +1,36 @@
 <li>
     <a href="#" title="" class="not-box-open">
         <span><img src="{{ asset('build/images/icon7.png') }}" alt=""></span>
-        Notification
+        {{ 'menu.notifications.main'|trans }}
     </a>
     <div class="notification-box">
-        <div class="nt-title">
-            <h4>Setting</h4>
-            <a href="#" title="">Clear all</a>
-        </div>
+        {% if notifications|length > 0 %}
+            <div class="nt-title">
+                {#<h4>{{ 'global.settings'|trans }}</h4>#}
+                <a href="#" data-user="{{ user_id }}" title="">{{ 'global.clear_all'|trans }}</a>
+            </div>
+        {% endif %}
         <div class="nott-list">
-            <div class="notfication-details">
-                <div class="noty-user-img">
-                    <img src="{{ asset('build/images/resources/ny-img1.png') }}" alt="">
-                </div>
-                <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                </div>
+            <div id="nott-items">
+                {% for notification in notifications %}
+                    <div class="notfication-details">
+                        <div class="noty-user-img">
+                            {% if notification.userSender.getUserProfilePictures().last() %}
+                                <img src="{{ asset('/uploads/user/profiles/'~ notification.userSender.getUserProfilePictures().last().document)|imagine_filter('user_profile_small') }}" alt="">
+                            {% else %}
+                                <img src="https://via.placeholder.com/40x40" alt="">
+                            {% endif %}
+                        </div>
+                        <div class="notification-info">
+                            <h3><a href="{{ notification.link  }}" title="">{{ notification.userSender.username }}</a> {{ notification.content }}</h3>
+                            <span>{{ notification.createdAt|ago }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            <div class="notfication-details">
-                <div class="noty-user-img">
-                    <img src="{{ asset('build/images/resources/ny-img2.png') }}" alt="">
-                </div>
-                <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                </div>
-            </div>
-            <div class="notfication-details">
-                <div class="noty-user-img">
-                    <img src="{{ asset('build/images/resources/ny-img3.png') }}" alt="">
-                </div>
-                <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                </div>
-            </div>
-            <div class="notfication-details">
-                <div class="noty-user-img">
-                    <img src="{{ asset('build/images/resources/ny-img2.png') }}" alt="">
-                </div>
-                <div class="notification-info">
-                    <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                    <span>2 min ago</span>
-                </div>
-            </div>
+
             <div class="view-all-nots">
-                <a href="#" title="">View All Notification</a>
+                <a href="#" title="">{{ 'menu.notifications.view_all'|trans }}</a>
             </div>
         </div>
     </div>

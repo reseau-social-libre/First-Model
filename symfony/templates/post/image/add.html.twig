@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RSL | {{ 'form.post.image.add_new'|trans }}!{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        {% include 'header.html.twig' %}
+
+        <main>
+            <div class="main-section">
+                <div class="container">
+                    <div class="main-section-data">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 pd-left-none no-pd">
+                                {{ include('sidebar/left-sidebar.html.twig')}}
+                            </div>
+                            <div class="col-lg-6 col-md-8 no-pd">
+                                <div class="post-project">
+                                    <h3>{{ 'form.post.image.add'|trans }}</h3>
+                                    <div class="post-project-fields">
+                                        {{ form_start(form) }}
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    {{ form_row(form.title) }}
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    {{ form_row(form.content) }}
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    {{ form_errors(form) }}
+                                                    <ul id="post_image_images"
+                                                        data-prototype="{{ form_widget(form.images.vars.prototype)|e }}"
+                                                        data-widget-tags="{{ '<li></li>'|e }}"
+                                                        data-widget-counter="{{ form.children|length }}"></ul>
+
+                                                    {% for image in form.images %}
+                                                        <li id="widget-images">
+                                                            {{ form_widget(image) }}
+                                                        </li>
+                                                    {% endfor %}
+                                                    <button type="button"
+                                                            class="add-image-collection-widget btn"
+                                                            data-list-selector="#post_image_images">
+                                                        {{ 'form.post.image.add_more'|trans }}
+                                                    </button>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <ul>
+                                                        <li><button class="active" type="submit" value="post">{{ 'form.send'|trans }}</button></li>
+                                                        <li><a href="{{ path('home') }}" title="">{{ 'form.cancel'|trans }}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        {{ form_end(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 pd-right-none no-pd">
+                                {{ include('sidebar/right-sidebar.html.twig') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('post') }}
+{% endblock %}
